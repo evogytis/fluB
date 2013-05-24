@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: fluB.aux
+The style file: plos.bst
+Database file #1: fluB.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 4 entries,
+            2441 wiz_defined-function locations,
+            568 strings with 5286 characters,
+and the built_in function-call counts, 3638 in all, are:
+= -- 336
+> -- 60
+< -- 0
++ -- 30
+- -- 15
+* -- 313
+:= -- 433
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 5
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 360
+empty$ -- 372
+format.name$ -- 19
+if$ -- 799
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 44
+newline$ -- 35
+num.names$ -- 4
+pop$ -- 62
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 24
+stack$ -- 0
+substring$ -- 528
+swap$ -- 86
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 25
+width$ -- 5
+write$ -- 58

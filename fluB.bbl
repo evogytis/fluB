@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{paul-glezen2013}
+Paul~Glezen W, Schmier JK, Kuehn CM, Ryan KJ, Oxford J (2013) The burden of
+  influenza b: A structured literature review.
+\newblock American Journal of Public Health 103: e43--e51.
+\bibAnnoteFile{paul-glezen2013}
+
+\bibitem{ECDC1213}
+Broberg E, Beaut\'{e} J, Snacken R (2013) {Fortnightly influenza surveillance
+  review, 9th May}.
+\newblock Technical report, European Centre for Disease Prevention and Control,
+  Stockholm.
+\bibAnnoteFile{ECDC1213}
+
+\bibitem{osterhaus2000}
+Osterhaus ADME, Rimmelzwaan GF, Martina BEE, Bestebroer TM, Fouchier RaM (2000)
+  Influenza b virus in seals.
+\newblock Science 288: 1051--1053.
+\bibAnnoteFile{osterhaus2000}
+
+\bibitem{chen2008}
+Chen R, Holmes EC (2008) The evolutionary dynamics of human influenza b virus.
+\newblock Journal of Molecular Evolution 66: 655--663.
+\bibAnnoteFile{chen2008}
+
+\end{thebibliography}
