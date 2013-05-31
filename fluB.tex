@@ -97,9 +97,9 @@ All other influenza B segments also show a split in xxxx (comment - our estimate
 
 \subsection*{Sequences and subtyping}
 We compiled a dataset of 452 complete influenza B genomes from GISAID (comment - need acknowledgment tables). 
-Each strain was assigned to a lineage (either Vic or Yam subtype) in each segment by making maximum likelihood trees and looking whether it fell within the subtree containing B/Victoria/02/87 or B/Yamagata/16/88 sequences with the exception of the NS segment (B/Victoria/02/87 was a reassortant and possessed a Yam lineage NS), where B/Norway/1/84 was considered as being representative of Victoria lineage.
+Each strain was assigned to a lineage (either Vic or Yam) in each segment by making maximum likelihood trees and looking whether it fell within the subtree containing B/Victoria/02/87 or B/Yamagata/16/88 sequences with the exception of the NS segment (B/Victoria/02/87 was a reassortant and possessed a Yam lineage NS), where B/Norway/1/84 was considered as being representative of Victoria lineage.
 Each strain was thus assigned 8 lineages depending on the combination of lineages it belongs to in all trees (for example all segments except for NS in strain B/Victoria/02/87 belong to Vic lineage and can thus be represented as V,V,V,V,V,V,V,Y). 
-Seven of these where then used as discrete states in each of the trees (e.g. PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values) in BEAST (comment - reference BEAST). (comment - give figure with proportions of subtypes for each segment)
+Seven of these where then used as discrete states in each of the trees (e.g. PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values) in BEAST (comment - reference BEAST). (comment - give figure with proportions of each lineage for each segment)
 
 \subsection*{Building trees}
 For each segment it was attempted to make 3 replicates with 200 million MCMC states (comment - only third replicates ran for that long) each under the HKY model of nucleotide substitutions, 3 codon partitions, robust counting (comment - reference robust counting)) under the GMRF Bayesian skyride demographic model (comment - reference skyride).
