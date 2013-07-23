@@ -72,7 +72,7 @@
 
 Influenza B viruses are increasingly being recognized as major contributors to morbidity attributed to seasonal influenza. 
 Currently circulating influenza B isolates are known to belong to two antigenically distinct lineages (referred to as B/Victoria and B/Yamagata subtypes (comment - is subtype okay to use here?)) on the basis of haemagglutinin inhibition (HI) assays. 
-Frequent reassortment between the segments of these two lineages has been noted in the past (comment - cite Lindstrom et al 1999), but the effects of these reassortments have not been investigated in much detail.
+Frequent reassortment between the segments of these two lineages has been noted in the past \cite{lindstrom1999}, but the effects of these reassortments have not been investigated in much detail.
 
 \end{abstract}
 
@@ -101,7 +101,7 @@ All other influenza B segments also show a split in xxxx (comment - our estimate
 %	\label{TMRCAhpd}
 %\end{figure}
 
-Previously, through the use of time-stamped phylogenetic trees, the complete history of influenza B reassortment events has been reconstructed (comment - cite Chen \& Holmes 2008), and showed extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
+Previously, through the use of time-stamped phylogenetic trees, the complete history of influenza B reassortment events has been reconstructed \cite{chen2008}, and showed extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
 Another approach exists, however, whereby belonging to either the Victoria or Yamagata lineage in the tree of one segment can be used as a discrete trait in trees of other segments.
 Reassortment events which result in the replacement of one segment lineage by another show up as changes in the discrete trait along a branch and allow the inference of parameters related to the subtree descended from the node displaying a changed trait.
 Here, we use discrete traits to model inter-lineage reassortments between Victoria and Yamagata lineage segments in BEAST to look at lineage persistence times following reassortment events. 
@@ -126,8 +126,8 @@ In addition, by reconstructing the ancestral state of all other genomic segments
 We use a measure of persistence which is defined as the ratio of distances (in units of time) between a reassortant node and its most recent tip (the event is sampled uniformly over the branch displaying a trait value that is different from its parent node) and compare it to the mean of distances between all nodes and their respective most recent tips. 
 If this statistic is below 1 a reassortment event is presumed to be disadvantageous, if it is above 1 the event is presumed to be advantageous.
 
-Alternative - we start by allocating the tips in the tree to yearly bins starting from 1984 and ending in 2013. 
-
+Alternative:
+We start by allocating the tips in the tree to yearly bins starting from 1984 and ending in 2013. 
 At each state of the MCMC chain we choose a random tip from each bin and traverse the tree towards the root until a reassortment event (i.e. a trait switch) is encountered.
 We log the traits which have transitioned at the reassortant node (i.e. the reassorting segment), the direction of transition (e.g. whether the parental node was V and the child node Y or vice versa) and the amount of time separating the tip and the node displaying a trait transition. 
 The time taken to traverse back to a reassortment event is expected to be longer for advantageous reassortments than for non-advantageous reassortments.
@@ -167,7 +167,7 @@ These differences in segment diversity are reflected in ratios of Victoria to Ya
 	\label{tmrcaOT}
 \end{figure}
 
-
+(comment - need higher resolution for lineage ratios figure or switch to vector graphics)
 \begin{figure}[h]
 	\centering		
 	\includegraphics[width=0.95\textwidth]{figures/InfB_LineageRatios.png}
@@ -231,7 +231,7 @@ We also see that reassortments occur across considerable phylogenetic distances 
 \subsection*{Selection maintains the diversity in PB1-PB2-HA complexes of Victoria and Yamagata lineages}
 Rather surprisingly, 3 segments have maintained a ratio of Vic and Yam lineages very close to 0.5 (PB1, PB2 and HA) (see Figure \ref{lineageRatios}) and have preserved the diversity that has accumulated since the split of the two lineages (see Figure \ref{tmrcaOT}).
 Our results suggest that this is due to the 3 segments co-reassorting (comment - refer to posterior distributions of reassortant dates plot).
-We find evidence that this co-reassortment pattern between PB1, PB2 and HA is not due to skewed reassortment ((comment - add Marshall et al 2013 citation) have shown that reassortment efficiency is high in influenza A), but rather due to viruses bearing mixed-lineage PB1-PB2-HA complex having lower fitness than viruses with PB1-PB2-HA complexes derived entirely from Yam or Vic lineages (comment - refer to stratified REPU plot).
+We find evidence that this co-reassortment pattern between PB1, PB2 and HA is not due to skewed reassortment (Marhsall \textit{et al.} \cite{marshall2013} have shown that reassortment efficiency is high in influenza A), but rather due to viruses bearing mixed-lineage PB1-PB2-HA complex having lower fitness than viruses with PB1-PB2-HA complexes derived entirely from Yam or Vic lineages (comment - refer to stratified REPU plot).
 Not only are events that split up pure-lineage PB1-PB2-HA complexes rare, but they also have poor persistence and trees have spent less than 10\% of the time in the mixed-lineage PB1-PB2-HA complex state, suggesting that they are selected against (comment - make plot of that).
 
 Thus our findings suggest that the link maintaining PB1, PB2 and HA lineages close to equilibrium is not due to biased reassortment, but a result of selection acting upon reassortants containing mixed-lineage PB1-PB2-HA segments.
@@ -250,7 +250,7 @@ However, we find no evidence of differences in nucleotide, synonymous and non-sy
 Thus we have no evidence to suggest fundamental differences between Vic and Yam lineage PB1-PB2-HA complexes.
 
 Balancing selection would be expected, and does in the malaria parasite, preserve antigenic diversity, but it is unclear if maintenance of PB1-PB2-HA lineages is driven by balancing selection acting to preserve antigenic diversity of HA or the diversity of PB1 and PB2 segments.
-Recently (comment - cite Cobbin et al 2013) a similar link has been described in influenza A by XXXX, where the PB1 segment is reassorted more frequently than expected during vaccine strain creation.
+Recently a similar link has been described in influenza A by Cobbin \textit{et al.} \cite{cobbin2013}, where the PB1 segment is reassorted more frequently than expected during vaccine strain creation.
 If influenza B virus PB1 has a similar gene-regulatory activity, then it would be reasonable to assume that HA and PB1 are associated through the necessity for HA to have appropriate levels of expression and PB2 hitchhikes together with PB1 due to some functional requirement as part of the polymerase complex.
 This does not explain why the Vic lineage of the PA segment was lost so readily, however, despite it being a part of the polymerase complex.
 
@@ -272,9 +272,9 @@ We also expect that the fitness of artificially derived reassortants would decli
 \subsection*{Implications for influenza B surveillance and prevention}
 The findings presented here have several implications.
 On one hand, if the co-dependence between PB1, PB2 and HA segments is strong enough, influenza B viruses containing mixed-lineage PB1-PB2-HA complex detected by surveillance are unlikely to contribute to long-term evolution of influenza B viruses.
-On the other hand, the dependence of the HA segment on PB1 and PB2 segments (or vice versa) implies that more subtle disease control measures can be developed and used against influenza B viruses.
-Finally, the extent of inter-lineage reassortment argues for more extensive surveillance of influenza B viruses, as sequences of a handful of segments will not necessarily tell the whole story, especially since influenza B viruses have been known to evolve counter-intuitively (e.g. losing Victoria lineages of PA and NA segments despite their associations with the rest of the polymerase complex or role in antagonising HA activity, respectively).
-This study also highlights the gaps in our knowledge of the molecular biology of influenza B viruses.
+On the other hand, the dependence of the HA segment on PB1 and PB2 segments (or \textit{vice versa}) implies that there is a possibility that more subtle disease control measures could be developed and used against influenza B viruses, or, if similar co-adapted segment complexes were discovered in influenza A, seasonal influenza in general.
+In addition, the extent of inter-lineage reassortment argues for more intensive surveillance of influenza B viruses, as sequences of a handful of segments will not necessarily tell the whole story, especially since influenza B viruses have been known to evolve counter-intuitively (\textit{e.g.} losing Victoria lineages of PA and NA segments despite their associations with the rest of the polymerase complex or role in antagonising HA activity, respectively).
+Finally, this study also highlights the gaps in our knowledge about the molecular biology of influenza B viruses.
 
 
 
@@ -285,6 +285,6 @@ This study also highlights the gaps in our knowledge of the molecular biology of
 %\end{figure}
 
 
-\bibliographystyle{plos}
+\bibliographystyle{pnas}
 \bibliography{fluB}
 \end{document}
