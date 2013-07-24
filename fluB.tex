@@ -56,12 +56,13 @@
 \title{\vspace{1.0cm} \LARGE \bf fluB}
 
 \author[1]{Gytis Dudas}
-\author[1]{Trevor Bedford}
+\author[2]{Trevor Bedford}
 \author[1]{Samantha Lycett}
-\author[1,2]{Andrew Rambaut}
+\author[1,3]{Andrew Rambaut}
 
 \affil[1]{Institute of Evolutionary Biology, University of Edinburgh, Edinburgh, UK}
-\affil[2]{Fogarty International Center, National Institutes of Health, Bethesda, MD, USA.}
+\affil[2]{Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA.}
+\affil[3]{Fogarty International Center, National Institutes of Health, Bethesda, MD, USA.}
 
 \date{\today}
 
@@ -80,17 +81,16 @@ Frequent reassortment between the segments of these two lineages has been noted 
 
 
 \section*{Introduction}
-Seasonal influenza causes an estimated 250,000 to 500,000 deaths annually and is comprised of three species (influenza A, B and C) co-circulating in humans.
-Most of these are attributed to influenza A viruses, which are considered to cause the most morbidity and mortality attributed to seasonal influenza.
-Though lacking the antigenic diversity that influenza A viruses possess, influenza B viruses are increasingly being recognized as important human pathogens \cite{paul-glezen2013}.
-Following the 2009 A/H1N1 pandemic influenza B viruses have circulated more widely than previously (note - reword this) and in the 2012/2013 influenza season in Europe as many as 53\% of influenza sentinel surveillance samples tested positive for influenza B \cite{ECDC1213}. 
+Seasonal influenza causes an estimated 250,000 to 500,000 deaths annually and is comprised of three virus types (influenza A, B and C) co-circulating in humans, of which influenza A is considered to cause the majority of seasonal morbidity and mortality.
+Though lacking the degree of antigenic diversity that influenza A viruses possess, influenza B viruses are increasingly being recognized as important human pathogens \cite{paul-glezen2013}.
+Following the 2009 A/H1N1 pandemic, influenza B has increased in prevalence and in the 2012/2013 European season as many as 53\% of influenza sentinel surveillance samples tested positive for influenza B \cite{ECDC1213}. 
 
 Like all members of \textit{Orthomyxoviridae}, influenza B viruses have segmented genomes, which allow viruses co-infecting the same cell to exchange segments (a process known as reassortment). 
 Influenza A viruses are widely considered to be a major threat to human health worldwide due to the ability to cause pandemics in humans via reassortment of seasonal human and non-human influenza A strains. 
-The only known persistent source of influenza B viruses are humans (and occasionaly seals \cite{osterhaus2000}) and thus the antigenic diversity of influenza B viruses circulating in humans is considered to be low. 
-It has been suggested that influenza B viruses use a combination of reassortment and amino acid insertion-deletions to generate antigenic diversity (comment - citation).
+The only known persistent source of influenza B viruses are humans (and occasionaly seals \cite{osterhaus2000}), thus limiting the virus's available antigenic reservoir. 
+It has been suggested that influenza B viruses use a combination of reassortment and point mutations to generate antigenic diversity (comment - citation).
 
-Currently circulating influenza B viruses are comprised of two antigenically distinct lineages - Victoria and Yamagata (referred to as Vic and Yam, respectively) which are named after two strains: B/Victoria/02/87 and B/Yamagata/16/88, respectively, which possess antigenically distinct haemagglutinin (HA) surface glycoproteins. 
+Currently circulating influenza B viruses are comprised of two antigenically distinct lineages -- Victoria and Yamagata (referred to as Vic and Yam, respectively) -- named after two strains, B/Victoria/02/87 and B/Yamagata/16/88, which possess antigenically distinct haemagglutinin (HA) surface glycoproteins. 
 The two HA lineages still co-circulate today and are thought to have shared a most recent common ancestor in xxxx. 
 All other influenza B segments also show a split in xxxx (comment - our estimate \textit{circa} 1984 figure \ref{TMRCAhpd}, use a figure to show TMRCAs and rates for each segment?), although the numbers of strains falling on either side of the split are different due to reassortments following the initial split of Yamagata and Victoria lineages in all segments.
 
@@ -101,12 +101,14 @@ All other influenza B segments also show a split in xxxx (comment - our estimate
 %	\label{TMRCAhpd}
 %\end{figure}
 
-Previously, through the use of time-stamped phylogenetic trees, the complete history of influenza B reassortment events has been reconstructed \cite{chen2008}, and showed extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
+Previously, through the use of time-stamped phylogenetic trees, the reassortment history of major clades of influenza B has been reconstructed \cite{chen2008}, showing extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
 Another approach exists, however, whereby belonging to either the Victoria or Yamagata lineage in the tree of one segment can be used as a discrete trait in trees of other segments.
 Reassortment events which result in the replacement of one segment lineage by another show up as changes in the discrete trait along a branch and allow the inference of parameters related to the subtree descended from the node displaying a changed trait.
 Here, we use discrete traits to model inter-lineage reassortments between Victoria and Yamagata lineage segments in BEAST to look at lineage persistence times following reassortment events. 
 We show that despite extensive reassortment, PB1, PB2 and HA segments of influenza B viruses still survive as Victoria and Yamagata lineages, which appear to be co-adapted to the point where virions which do not contain PB1, PB2 or HA segments derived entirely from either the Victoria or the Yamagata lineage are selected against.
 In other segments (PA, NP, NA, MP and NS) a single lineage has been fixed in the influenza B population: Yam for PA, NP, NA and MP and Vic for NS.
+
+\tbc{I think a cartoon displaying a reassortment graph for 2 segments (Vic and Yam lineages with segments A and B) plus the decomposed discrete-trait trees (A tree with B traits and B tree with A traits) would really help convey what you've done.  Even if it doesn't get used in the paper, it would be great for a talk.}
 
 
 \section*{Methods}
@@ -118,8 +120,9 @@ Each strain was thus assigned 8 lineages depending on the combination of lineage
 Seven of these where then used as discrete states in each of the trees (e.g. PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values) in BEAST (comment - reference BEAST).
 
 \subsection*{Building trees}
+\tbc{I generally prefer to describe the model (HKY, etc...) then say that posterior samples were drawn using MCMC and describe sampling regime.}
 For each segment it was attempted to make 3 replicates with 200 million MCMC states (comment - only third replicates ran for that long) each under the HKY model of nucleotide substitutions, 3 codon partitions, robust counting (comment - reference robust counting)) under the GMRF Bayesian skyride demographic model (comment - reference skyride).
-In addition we used "relaxed" tips for 94 sequences (of which 93 only had year of isolation and 1 had only year and month of isolation).
+In addition we used `relaxed' tips for 94 sequences (of which 93 only had year of isolation and 1 had only year and month of isolation) \tbc{CITE}.
 We inferred the ancestral state of lineages in each segment by using discrete traits (asymmetric CTMC matrix with BSSVS (comment - cite Philippe)). Because the posterior set of trees have branches labelled with the inferred lineage in all other segments, we can detect inter-lineage reassortments whenever a trait transition is observed (i.e. Y to V or V to Y) between a node and its descendant in any segment. 
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
 
@@ -152,13 +155,15 @@ Currently running "null" traited trees where trait maps have been rearranged (ke
 \section*{Results}
 
 \subsection*{PA, NP, NA, MP and NS have periodically lost diversity}
-From TMRCA plots (see Figure \ref{tmrcaOT}) it is clear that diversity in PB1, PB2 and HA has been maintained since the initial split of Victoria and Yamagata lineages, whereas other segments (most notably NS) have repeatedly lost lineages.
+We find that diversity in PB1, PB2 and HA has been maintained since the initial split of the Victoria and Yamagata lineages, whereas other segments (most notably NS) have undergone repeated lineage replacement (Figure~\ref{tmrcaOT}).
 The plot shows the initial losses of diversity in PA, NP and MP segments in 1997 (x axis), indicative of the extinction of Victoria lineages of those segments and revealing that a reassortment had occured which meant that all sampled lineages circulating around 1997 shared a common ancestor around the year 1990 (y axis).
 By 2001, the Yamagata lineage of the NS segment had gone extinct as well, revealing that NS too had reassorted together with PA, NP and MP segment around the year 1990 (similar TMRCA along the y axis to previous reassortants).
+\tbc{Here, you say things like `the Yamagata lineage of NS' and `the extinction of Victoria lineages'; the Vic/Yam distinction can't be seen in this figure.  If you want to discuss these details you should provide a figure that makes them apparent.  I'm not immediately sure how to display this.  Or wait to discuss the Vic/Yam stratification until you have a figure that supports it.}
 Another round of reassortment-related extinction took place since then in PA, MP and NA segments and another 3 in the NS segment.
 Unlike all other segments, however, all lineages of PB1, PB2 and HA segments have maintained diversity and lineages circulating in 2011 were still derived from the original split of the Victoria and Yamagata lineages.
 
 These differences in segment diversity are reflected in ratios of Victoria to Yamagata lineages in different segments: for the PB1, PB2 and HA segments the ratio of sequences belonging to either Victoria or Yamagata lineages are close to 0.5 (see Figure \ref{lineageRatios}, whereas all other segments are heavily skewed towards Yamagata lineage with the exception of NS segment which has more Victoria lineage sequences.
+\tbc{This would be more convincing if you showed a trend through time.}
 
 \begin{figure}[h]
 	\centering		
