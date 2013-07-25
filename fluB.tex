@@ -72,7 +72,7 @@
 \begin{abstract}
 
 Influenza B viruses are increasingly being recognized as major contributors to morbidity attributed to seasonal influenza. 
-Currently circulating influenza B isolates are known to belong to two antigenically distinct lineages (referred to as B/Victoria and B/Yamagata subtypes (comment - is subtype okay to use here? - \tbc{Unfortunately, `subtype' is not kosher to refer to Vic and Yam.  It's annoying.  The most common term in the literature is `lineage'.  I suspect you could also get away with `virus', as in the `B/Vic virus'.})) on the basis of haemagglutinin inhibition (HI) assays. 
+Currently circulating influenza B isolates are known to belong to two antigenically distinct lineages referred to as B/Victoria and B/Yamagata lineages on the basis of haemagglutinin inhibition (HI) assays. 
 Frequent reassortment between the segments of these two lineages has been noted in the past \cite{lindstrom1999}, but the effects of these reassortments have not been investigated in much detail.
 
 \end{abstract}
@@ -121,7 +121,8 @@ Seven of these where then used as discrete states in each of the trees (e.g. PB1
 
 \subsection*{Building trees}
 \tbc{I generally prefer to describe the model (HKY, etc...) then say that posterior samples were drawn using MCMC and describe sampling regime.}
-For each segment it was attempted to make 3 replicates with 200 million MCMC states (comment - only third replicates ran for that long) each under the HKY model of nucleotide substitutions, 3 codon partitions, robust counting (comment - reference robust counting)) under the GMRF Bayesian skyride demographic model (comment - reference skyride).
+
+Temporal phylogenies were recovered for each segment using the HKY model of nucleotide substitution, 3 codon partitions, robust counting (comment - reference robust counting) and GMRF Bayesian skyride (comment - reference skyride) as the demographic model over the course of an MCMC chain (3 parallel runs of 200 million states, sampling every 20000 steps).
 In addition we used `relaxed' tips for 94 sequences (of which 93 only had year of isolation and 1 had only year and month of isolation) \tbc{CITE}.
 We inferred the ancestral state of lineages in each segment by using discrete traits (asymmetric CTMC matrix with BSSVS (comment - cite Philippe)). Because the posterior set of trees have branches labelled with the inferred lineage in all other segments, we can detect inter-lineage reassortments whenever a trait transition is observed (i.e. Y to V or V to Y) between a node and its descendant in any segment. 
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
