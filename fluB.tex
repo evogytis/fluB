@@ -163,12 +163,7 @@ However, because the time taken to calculate the SPR distances depends on the SP
 
 \subsection*{Identifying linked sites in PB1, PB2 and HA segments}
 We attempted to identify amino acid sites that exhibit linkage disequilibrium (LD) between PB1, PB2 and HA segments.
-We chose the $\chi^{2}_{df}$ statistic \cite{zhao2005} for quantifying LD, as it is equal to the widely used \textit{r$^{2}$} LD statistic for biallelic loci, but also quantifies LD when there are more than two alleles per locus.
-
-We also looked at amino acid sites which are different and fixed between sequences that were labelled as Victoria or Yamagata earlier and which possess entirely Victoria-derived or entirely Yamagata-derived PB1, PB2 and HA segments.
-For the latter analysis we split our PB1, PB2 and HA amino acid alignments into temporal 5-year bins ranging from 1984 to 2013. 
-By scanning Victoria and Yamagata alignments at each 5-year bin we can identify sites which are different and fixed between the two lineages and how the sites have evolved over the past 30 years.
-This was done to control for sites in PB1, PB2 and HA proteins discovered by the LD analysis which, in addition to being more sensitive, might also be linked due to co-evolving sub-lineages within Vic and Yam lineages.
+We chose the $\chi^{2}_{df}$ statistic \cite{zhao2005} for quantifying LD, as it is equal to the widely used \textit{r$^{2}$} LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus.
 
 \section*{Results}
 
@@ -199,7 +194,8 @@ Our findings therefore suggest that a single configuration of Yam and Vic lineag
 	\includegraphics[width=0.95\textwidth]{figures/InfB_betweenDiversity.png}
 	\caption{\textbf{Mean pairwise TMRCA between Vic and Yam branches under PB1, PB2 and HA label sets.}
 PB1, PB2 and HA segment labels indicate that these segments show reciprocal preservation of diversity, which dates back to the split of Vic and Yam lineages.
-All other segments show increasingly more recent TMRCAs between branches labelled as Vic and Yam in PB1, PB2 and HA label sets.}
+All other segments show increasingly more recent TMRCAs between branches labelled as Vic and Yam in PB1, PB2 and HA label sets.
+All horizontal lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{betweenDiversity}
 \end{figure}
 
@@ -212,7 +208,8 @@ Figure \ref{stateTime} shows the sum of branch lengths which were labelled as ha
 	\includegraphics[width=0.95\textwidth]{figures/InfB_stateTime.png}
 	\caption{\textbf{Amount of evolutionary time spent under different PB1-PB2-HA constellations.}
 All segments have spent significantly more of their history with entirely Vic or entirely Yam-derived PB1-PB2-HA complexes.
-(comment - based on 1 set of posteriors (comment - give numbers, HPDs)}
+(comment - based on 1 set of posteriors (comment - give numbers, HPDs)
+All horizontal lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{stateTime}
 \end{figure}
 
@@ -230,7 +227,8 @@ A more dramatic example can be found in the NS segment, where the Vic lineage ha
 	\includegraphics[width=0.95\textwidth]{figures/InfB_tmrcaOT_lines.png}
 	\caption{\textbf{Oldest TMRCA of all surviving lineages over time.}
 PA, NP, NA, MP and NS segments of influenza B viruses show periodic losses of diversity, indicating lineage turn over.
-PB1, PB2 and HA segments, on the other hand, maintain the diversity dating back to the initial split of Vic and Yam lineages.}
+PB1, PB2 and HA segments, on the other hand, maintain the diversity dating back to the initial split of Vic and Yam lineages.
+All horizontal lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{tmrcaOT}
 \end{figure}
 
@@ -270,13 +268,48 @@ All segments have spent significantly more of their history with entirely Vic or
 	}
 \end{table}
 
-\subsection*{Co-adaptation candidate sites do not fall within intuitive regions of PB1, PB2 and HA proteins}
-We find that amongst the pairs of sites exhibiting the highest $\chi^{2}_{df}$ statistics none fall within the regions previously described as forming the contacts between PB1 and PB2 proteins of the influenza A polymerase.
+\subsection*{Amino acid sites with high LD between PB1, PB2 and HA}
+We collected sites which exhibit high LD ($\chi^{2}_{df}\ge$0.5).
+By performing hierarchical clustering we identify clusters of sites which exhibit similar LD patterns.
+We identify 4 main classes of sites within the clusters:
+\begin{enumerate}
+	\item Sites that are associated with the split of Vic-Yam lineages in PB1 and PB2 segments.
+	These sites form the largest clusters in our heatmaps and encompass all three segments (PB1, PB2 and HA).
+	PB1 sites 176, 508, PB2 sites 115, 301, 383, 397, 468 and HA sites 91, 163, 270 and 277 are in complete or nearly complete linkage disequilibrium ($\chi^{2}_{df}>$0.97) and are the sites that are fixed and different between Vic and Yam lineages of PB1, PB2 and HA segments.
+	PB1 sites 211, 213 and 214, PB2 sites 382 and 483 and HA sites 96 and 190 are in reduced (but still high) linkage disequilibrium with sites exhibiting high LD due to a combination of homoplastic amino acid substitutions and amino acid sites that have undergone substitutions some time after the Vic-Yam split.
+	\item Sites associated with the B/Beijing/76/1998 genome, a presumed member of a divergent and poorly sampled lineage.
+	The B/Beijing/76/1998 genome possesses substitutions at PB1 site 547, PB2 sites 26, 55, 75, 238, 371 and 743 and HA sites 100 and 263.
+	\item Sites associated with the B/Ibaraki/2/1985 genome, another presumed member of a poorly sampled and divergent lineage.
+	These sites are: 170, 736 on PB1, site 76 on PB2 and sites 265, 289, 302, 317, 328 on HA.
+	\item Sites which do not show complete PB1-PB2-HA associations and are represented by mostly single isolates with `concerted' substitutions on pairs of segments (PB1-PB2, PB1-HA or PB2-HA), but not all three.
+\end{enumerate}
+
+
 Linkage disequilibrium analysis of the HA segment shows that as many as 11-12\% of the amino acid sites in HA exhibit high linkage disequilibrium with respect to PB1 and PB2 segments (compared to 6-7\% in PB1 and PB2).
-This probably reflects the independent accumulation of advantageous amino acid substitutions within Victoria and Yamagata lineages and sub-clades.
-In fact all amino acid sites in the HA segment exhibiting high linkage disequilibrium with sites on PB1 and PB2 segments are found within the HA1 region of HA.
+This probably reflects the independent accumulation of advantageous amino acid substitutions within individual lineages, as the HA would be expected to accumulate many non-synonymous substitutions via antigenic drift.
+In fact all amino acid sites in the HA segment exhibiting high linkage disequilibrium are found within the HA1 region of HA.
 
+(comment - will require a lot of fiddling to get the heatmaps displayed in a clear way)
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.65\textwidth]	{figures/Chi_PB1_PB2.png}
+	\caption{\textbf{Hierarchical clustering of amino acid sites on PB1 and PB2 segments based on $\chi^{2}_{df}$ values.}}
+	\label{ChiPB1PB2}
+\end{figure}
 
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.65\textwidth]	{figures/Chi_PB1_HA.png}
+	\caption{\textbf{Hierarchical clustering of amino acid sites on PB1 and HA segments based on $\chi^{2}_{df}$ values.}}
+	\label{ChiPB1HA}
+\end{figure}
+
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.65\textwidth]	{figures/Chi_PB2_HA.png}
+	\caption{\textbf{Hierarchical clustering of amino acid sites on PB2 and HA segments based on $\chi^{2}_{df}$ values.}}
+	\label{ChiPB2HA}
+\end{figure}
 
 
 \section*{Discussion}
@@ -293,6 +326,16 @@ Despite the apparent similarities between PB1, PB2 and HA trees, we have detecte
 
 Our results also suggested that all segments have spent very little evolutionary time in the same virions as the 3 mixed-lineage PB1-PB2-HA constellations, compared to either entirely Yam PB1-PB2-HA or entirely Vic PB1-PB2-HA bearing viruses.
 We interpret lack of reassortment within the PB1-PB2-HA complex across the lineage boundary in recent times as evidence of a considerable degree of co-dependence within the Vic and Yam PB1-PB2-HA lineages, whereby recent reassortants bearing mixed-lineage PB1-PB2-HA complexes are inviable or unsampled by surveillance due to being outcompeted by viruses with pure-lineage PB1-PB2-HA complexes.
+
+We have identified amino acid sites which exhibit a high degree of linkage disequilibrium between PB1, PB2 and HA segments.
+Sites with high LD on PB1, PB2 and HA segments could be interpreted as either sites which have drifted apart due to lack of reassortment between the three segments or as sites which prevent the cooperation of the three at the molecular level and thus prevent inter-lineage PB1-PB2-HA reassortants from having comparable fitness to viruses with `pure' lineage PB1-PB2-HA complexes.
+
+None of the sites we have identified on PB1 and PB2 proteins fall within the previously described regions that form the contacts between the two polymerase subunits \cite{sugiyama2009} (comment - citation pertains to influenza A, but all high LD sites are far away from those regions anyway).
+
+(comment - PB1 sites 211, 213 and 214 within nuclear localization signal? PB1 site 176 kind of nearby too)
+(comment - PB1 site 508 is 28 amino acids away from super conserved RdRp motif IV - significant?)
+
+(comment - PB2 sites 382, 383, 397, 468 and 483 fall within cap-binding region of PB2?)
 
 \subsection*{Potential causes of co-dependence between PB1-PB2-HA}
 Previous studies have investigated possible co-dependence patterns between segments of influenza B viruses, by focusing on segments which would be expected to be co-adapted, e.g. PB1-PB2-PA and HA-NA \cite{mccullers2004}.
@@ -313,7 +356,7 @@ Another possibility is the action of balancing selection in preserving the diver
 A good candidate for this would be HA, as it is now the sole bearer of antigenic diversity within the influenza B population (the Vic lineage NA segment having gone extinct), until the Yam lineage NA segment under Vic PB1-PB2-HA recovers sufficient antigenic diversity.
 Previous research has found that avian influenza A virus HA and NA segments, which are the primary vehicles of antigenicity, exhibit vast diversity when compared to `internal segments', which show much more recent TMRCAs and less variability at the amino acid level \cite{chen2006,obenauer2006}.
 It is also possible that Vic and Yam lineages of PB1, PB2 and HA segments have simply drifted away from each other, without any one segment being the driver of diversity preservation in PB1, PB2 and HA segments.
-This process, termed mutation-driven co-evolution \cite{presgraves2010}, has been suggested to be the cause of hybrid dysfunction in hybrids of \textit{Saccharomyces cerevisiae} and \textit{Saccharomyces bayanus} \cite{lee2008}.
+This process, termed mutation-driven co-evolution \cite{presgraves2010}, has been suggested to be the cause of hybrid dysfunction in \textit{Saccharomyces} hybrids \cite{lee2008}.
 
 \subsection*{The future of influenza B viruses}
 We see two potential paths of evolution for influenza B viruses.
