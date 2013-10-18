@@ -152,18 +152,27 @@ This gives a measure of how successful, over long periods of time, each particul
 In order to get a measure of tree to tree similarity we first extracted 1000 (sampling frequency roughly equal to 1 tree/180000 MCMC states) trees from the posterior distributions of trees of each segment.
 Pairwise comparison between each pair of segments was performed by comparing trees at each MCMC state.
 
+(comment - could try normalizing at each tip-tip comparison)
 We express the similarity by referring to 3 descriptive statistics (sum, mean and standard deviation) of the distribution of TMRCA differences ($\Delta$TMRCA) between pairs of tips in the two trees.
 These parameters are estimated for each pairing of trees at each MCMC state and provides us with 95\% highest posterior density intervals for those parameters, thus giving us the ability to test specific hypotheses regarding similarities between the trees of different segments.
 Our approach exploits the branch scaling used by BEAST \cite{drummond2012}, since the trees are scaled in absolute time and therefore insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
-If we are comparing TMRCAs of the same two tips in tree A and tree B we express it as $\frac{2\times [A:B]}{[A:A]+[B:B]}$, where [A:B] is $\Delta$TMRCA of a pair of tips between tree A and tree B and [A:A] is $\Delta$TMRCA between the same pair of tips between tree A and a replicate of tree A, to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
+
+If we are comparing TMRCAs of the same two tips in tree A and tree B we express it as $\frac{[A:A']+[B:B']}{2\times [A:B]}$, where [A:B] is $\Delta$TMRCA of a pair of tips between tree A and tree B and [A:A'] is $\Delta$TMRCA between the same pair of tips between tree A and a replicate of tree A (A'), to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
 
 We also attempted to calculate subtree prune and regraft (SPR) distances between trees using rSPR \cite{whidden2009,whidden2010,whidden2013}.
-However, because the time taken to calculate the SPR distances depends on the SPR distances themselves, we find that SPR distance calculations over posterior sets of trees are impractical for all but the most similar trees.
+However, because the time taken to calculate the SPR distances depends on the SPR distances themselves, we find that exact SPR distance calculations over posterior sets of trees are impractical for all but the most similar trees.
+We thus calculated approximate SPR distances for all trees, using the normalization procedure described above.
 
-
-\subsection*{Identifying linked sites in PB1, PB2 and HA segments}
-We attempted to identify amino acid sites that exhibit linkage disequilibrium (LD) between PB1, PB2 and HA segments.
+\subsection*{Estimating linkage disequilibrium across the influenza B genome}
+We attempted to estimate linkage disequilibrium (LD) between amino acid sites across the influenza B proteome.
 We chose the $\chi^{2}_{df}$ statistic \cite{zhao2005} for quantifying LD, as it is equal to the widely used \textit{r$^{2}$} LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus.
+LD was estimated only at loci where each `allele' was represented by at least two isolates and gaps were ignored and not considered as polymorphisms.
+Ignoring gaps in estimating LD was a practical decision based on some sequences missing nucleotides at the beginning and end of sequences.
+However, we did notice at least one polymorphic indel within the HA protein, which is associated with the Vic-Yam split and not with sequence quality.
+In addition, some influenza B genome constellations have not reassorted for prolonged periods of time and have acquired amino acid substitutions on several segments, resulting in linkage disequilibrium.
+These single-pair associations between sites result in high LD and come from poorly sampled lineages, thus we choose to only focus on alleles that have been sampled at least twice.
+
+We also estimated average pairwise LD between proteins by calculating the proportion of site pairs that exhibit LD $\geq$ 0.1.
 
 \section*{Results}
 
@@ -272,22 +281,28 @@ All segments have spent significantly more of their history with entirely Vic or
 We collected sites which exhibit high LD ($\chi^{2}_{df}\ge$0.5).
 By performing hierarchical clustering we identify clusters of sites which exhibit similar LD patterns.
 We identify 4 main classes of sites within the clusters:
+(comment - re-identify sequences/clades responsible for pairs of sites with high LD)
 \begin{enumerate}
 	\item Sites that are associated with the split of Vic-Yam lineages in PB1 and PB2 segments.
 	These sites form the largest clusters in our heatmaps and encompass all three segments (PB1, PB2 and HA).
 	PB1 sites 176, 508, PB2 sites 115, 301, 383, 397, 468 and HA sites 91, 163, 270 and 277 are in complete or nearly complete linkage disequilibrium ($\chi^{2}_{df}>$0.97) and are the sites that are fixed and different between Vic and Yam lineages of PB1, PB2 and HA segments.
-	PB1 sites 211, 213 and 214, PB2 sites 382 and 483 and HA sites 96 and 190 are in reduced (but still high) linkage disequilibrium with sites exhibiting high LD due to a combination of homoplastic amino acid substitutions and amino acid sites that have undergone substitutions some time after the Vic-Yam split.
+	PB1 sites 211, 213 and 214, PB2 sites 382 and 483 and HA sites 96 and 190 are in reduced (but still high) linkage disequilibrium with sites exhibiting high LD due to a combination of homoplastic amino acid substitutions and amino acid sites that have undergone substitutions in either the Vic or the Yam part of the tree some time after the Vic-Yam split.
 	\item Sites associated with the B/Beijing/76/1998 genome, a presumed member of a divergent and poorly sampled lineage.
 	The B/Beijing/76/1998 genome possesses substitutions at PB1 site 547, PB2 sites 26, 55, 75, 238, 371 and 743 and HA sites 100 and 263.
 	\item Sites associated with the B/Ibaraki/2/1985 genome, another presumed member of a poorly sampled and divergent lineage.
 	These sites are: 170, 736 on PB1, site 76 on PB2 and sites 265, 289, 302, 317, 328 on HA.
 	\item Sites which do not show complete PB1-PB2-HA associations and are represented by mostly single isolates with `concerted' substitutions on pairs of segments (PB1-PB2, PB1-HA or PB2-HA), but not all three.
+	We have attempted to minimize the number of these sites by focusing only on alleles that were observed in at least two isolates.
 \end{enumerate}
 
-
-Linkage disequilibrium analysis of the HA segment shows that as many as 11-12\% of the amino acid sites in HA exhibit high linkage disequilibrium with respect to PB1 and PB2 segments (compared to 6-7\% in PB1 and PB2).
-This probably reflects the independent accumulation of advantageous amino acid substitutions within individual lineages, as the HA would be expected to accumulate many non-synonymous substitutions via antigenic drift.
-In fact all amino acid sites in the HA segment exhibiting high linkage disequilibrium are found within the HA1 region of HA.
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.75\textwidth]	{figures/InfB_segmentLD.png}
+	\caption{\textbf{LD comparison between influenza B proteins.}
+Comparison of linkage disequilibrium between amino acid sites on influenza B proteins.
+Numbers on the heatmap are proportion of pairs of polymorphic sites (where each allele is represented by at least 2 isolates) that exhibit LD $\geq$ 0.1.}
+	\label{segmentLD}
+\end{figure}
 
 (comment - will require a lot of fiddling to get the heatmaps displayed in a clear way)
 \begin{figure}[h]
@@ -321,7 +336,7 @@ However, this study focuses on PB1, PB2 and HA segments, all of which have survi
 
 \subsection*{PB1-PB2-HA co-adaptation has evolved over time}
 Our findings suggest that PB1, PB2 and HA segments of Vic and Yam lineages represent co-adapted co-reassorting segment complexes.
-Previous studies have suggested similarities between the evolution of PB1, PB2 and HA segments of influenza B viruses \cite{hiromoto2000,lindstrom1999}, based on topology similarities between phylogenetic trees of the three segments, albeit the trees used in those studies contained limited numbers of sequences sampled somewhat close in time to the split of Victoria and Yamagata lineages.
+Previous studies have suggested similarities between the evolution of PB1, PB2 and HA segments of influenza B viruses \cite{hiromoto2000,lindstrom1999}, based on topology similarities between phylogenetic trees of the three segments, albeit the trees used contained limited numbers of sequences sampled somewhat close in time to the split of Victoria and Yamagata lineages.
 Despite the apparent similarities between PB1, PB2 and HA trees, we have detected at least 3 genome constellations having mixed-lineage PB1-PB2-HA sampled early in the first decade of the split between Vic and Yam lineages, when, presumably, Vic and Yam lineages of PB1, PB2 and HA segments were still similar at the amino acid level to produce viable, though presumably unfit, influenza B viruses.
 
 Our results also suggested that all segments have spent very little evolutionary time in the same virions as the 3 mixed-lineage PB1-PB2-HA constellations, compared to either entirely Yam PB1-PB2-HA or entirely Vic PB1-PB2-HA bearing viruses.
@@ -330,12 +345,17 @@ We interpret lack of reassortment within the PB1-PB2-HA complex across the linea
 We have identified amino acid sites which exhibit a high degree of linkage disequilibrium between PB1, PB2 and HA segments.
 Sites with high LD on PB1, PB2 and HA segments could be interpreted as either sites which have drifted apart due to lack of reassortment between the three segments or as sites which prevent the cooperation of the three at the molecular level and thus prevent inter-lineage PB1-PB2-HA reassortants from having comparable fitness to viruses with `pure' lineage PB1-PB2-HA complexes.
 
-None of the sites we have identified on PB1 and PB2 proteins fall within the previously described regions that form the contacts between the two polymerase subunits \cite{sugiyama2009} (comment - citation pertains to influenza A, but all high LD sites are far away from those regions anyway).
+None of the sites we have identified on PB1 and PB2 proteins fall within the previously described regions that form the contacts between the two polymerase subunits \cite{sugiyama2009}.
 
-(comment - PB1 sites 211, 213 and 214 within nuclear localization signal? PB1 site 176 kind of nearby too)
-(comment - PB1 site 508 is 28 amino acids away from super conserved RdRp motif IV - significant?)
+Sites 211, 213 and 214 on the PB1 protein are very close to each other and the stretch of sequence around these residues contains many positively charged amino acids (lysine and arginine).
+Multiple nuclear localization signals (NLSs) are predicted to occur around this region and sites 211, 213 and 214 are either predicted to be near the end of a mono-partite NLS or the beginning of a bi-partite NLS.
+Previous research \cite{nath1990} suggests that in the influenza A PB1 protein residue 211 (homologous to influenza B PB1 residue 211) is the last residue of a bi-partite NLS.
+Almost all Yamagata lineage isolates possess arginine (R) residue at PB1 positions 211 and 214 and a serine (S) residue at position 213, whereas Victoria lineage isolates have lysine (K) at positions 211 and 214 and threonine (T) at position 213.
+It remains to be seen whether these sites significantly affect the nuclear import efficiency of the PB1 protein of either lineage.
+Though the PB1 protein is known to accumulate in the nucleus on its own, efficient import into the nucleus requires the presence of the PA protein \cite{fodor2004}.
+Similarly, sites 382 and 397 on the PB2 protein are close to residues 377, 406 and 408 which are homologous to sites in influenza A that are responsible for mRNA cap-binding \cite{guilligay2008}.
+Again, we cannot determine whether this finding is significant or not.
 
-(comment - PB2 sites 382, 383, 397, 468 and 483 fall within cap-binding region of PB2?)
 
 \subsection*{Potential causes of co-dependence between PB1-PB2-HA}
 Previous studies have investigated possible co-dependence patterns between segments of influenza B viruses, by focusing on segments which would be expected to be co-adapted, e.g. PB1-PB2-PA and HA-NA \cite{mccullers2004}.
