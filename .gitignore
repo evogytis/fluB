@@ -1,5 +1,5 @@
 # For fluB repo #
-
+fluB.pdf
 
 # Compiled source #
 ###################
@@ -9,7 +9,6 @@
 *.exe
 *.o
 *.so
-*.pdf
 
 # LaTeX intermediaries #
 ########################
@@ -39,4 +38,4 @@
 Icon?
 ehthumbs.db
 Thumbs.db
-*.pdf
+
