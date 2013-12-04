@@ -94,10 +94,10 @@ Both influenza A and B evolve antigenically through time in a process known as a
 
 Currently circulating influenza B viruses are comprised of two distinct lineages -- Victoria and Yamagata (referred to as Vic and Yam, respectively) -- named after strains B/Victoria/02/87 and B/Yamagata/16/88, that are thought to have genetically diverged in HA around 1983 \cite{rota1990}. 
 These two lineages possess antigenically distinct HA surface glycoproteins allowing them to co-circulate in the human population.
-All other influenza B segments also show a split around that time (our combined estimate across all segments place it \textit{circa} 1982.95 (95\% highest posterior density 1981.53--1984.21) figure \ref{TMRCAhpd}), although the numbers of strains falling on either side of the split are different due to reassortments following the initial split of Yam and Vic lineages in all segments and fixation of one or the other lineage in some segments. \tbc{Save this for results.}
+All other influenza B segments also show a split into two lineages around that time.
 
-Previously, through the use of time-stamped phylogenetic trees, the reassortment history of major clades of influenza B has been analyzed \cite{chen2008}, showing extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
-\tbc{This analysis was limited because...}
+Previously, through the combined use of time-stamped and maximum likelihood phylogenetic trees evolutionary rate, selective pressures and reassortment history of major clades of influenza B has been analyzed \cite{chen2008}, showing extensive and often complicated patterns of reassortment between all segments of influenza B viruses both between and within Vic and Yam lineages.
+This analysis was limited because it used limited and different numbers of sequences to infer trees of each segment and relied on maximum likelihood phylogenies to infer the history of reassortments.
 Here, we introduce another approach that reveals a evolutionarily intriguing pattern of reassortment in influenza B.
 In this approach, membership to either the Victoria or Yamagata lineage in the tree of one segment is used to label the individual viruses in the tree of the other segments.
 Reassortment events which result in the replacement of one segment lineage by another show up as changes in the discrete trait along a branch and allow the inference of parameters related to the subtree descended from the node displaying a changed trait (Figure \ref{methodFig}).
@@ -119,11 +119,9 @@ In the example above tip number 6 is determined to be such a reassortant. \tbc{G
 
 \section*{Methods}
 
-\subsection*{Sequences and subtyping}
+\subsection*{Sequences and lineage assignment}
 
-\tbc{Be careful with the word `subtyping'.}
-
-We compiled a dataset of 452 complete influenza B genomes from GISAID \cite{GISAID} \tbc{dating from 1984(?) to 2011(?)}. 
+We compiled a dataset of 452 complete influenza B genomes from GISAID \cite{GISAID} dating from 1984 to 2012. 
 Each strain was assigned to a lineage (either Vic or Yam) in each segment by making maximum likelihood trees and looking whether it fell within the subtree containing B/Victoria/02/87 or B/Yamagata/16/88 sequences with the exception of the NS segment (B/Victoria/02/87 was a reassortant and possessed a Yam lineage NS \cite{lindstrom1999}), where B/Czechoslovakia/69/1990 was considered as being representative of Victoria lineage.
 
 Each strain was thus assigned 8 lineages depending on the combination of lineages it belongs to in all trees (for example all segments except for NS in strain B/Victoria/02/87 belong to Vic lineage and can thus be represented as V,V,V,V,V,V,V,Y). 
@@ -133,16 +131,15 @@ Temporally-calibrated phylogenies were recovered for each segment using the Mark
 Here, we modeled the substitution process using the HKY model of nucleotide substitution, with separate HKY models for each of the 3 codon partitions, and additionally included robust counting \cite{obrien2009} to report realized substitutions.
 We modeled the demographic process using a GMRF Bayesian skyride model \cite{minin2008}.
 We used `relaxed' tips for 94 sequences (of which 93 only had year of isolation and 1 had only year and month of isolation) whereby tip date is estimated as a latent variable in the MCMC integration.
-We ran 3 independent MCMC chains, each with 200 million states, sampled every 20000 steps.
-Samples were combined across runs \tbc{?} to give \tbc{XXX} total samples for each segment and convergence was assessed by \tbc{...}.
+We ran 3 independent MCMC chains, each with 200 million states, sampled every 20000 steps and discarded the first 10\% of the MCMC states as burn-in.
+Samples were combined across runs to give 27000 total samples for each segment and convergence was assessed by Tracer.
 
-\tbc{This belongs in this section:} Seven of these were then used as discrete states in each of the trees (e.g. PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values).
-
+Every sequence was assigned 7 discrete traits corresponding to the lineages of all other segments with which a strain was isolated (e.g. PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values).
 We inferred the ancestral state of lineages in each segment by using discrete traits (asymmetric CTMC matrix with BSSVS \cite{lemey2009}). Because the posterior set of trees have branches labelled with the inferred lineage in all other segments, we can detect inter-lineage reassortments whenever a trait transition is observed (i.e. Y to V or V to Y, see Figure \ref{methodFig}) between a node and its descendant in any segment. 
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
 
 \subsection*{Measures of diversity}
-We inferred the diversity of each segment over time by finding the oldest most recent common ancestor of all branches existing at yearly intervals, which places an upper boundary on the maximum amount of diversity existing at each time period.
+We inferred the diversity of each segment over time by finding the most recent common ancestor of all branches existing at yearly intervals, which places an upper boundary on the maximum amount of diversity existing at each time period.
 In addition, we calculated mean pairwise TMRCA between branches inferred to be in virions possessing Vic and Yam lineage PB1, PB2 and HA.
 This gave us an averaged measure of how much a particular segment reassorts with respect to PB1, PB2 and HA segments.
 If Vic and Yam lineages of PB1, PB2 and HA segments were to be considered as being separate populations this measure would be equivalent to `between population' diversity.
@@ -151,11 +148,11 @@ We also calculated the total amount of evolutionary time each segment has spent 
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
 \subsection*{Tree to tree similarities}
-In order to get a measure of tree to tree similarity we first extracted 1000 (sampling frequency roughly equal to 1 tree/180000 MCMC states) trees from the posterior distributions of trees of each segment.
+In order to get a measure of tree to tree similarity we first extracted 900 trees from the posterior distributions of trees for each segment.
+These were combined across 3 independent MCMC chains to give a total of 2700 trees.
 Pairwise comparison between each pair of segments was performed by comparing trees at each MCMC state.
 
-(comment - could try normalizing at each tip-tip comparison)
-We express the similarity by referring to 3 descriptive statistics (sum, mean and standard deviation) of the distribution of TMRCA differences ($\Delta$TMRCA) between pairs of tips in the two trees.
+We express the similarity of two trees by referring to the mean of the distribution of TMRCA differences ($\Delta$TMRCA) between pairs of tips in the two trees.
 These parameters are estimated for each pairing of trees at each MCMC state and provides us with 95\% highest posterior density intervals for those parameters, thus giving us the ability to test specific hypotheses regarding similarities between the trees of different segments.
 Our approach exploits the branch scaling used by BEAST \cite{drummond2012}, since the trees are scaled in absolute time and therefore insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
 
@@ -170,11 +167,16 @@ We attempted to estimate linkage disequilibrium (LD) between amino acid sites ac
 We chose the $\chi^{2}_{df}$ statistic \cite{zhao2005} for quantifying LD, as it is equal to the widely used \textit{r$^{2}$} LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus.
 LD was estimated only at loci where each `allele' was represented by at least two isolates and gaps were ignored and not considered as polymorphisms.
 Ignoring gaps in estimating LD was a practical decision based on some sequences missing nucleotides at the beginning and end of sequences.
-However, we did notice at least one polymorphic indel within the HA protein, which is associated with the Vic-Yam split and not with sequence quality.
+However, there is at least one polymorphic indel within the HA protein, which is associated with the Vic-Yam split and not with sequence quality.
 In addition, some influenza B genome constellations have not reassorted for prolonged periods of time and have acquired amino acid substitutions on several segments, resulting in linkage disequilibrium.
-These single-pair associations between sites result in high LD and come from poorly sampled lineages, thus we choose to only focus on alleles that have been sampled at least twice.
+These single site pairs result in high LD and come from poorly sampled lineages, thus we choose to only focus on alleles that have been sampled at least twice.
 
-We also estimated average pairwise LD between proteins by calculating the proportion of site pairs that exhibit LD $\geq$ 0.1.
+We also calculated mean LD for all pairs of segments to quantify associations between different segments.
+
+\subsection*{Confirming findings with a larger dataset using lineage assignment}
+The sequences of all 1433 available sequences of PB1, PB2, HA and NA segments from the same isolates were downloaded from GISAID.
+Neighbour-joining trees of PB1, PB2 and HA segments were made and each sequence assigned to a lineage based on grouping with either B/Victoria/02/87 or B/Yamagata/16/88 sequences.
+Isolates which were not assigned entirely to either the Vic or the Yam lineage across PB1, PB2 and HA segments were extracted.
 
 \section*{Results}
 
@@ -188,7 +190,7 @@ Some viruses with mixed-lineage genomes have become common ancestors to many lat
 
 We find that Vic lineage PA, NP, NA and MP segments have gone extinct (i.e. no sequences from those lineages have been sampled in recent years see Figure \ref{lineageRatiosOverTime}), replaced entirely by the respective segments of Yam lineage in viruses bearing a Vic lineage HA.
 Similarly, Vic lineage NS has become fixed in the viral population as well.
-By looking at the oldest most recent common ancestor of all lineages existing within the tree of each segment at yearly timeslices (see Figure \ref{tmrcaOT}), it is clear that PA, NP, NA, MP and NS segments have undergone periodic losses of diversity, whereby sampled sequences trace their ancestry to increasingly more recent common ancestors.
+By looking at the most recent common ancestor of all lineages existing at yearly timeslices within the tree of each segment (see Figure \ref{tmrcaOT}), it is clear that PA, NP, NA, MP and NS segments have undergone periodic losses of diversity, whereby all sequences sampled more recently trace their ancestry to increasingly more recent common ancestors.
 
 
 \subsection*{PB1, PB2 and HA segments continue to circulate as two lineages and have not reassorted recently}
@@ -196,31 +198,12 @@ Unlike PA, NP, NA, MP and NS segments, which have periodically lost diversity, w
 In addition, there is evidence to suggest that the numbers of sequences that belong to either Vic and Yam lineages of PB1, PB2 and HA segments have been sampled at a ratio close to 0.5 (see Figure \ref{lineageRatiosOverTime}), presumably due to the action of some form of balancing selection, possibly to maintain antigenic diversity.
 
 By measuring the mean pairwise diversity between branches in each tree that were assigned either a Vic or Yam label in other segments, we look for reductions in diversity, which indicate that an inter-lineage reassortment event has taken place.
-In example \ref{ARGexample}, if, over time slices, we measured mean pairwise distance between red and blue branches in tree 1, after they have been reciprocally labelled with each tip's position (with respect to some pre-defined bifurcation) in tree 2, we would find a drop in this measure, since the distance between tip 6 and tip 5 is now shorter and does not go through the root of the tree.
+In example \ref{methodFig}, if, over time slices, we measured mean pairwise distance between red and blue branches in tree 1, after they have been reciprocally labelled with position of each tip in tree 2 (with respect to some pre-defined bifurcation), we would find a drop in this measure, since the distance between tip 6 and tip 5 is now shorter and does not go through the root of the tree.
 Thus, by measuring pairwise distances between differently labelled branches we get a sense of how panmictic different segments are with respect to each other.
 
 If we repeat this procedure for all trees and focus on PB1, PB2 and HA lineage labels, we find that mean pairwise diversity between branches labelled as having for example, a PB1 segment of Vic or Yam lineage in PB2 and HA trees (and other combinations of the 3 trees and their labels), show small drops in diversity initially, but from the 1997 time slice onwards all branches labelled as Vic or Yam have a common ancestor at the root of the tree.
 We also find evidence of co-reassortment in PB1, PB2 and HA segments: in Figure \ref{betweenDiversity} all three graphs become identical after 1997, indicating that the same PB1, PB2 and HA labels have been assigned to the same branches in trees of all other segments.
 Our findings therefore suggest that a single configuration of Yam and Vic lineages of PB1, PB2 and HA segments has been preserved since the split of Vic and Yam lineages and have not reassorted with respect to each other, but rather have co-reassorted as a single unit, from 1997 onwards.
-
-\begin{figure}
-	\centering		
-	\includegraphics[width=0.95\textwidth]{figures/InfB_betweenDiversity.png}
-	\caption{\textbf{Mean pairwise TMRCA between Vic and Yam branches under PB1, PB2 and HA label sets.}
-PB1, PB2 and HA segment labels indicate that these segments show reciprocal preservation of diversity, which dates back to the split of Vic and Yam lineages.
-All other segments show increasingly more recent TMRCAs between branches labelled as Vic and Yam in PB1, PB2 and HA label sets.
-All horizontal lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
-	\label{betweenDiversity}
-\end{figure}
-
-\subsection*{Victoria and Yamagata lineages of PB1-PB2-HA are co-adapted segment complexes}
-
-\tbc{Did you decide to shelve the REPU statistics?  At least in theory, this should be much more convincing that PB1-PB2-HA are held together by selection rather than `mutation' (i.e. due to packaging signals).  REPU should be a stronger argument than figure \ref{betweenDiversity}. .... I see.  You can't do something like REPU if you don't observe any transient reassortants in the first place.  This suggests either that selection is very strong or mutation is very rare.  But later on you mention that `there have been at least 3 sampled mixed-lineage PB1-PB2-HA complex constellations'.  More description of these constellations would be helpful, when they appear and how long they last.  Also report how long the average lineage persists.}
-
-\tbc{Can you reject the hypothesis that PB1 and PB2 stuck to HA stochastically?}
-
-We find that PB1, PB2 and HA segments, in addition to not reassorting across the Vic-Yam lineage boundary recently, form co-reassorting segment complexes derived entirely of Vic or Yam lineage segments.
-Figure \ref{stateTime} shows the sum of branch lengths which were labelled as having entirely Vic, entirely Yam or mixed-lineage PB1, PB2 and HA segments.
 
 \begin{figure}[h]
 	\centering		
@@ -232,13 +215,30 @@ All horizontal lines indicating uncertainty are 95\% highest posterior densities
 	\label{stateTime}
 \end{figure}
 
-Together with Figure \ref{betweenDiversity} it suggests that some inter-lineage reassortment has occured between PB1, PB2 and HA segments soon after the split of Vic and Yam lineages, but the resulting viruses were not fit and did not become the `trunk' of the tree.
-Viruses bearing mixed-lineage PB1-PB2-HA complexes had the following constellations of PB1, PB2 and HA: VVY (B/Bankok/163/1990-like), YVV (B/Nanchang/630/1994-like) and YVY (B/New York/24/1993-like).
-We do not show results for other lineage labels as none of them show this pattern of reciprocally preserved diversity with any other segment.
+
+\subsection*{Victoria and Yamagata lineages of PB1-PB2-HA are co-adapted segment complexes}
+
+\tbc{Did you decide to shelve the REPU statistics?  At least in theory, this should be much more convincing that PB1-PB2-HA are held together by selection rather than `mutation' (i.e. due to packaging signals).  REPU should be a stronger argument than figure \ref{betweenDiversity}. .... I see.  You can't do something like REPU if you don't observe any transient reassortants in the first place.  This suggests either that selection is very strong or mutation is very rare.  But later on you mention that `there have been at least 3 sampled mixed-lineage PB1-PB2-HA complex constellations'.  More description of these constellations would be helpful, when they appear and how long they last.  Also report how long the average lineage persists.}
+
+\tbc{Can you reject the hypothesis that PB1 and PB2 stuck to HA stochastically?}
+
+We find that PB1, PB2 and HA segments, in addition to not reassorting across the Vic-Yam lineage boundary recently, form co-reassorting segment complexes derived entirely of Vic or Yam lineage segments.
+Figure \ref{stateTime} shows the sum of branch lengths which were labelled as having entirely Vic, entirely Yam or mixed-lineage PB1, PB2 and HA segments.
+
+
+
+
+\subsection*{PB1-PB2-HA reassortants are rare and transient}
+Figures \ref{betweenDiversity} and \ref{stateTime} suggests that some inter-lineage reassortment has occured between PB1, PB2 and HA segments soon after the split of Vic and Yam lineages, but the resulting viruses were not fit and did not become the `trunk' of the tree.
+From complete genome data we have identified 3 classes of PB1-PB2-HA reassortants with the following PB1-PB2-HA constellations: VVY (B/Bankok/163/1990-like), YVV (B/Nanchang/630/1994-like) and YVY (B/New York/24/1993-like).
+An additional class of reassortants with a YYV PB1-PB2-HA constellation (B/Waikato/6/2005-like) were found when investigating a larger dataset with only PB1, PB2, HA and NA sequences.
+These reassortants are represented by 16 sequences and were isolated in New Zealand and Australia between June 9 and November 12 in 2005.
+In all cases PB1-PB2-HA reassortants have not persisted for prolonged periods of time and have not been fixed in the influenza B population.
 
 \subsection*{Other segments evolve with considerable independence}
 
 \tbc{Are the observed rates of extinction / co-option fit with the effective population of the flu B population?  I.e. we generally get 10 years back to a common ancestor within a lineage / segment.  Can we think of the extinction of segments as an aspect of there existing a loosely panmictic flu B population for everything but PB1, PB2 and HA?}
+
 
 The reconstructed evolution of Victoria and Yamagata lineages of all segments reveals a considerable degree of autonomy.
 For example, of all the Yamagata lineage segments that were reassorted into Victoria lineage PB1-PB2-HA background giving rise to B/Hong Kong/330/2001-like viruses, most segments went extinct following later reassortments, save for NP, which continued circulating until, at the latest, 2011.
@@ -250,7 +250,7 @@ A more dramatic example can be found in the NS segment, where the Vic lineage ha
 	\caption{\textbf{Oldest TMRCA of all surviving lineages over time.}
 PA, NP, NA, MP and NS segments of influenza B viruses show periodic losses of diversity, indicating lineage turn over.
 PB1, PB2 and HA segments, on the other hand, maintain the diversity dating back to the initial split of Vic and Yam lineages.
-All horizontal lines indicating uncertainty are 95\% highest posterior densities (HPDs). \tbc{I think this would be more intuitive if the y-axis (years) were reversed with 1980 at the top.}}
+All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs). \tbc{I think this would be more intuitive if the y-axis (years) were reversed with 1980 at the top.}}
 	\label{tmrcaOT}
 \end{figure}
 
@@ -262,33 +262,35 @@ All horizontal lines indicating uncertainty are 95\% highest posterior densities
 	\label{lineageRatiosOverTime}
 \end{figure}
 
-\begin{table}[h]
-	\centering
-	\label{stateTimeTable}
-	\caption{Amount of evolutionary time spent under different PB1-PB2-HA constellations.
-All segments have spent significantly more of their history with entirely Vic or entirely Yam-derived PB1-PB2-HA complexes. \tbc{Seems better in figure form.}}
-	\makebox[\textwidth][c]{
-	\begin{tabular}{ c | c c c c } 
-	\hline
-	Segment						&	PB1				&	PB2				&	PA				&	HA					\\ \hline	
-	Victoria mean 95\% HPDs		&	\textbf{251.21}	&	\textbf{245.13}	&	\textbf{230.51} 	&	\textbf{245.46} 		\\
-								&	234.43--270.60	&	 226.25--264.23	&	212.94--247.24	&	228.94--262.99 		\\
-	Yamagata mean 95\% HPDs		&	\textbf{228.66} 	&	\textbf{229.65} 	&	\textbf{208.38} 	&	\textbf{192.82} 	 	\\
-								&	212.94--244.51	&	211.80--247.79	&	193.28--224.65	&	179.30--207.69		\\
-	Mixed-lineage mean 95\% HPDs	&	\textbf{30.06} 		&	\textbf{25.06} 		&	\textbf{30.90} 		&	\textbf{14.45} 		 	\\
-								&	26.46--34.16		&	20.54--29.69		&	25.22--36.13		&	10.14--18.80			\\
-	\hline
-	Segment							&	NP				&	NA				&	MP				&	NS				\\ \hline	
-	Victoria mean 95\% HPDs			&	\textbf{220.60} 	&	\textbf{226.73} 	&	\textbf{202.38} 	&	\textbf{222.23}	\\
-									&	201.65--241.03	&	210.91--242.12	&	176.77--227.67	&	193.31--249.61 	\\
-	Yamagata mean 95\% HPDs		 	&	\textbf{204.18} 	&	\textbf{192.27} 	&	\textbf{184.13} 	&	\textbf{210.93} 	\\
-									&	188.68--221.73	&	179.28--205.74	&	165.97--204.10	&	190.02--231.61	\\
-	Mixed-lineage mean 95\% HPDs 		&	\textbf{43.66}		&	\textbf{34.05} 		&	\textbf{39.41} 		&	\textbf{49.36} 		\\
-									&	34.67--50.86		&	27.50--40.90		&	29.80---48.90	&	33.49--62.62		\\
+\begin{figure}
+	\centering		
+	\includegraphics[width=0.95\textwidth]{figures/InfB_betweenDiversity.png}
+	\caption{\textbf{Mean pairwise TMRCA between Vic and Yam branches under PB1, PB2 and HA label sets.}
+PB1, PB2 and HA segment labels indicate that these segments show reciprocal preservation of diversity, which dates back to the split of Vic and Yam lineages.
+All other segments show increasingly more recent TMRCAs between branches labelled as Vic and Yam in PB1, PB2 and HA label sets.
+All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
+	\label{betweenDiversity}
+\end{figure}
 
-	\end{tabular}	
-	}
-\end{table}
+\subsection*{Reassortment rates are not significantly different between PB1, PB2 and HA}
+
+\begin{figure}
+	\centering		
+	\includegraphics[width=0.95\textwidth]{figures/InfB_normalizedApproxSPR.png}
+	\caption{\textbf{Normalized approximate SPR distances between pairs of segments.}
+All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
+	\label{SPRdistances}
+\end{figure}
+
+
+\begin{figure}
+	\centering		
+	\includegraphics[width=0.95\textwidth]{figures/InfB_normalizedMuDeltaTMRCA.png}
+	\caption{\textbf{Normalized mean $\Delta$TMRCA statistics between pairs of segments.}
+All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
+	\label{deltaTMRCA}
+\end{figure}
+
 
 \subsection*{Railroad schematic plot of influenza B reassortment history}
 
@@ -302,22 +304,9 @@ All segments have spent significantly more of their history with entirely Vic or
 
 \tbc{Look for signal in the sites analysis for antigenic sites in HA.  These sites can be seen here: https://github.com/trvrb/stem/tree/master/data. Although this analysis will be difficult if LD varies with site-specific substitution rate....}
 
-We collected sites which exhibit high LD ($\chi^{2}_{df}\ge$0.5).
-By performing hierarchical clustering we identify clusters of sites which exhibit similar LD patterns.
-We identify 4 main classes of sites within the clusters:
-(comment - re-identify sequences/clades responsible for pairs of sites with high LD)
-\begin{enumerate}
-	\item Sites that are associated with the split of Vic-Yam lineages in PB1 and PB2 segments.
-	These sites form the largest clusters in our heatmaps and encompass all three segments (PB1, PB2 and HA).
-	PB1 sites 176, 508, PB2 sites 115, 301, 383, 397, 468 and HA sites 91, 163, 270 and 277 are in complete or nearly complete linkage disequilibrium ($\chi^{2}_{df}>$0.97) and are the sites that are fixed and different between Vic and Yam lineages of PB1, PB2 and HA segments.
-	PB1 sites 211, 213 and 214, PB2 sites 382 and 483 and HA sites 96 and 190 are in reduced (but still high) linkage disequilibrium with sites exhibiting high LD due to a combination of homoplastic amino acid substitutions and amino acid sites that have undergone substitutions in either the Vic or the Yam part of the tree some time after the Vic-Yam split.
-	\item Sites associated with the B/Beijing/76/1998 genome, a presumed member of a divergent and poorly sampled lineage.
-	The B/Beijing/76/1998 genome possesses substitutions at PB1 site 547, PB2 sites 26, 55, 75, 238, 371 and 743 and HA sites 100 and 263.
-	\item Sites associated with the B/Ibaraki/2/1985 genome, another presumed member of a poorly sampled and divergent lineage.
-	These sites are: 170, 736 on PB1, site 76 on PB2 and sites 265, 289, 302, 317, 328 on HA.
-	\item Sites which do not show complete PB1-PB2-HA associations and are represented by mostly single isolates with `concerted' substitutions on pairs of segments (PB1-PB2, PB1-HA or PB2-HA), but not all three.
-	We have attempted to minimize the number of these sites by focusing only on alleles that were observed in at least two isolates.
-\end{enumerate}
+
+We perform hierarchical clustering to identify clusters of sites which exhibit similar LD patterns across pairs of segments.
+
 
 \begin{figure}[h]
 	\centering	
