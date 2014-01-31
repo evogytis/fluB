@@ -139,7 +139,7 @@ We inferred the ancestral state of lineages in each segment by modelling transit
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
 
 \subsection*{Measures of diversity}
-We inferred the diversity of each segment over time by plotting the most recent common ancestor of all branches existing at yearly intervals, which places an upper bound on the maximum amount of diversity existing at each time period.
+We inferred the diversity of each segment at a single point in time by estimating the date of the most recent common ancestor of all branches at yearly intervals, which places an upper bound on the maximum amount of diversity existing at each time period.
 In addition, we calculated mean pairwise TMRCA between branches labelled as Vic and Yam for PB1, PB2 and HA.
 This gave us a measure of how much a particular segment reassorts with respect to PB1, PB2 and HA segments.
 If Vic and Yam lineages of PB1, PB2 and HA segments were to be considered as being separate populations this measure would be equivalent to `between population' diversity.
@@ -150,13 +150,18 @@ This gives a measure of how successful, over long periods of time, each particul
 
 \subsection*{Tree to tree similarities}
 We subsampled our combined posterior distribution of trees to give a total of 2700 trees.
-Pairwise comparison between each pair of segments was performed by comparing trees at each MCMC state.
+Pairwise comparison between each pair of segments was performed by comparing individual pairs of sampled trees.
 
 We express the similarity of two trees by referring to the mean of the distribution of TMRCA differences ($\Delta$TMRCA) between pairs of tips in the two trees.
 These parameters are estimated for each pairing of trees at each MCMC state and provides us with 95\% highest posterior density intervals for those parameters, thus giving us the ability to test specific hypotheses regarding similarities between the trees of different segments.
 Our approach exploits the branch scaling used by BEAST \cite{drummond2012}, since the trees are scaled in absolute time and insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
 
-If we are comparing TMRCAs of the same two tips in tree A and tree B we express it as $\frac{[A\_{i}:A\_{i}']+[B\_{i}:B\_{i}']}{2\times [A\_{i}:B\_{i}]}$, where [A\_{i}:B\_{i}] is $\Delta$TMRCA of a pair of tips between \textit{i}th tree derived from alignment A and \textit{i}th tree derived from alignment B and [A\_{i}:A\_{i}'] is $\Delta$TMRCA between the same pair of tips between \textit{i}th tree derived from alignment A and \textit{i}th tree derived from an independent run of alignment A, to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
+If we are comparing TMRCAs of the same two tips in tree A and tree B we express it as 
+\begin{equation}
+\frac{[A_{i}:A_{i}']+[B_{i}:B_{i}']}{2\times [A_{i}:B_{i}]},
+\frac{[A_{i}:A_{i}']+[B_{i}:B_{i}']}{2\times [A_{i}:B_{i}]},
+\end{equation}
+where $f(A_i,B_j)$ is the $\Delta$TMRCA of a pair of tips between the \textit{i}th tree derived from alignment A and the \textit{j}th tree derived from alignment B and $f(A_i,A_j)$ is the $\Delta$TMRCA between the same pair of tips between \textit{i}th tree derived from alignment A and \textit{j}th tree derived from an independent run of alignment A, to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
 
 Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events.
 Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
