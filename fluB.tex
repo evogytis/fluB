@@ -203,7 +203,7 @@ The PB1, PB2 and HA segments maintain a common ancestor in $\sim$1983 up to the 
 	\caption{\textbf{Oldest TMRCA of all surviving lineages over time.}
 PA, NP, NA, MP and NS segments of influenza B viruses show periodic losses of diversity, indicating lineage turn over.
 PB1, PB2 and HA segments, on the other hand, maintain the diversity dating back to the initial split of Vic and Yam lineages.
-All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs). \tbc{Describe that each point estimate is a slice through the tree.}}
+Each point is the TMRCA of all surviving lineages existing at each time slice through the tree and vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{tmrcaOT}
 \end{figure}
 
@@ -231,7 +231,7 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 By plotting the ratios of sequences assigned to either Vic or Yam lineage in each segment (Figure \ref{lineageRatiosOverTime}) it is evident that losses of diversity in the PA, NP, NA, MP and NS segments are related to the repeated fixation of either the Vic or the Yam lineage.
 These losses of diversity correspond to fixation of the Vic lineage in NS and fixation of the Yam lineage in PA, NP, NA and MP.
 Similarly, the lack of reassortment between Vic and Yam lineages and maintenance of diversity of PB1, PB2 and HA can be seen (Figure \ref{lineageRatiosOverTime}), where the two lineages have been isolated at a ratio close to 50\% over long periods of time.
-On a year-to-year basis, however, the ratios for Vic and Yam lineage PB1, PB2 and HA can fluctuate dramatically suggesting that one lineage may predominate within a given season \tbc{CITE}.
+On a year-to-year basis, however, the ratios for Vic and Yam lineage PB1, PB2 and HA can fluctuate dramatically suggesting that one lineage may predominate within a given season, consistent with surveillance data \cite{reed2012}.
 
 \begin{figure}[h]
 	\centering	
@@ -248,8 +248,9 @@ PB1, PB2 and HA segments maintain separate Victoria and Yamagata lineages.}
 
 We reconstructed reassortment events that were detected by using lineage labels.
 Figure \ref{railroadPlot} focuses only on reassortments that have occured after 1990.
-We identify 5 major reassortant genome constellations (given in order PB1-PB2-PA-HA-NP-NA-MP-NS) circulating 1992 -- 2011: B/Alaska/12/1996-like (YYYYYYYV), B/Nanchang/2/1997-like (VVYVYVYV), B/Iowa/03/2002-like (VVYVYYYV), B/California/NHRC0001/2006-like (VVYVYYYV) and B/Brisbane/33/2008-like (VVYVYYYV).
-\tbc{Repeat finding that the railroad plot shows introgression and fixation of Vic lineages into a Yam background and vice versa, and that PB1, PB2 and HA go together in reassortment splits.}
+We identify 5 major reassortant genome constellations (given in order PB1-PB2-PA-HA-NP-NA-MP-NS) circulating 1992 -- 2011: B/Alaska/12/1996-like (YYYYYYYV), B/Nanchang/2/1997-like (VVYVYVYV), B/Iowa/03/2002-like (VVYVYYYV), B/California/NHRC0001/2006-like (VVYVYYYV) and B/Brisbane/33/2008-like (VVYVYYYV) in Figure \ref{railroadPlot}.
+Of these 5 constellations 4 (B/Nanchang/2/1997-like, B/Iowa/03/2002-like, B/California/NHRC0001/2006-like and B/Brisbane/33/2008-like) are derived from introgression of Yamagata lineage segments into Victoria lineage PB1-PB2-HA background, with only 1 (B/Alaska/12/1996-like) resulting from introgression of Victoria lineage NS segment into an entirely Yamagata lineage derived background.
+All 5 inter-lineage reassortment events described here are marked by the preservation of either entirely Victoria or Yamagata lineage derived PB1-B2-HA.
 Figure \ref{railroadPlot} also shows that reassorting segments appear to evolve with a considerable degree of autonomy.
 For example, the NP lineage that entered a largely Victoria lineage derived genome and gave rise to the B/Nanchang/2/1997-like isolates continued circulating until 2010, even though other segments it reassorted with in 1995 -- 1996 (PA and MP) went extinct following the reassortments that led to B/Iowa/03/2002-like isolates.
 A more extreme example is the NS segment, which in B/Iowa/03/2002-like isolates (and all subsequent Vic PB1-PB2-HA isolates) has been derived from Victoria lineage that had been associated with mostly Yam lineage derived B/Alaska/12/1996-like genomes for a number of years.
@@ -290,8 +291,8 @@ In the case of B/Nanchang/630/1994-like viruses this is up to two years.
 In contrast, reassortments combining PB1+2 and HA of different lineages (B/Bankok/163/1990-like and B/Waikato/6/2005-like isolates) have more isolates and circulated for much longer periods of time in the past: up to 4 years for B/Bankok/163/1990-like, although the more recently isolated B/Waikato/6/2005-like viruses circulated for only 5 months.
 
 \subsection*{PB1, PB2 and HA trees experience reassortment `distance' effects}
-\tbc{Briefly define SPR, or just say that SPR measures tree similarity.}
-Figure \ref{SPRdistances} shows approximate SPR distances between all pairs of trees after normalization (see Methods).
+SPR (subtree prune and regraft) distances between perfectly resolved pairs of trees would be equal to the number of reassortments that have taken place between the two trees and is a measure of tree-to-tree similarity.
+Figure \ref{SPRdistances} shows approximate SPR distances between all pairs of segment trees after normalization (see Methods).
 If there are biases in the way segments reassort, so that some segments tend to co-reassort more often, we expect to see small-scale similarities between phylogenetic trees of those segments.
 In our case we expect SPR distances, which are proportional to the number of reassortment events that have taken place between trees, to reflect the raw reassortment rate.
 
@@ -328,7 +329,8 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 \end{figure}
 
 \subsection*{Linkage disequilibrium analysis confirms phylogenetic findings}
-\tbc{Briefly define LD and say that it doesn't depend on Vic and Yam lineage labels.}
+Linkage disequilibrium (LD) is a measure of association between alleles at different polymorphic loci within a population.
+To estimate LD no other information, except for alleles at polymorphic amino acid sites in the dataset, is required.
 Although not an independent validation of association between PB1, PB2 and HA segments, linkage disequilibrium analyses show that Victoria and Yamagata lineages of these segments have accumulated lineage-specific amino acid substitutions.
 In Figure \ref{segmentLD} their signature is greater mean $\chi^{2}_{df}$ between PB1, PB2 and HA amino acid sites than any other pair of proteins.
 In some cases this value exceeds the estimated LD of amino acid sites within the same protein (\textit{e.g.} PB1 and HA).
@@ -356,9 +358,7 @@ Figures \ref{SPRdistances} and \ref{deltaTMRCA} show that despite all pairs of s
 Reassortment `distances' represent the temporal separation of reassorting lineages and suggests that reassortments between PB1, PB2 and HA segments tend to combine lineages that have relatively recently been part of the same genome, i.e.\ that have shared a recent common virion.
 In addition, most strains with mixed-lineage PB1-PB2-HA complexes occured in the early years of the Vic--Yam split, when the two lineages were much more similar at the nucleotide and amino acid levels.
 The most recent influenza B viruses with B/Waikato/6/2005-like genome constellations possessed mixed-lineage PB1-PB2-HA complexes and circulated for only 5 months before presumably going extinct.
-We suggest that the preservation of two PB1-PB2-HA complex lineages is similar to genomic speciation islands, where small numbers of genes resist being homogenized through gene flow \tbc{CITE}.
-\tb{Thus, if both PB1-PB2-HA complex lineages continue circulating in humans we expect more segments to be recruited to the two complexes, resulting in eventual sympatric speciation of influenza B viruses.}{}
-\tbc{Suggest moving this idea to `Future' section below.}
+We suggest that the preservation of two PB1-PB2-HA complex lineages is similar to genomic speciation islands, where small numbers of genes resist being homogenized through gene flow \cite{turner2005}.
 
 \subsection*{Causes of co-dependence between PB1-PB2-HA}
 Previous studies have investigated possible co-dependence patterns between segments of influenza B viruses, by focusing on segments which would be expected to be co-adapted, \textit{e.g.} PB1-PB2-PA and HA-NA \cite{mccullers2004}.
@@ -389,15 +389,14 @@ Our main dataset comprising 452 complete influenza B virus genomes has one insta
 The larger dataset with 1433 PB1, PB2 and HA sequences has an additional example of this: isolates with B/Waikato/6/2005-like PB1-PB2-HA constellations.
 We note that in both cases the genome constellations of these reassortants were not fixed in the influenza B population and the more recent B/Waikato/6/2005-like reassortants persisted for a much shorter period of time (5 months versus 4 years), suggestive of declining PB1+2/HA reassortant fitness over time.
 
-Previous research has found that avian influenza A virus HA and NA segments, which are the primary vehicles of antigenicity, exhibit vast diversity when compared to `internal segments', which show much more recent TMRCAs and less variability at the amino acid level \cite{chen2006,obenauer2006}.
+Previous research has found that avian influenza A virus HA and NA segments, which are the primary vehicles of antigenicity, exhibit vast diversity when compared to `internal segments' (including PB1 and PB2 segments), which show much more recent TMRCAs and less variability at the amino acid level \cite{chen2006,obenauer2006}.
 This is easiest to interpret as frequency-dependent balancing selection acting to preserve antigenic diversity.
 If this is the case in influenza B viruses, we expect balancing selection to act on HA and indirectly, through some unknown association with HA, on PB1 and PB2 segments.
-\tbc{However, avian PB1 and PB2 are not more diverse than other internal segments, yes?}
 
 It is also possible that Vic and Yam lineages of PB1, PB2 and HA segments have simply drifted away from each other, without any one segment being the driver of diversity preservation in PB1, PB2 and HA segments.
 In this case PB1, PB2 and HA segments of Vic and Yam lineage accumulate substitutions that improve their ability to co-operate with segments of the same lineage and worse at interacting segments of a different lineage.
 This process, termed mutation-driven co-evolution \cite{presgraves2010}, has been suggested to be the cause of hybrid dysfunction in \textit{Saccharomyces} hybrids \cite{lee2008}.
-\tbc{I would think this would still require a functional linkage between PB1, PB2 and HA.  This is the mechanism by which a functional linkage results in a co-adapted gene complex.}
+Similarly to the previous scenario, however, an association of some kind between PB1+2 and HA segments would be required to explain the low observation frequency and poor fitness of PB1-PB2/HA reassortants.
 
 \subsection*{The future of influenza B viruses}
 We see three potential paths of evolution for influenza B viruses.
@@ -407,8 +406,8 @@ Sympatric speciation in other systems usually requires strong barriers to introg
 To what extent this would apply to influenza B viruses remains unknown.
 
 If influenza B viruses are undergoing sympatric speciation, does co-infection with Victoria and Yamagata lineages of PB1-PB2-HA segments occur at a sufficiently high frequency and result in considerable losses of fitness to drive the evolution of reassortment isolation mechanisms (\textit{e.g.} unique packaging signals) or is co-infection so rare that speciation occurs via mutation-driven co-evolution?
-\tbc{I don't understand this.}
-Given that PB1 and PB2 segments are functionally linked, is it reasonable to expect that the next segment to be recruited to the PB1-PB2-HA segment complexes will be functionally linked to either PB1/PB2 or HA?
+We think that co-dependence between PB1 and PB2 segments can be explained by the fact that they are functionally linked: together with the PA protein they form part of the influenza B virus RNA-dependent RNA polymerase heterotrimer.
+If more segments get recruited to the PB1-PB2-HA segment complex, is it reasonable to assume that the next segment to be recruited will also code for a protein functionally linked to either the two polymerase proteins (PB1 and PB2) or haemagglutinin (HA)?
 
 Are the reassortment events of the past 20 years (Figure \ref{railroadPlot}) which frequently involved the NP, MP and NS segments from a Yamagata PB1-PB2-HA background entering a Victoria PB1-PB2-HA background via reassortment indicative of rare events followed by selective sweeps or stochastic fixation?
 
@@ -438,6 +437,12 @@ Ideally, the co-adaptation would be easier to understand by referring to the str
 We have identified amino acid sites which are linked between PB1, PB2 and HA proteins of Victoria and Yamagata lineages, but we find very few sites on PB1 and PB2 proteins that fall within the regions that form contacts within the influenza B polymerase heterotrimer, suggesting more subtle roles for sites we have identified.
 
 \subsection*{Conclusion}
+%The $\Delta$TMRCA method, which is an extension of patristic (or phylogenetic) distance methods, can be applied to cases where reticulate evolution is suspected and phylogenetic trees can readily be made.
+%Patristic distance methods are far from new, although their use in conjunction with temporally calibrated phylogenies has been limited.
+For example, one study focused on patristic (or phylogenetic) distances to predict viral titer in \textit{Drosophila} species infected by viruses of other \textit{Drosophila} species \cite{longdon2011}.
+Another study has used the equivalent statistic to our $\Delta$TMRCA (called $\Delta$\textit{t}) to assess the temporal incongruence in phylogenies of 171 amphibian species induced by using different calibrations \cite{ruane2011}.
+%By using relatively straightforward measures of diversity, such as TMRCA of all surviving lineages over time and mean pairwise TMRCA between labels...
+
 In this study we have investigated the patterns of reassortment amongst two influenza B virus segment lineages and found preserved diversity and consistent co-reassortment of 3 segments: PB1, PB2 and HA.
 Our findings reveal that Vic and Yam lineages of PB1, PB2 and HA segments co-associate amongst themselves with segments of their own lineage, thus resulting in an entirely Vic-lineage-derived PB1-PB2-HA segment complex and an entirely Yam-lineage-derived PB1-PB2-HA segment complex that co-circulate within the influenza B virus population, occasionally exchanging non-PB1-PB2-HA segments.
 Though we detect strains with mixed-lineage PB1-PB2-HA complexes, we find that they have performed poorly and have circulated for short amounts of evolutionary time when compared to viruses with `pure' lineage PB1-PB2-HA complexes.
