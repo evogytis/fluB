@@ -93,7 +93,7 @@ Following the 2009 A/H1N1 pandemic, influenza B has increased in prevalence and 
 Like other members of \textit{Orthomyxoviridae}, influenza B viruses have segmented genomes, which allow viruses co-infecting the same cell to exchange segments, a process known as reassortment. 
 Influenza A viruses are widely considered to be a major threat to human health worldwide due to the ability to cause pandemics in humans via reassortment of circulating human strains and with non-human influenza A strains. 
 Influenza B viruses are thought to primarily infect humans (and occasionaly seals \cite{osterhaus2000,bodewes2013} through a reverse zoonosis), and are thought to be unable to exhibit pandemics through the acquisition of antigenic novelty from an animal reservoir. 
-Both influenza A and B evolve antigenically through time in a process known as antigenic drift, in which mutations to the haemagglutinin (HA) protein allow viruses to escape existing human immunity and persist in the human population, leading to recurrent seasonal epidemics \cite{bedford2013}.
+Both influenza A and B evolve antigenically through time in a process known as antigenic drift, in which mutations to the haemagglutinin (HA) protein allow viruses to escape existing human immunity and persist in the human population, leading to recurrent seasonal epidemics \cite{bedford2014}.
 
 Currently circulating influenza B viruses comprise two distinct lineages -- Victoria and Yamagata (referred to as Vic and Yam, respectively) -- named after strains B/Victoria/2/87 and B/Yamagata/16/88, that are thought to have genetically diverged in HA around 1983 \cite{rota1990}. 
 These two lineages now possess antigenically distinct HA surface glycoproteins \cite{kanegae1990,rota1990,nerome1998,nakagawa2002,ansaldi2003} allowing them to co-circulate in the human population.
@@ -142,7 +142,7 @@ We accounted for incomplete sampling dates for 94 sequences (of which 93 only ha
 
 We ran 3 independent MCMC chains, each with 200 million states, sampled every 20,000 steps and discarded the first 10\% of the MCMC states as burn-in.
 After assessing convergence of all 3 MCMC chains by visual inspection using Tracer \cite{tracer}, we combined samples across chains to give a total of 27,000 samples from the posterior distribution of trees.
-\tbc{The MCC tree for each segment should be shown in supplemental information.  I would imagine one figure with eight panels.}
+Maximum clade credibility trees of all 8 influenza B segments is shown in Figure \ref{genomeGrid}.
 
 Every sequence was assigned 7 discrete traits in BEAUti corresponding to the lineages of all other segments with which a strain was isolated \textit{e.g.} PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values.
 We inferred the ancestral state of lineages in each segment by modelling transitions between these discrete states using an asymmetric transition matrix \cite{lemey2009} with Bayesian stochastic search variable selection (BSSVS) to estimate significant rates. Because the posterior set of trees for a single segment has branches labelled with the inferred lineage in the remaining 7 segments, we can detect inter-lineage reassortments between pairs of segments by observing state transitions, i.e.\ Yam to Vic or Vic to Yam (see Figure \ref{methodFig}). 
@@ -189,12 +189,13 @@ Linkage disequilibrium was not estimated for the larger PB1, PB2 and HA dataset,
 \section*{Results}
 
 \subsection*{Phylogenetic analyses reveal maintenance of diversity and co-assortment of PB1, PB2 and HA gene segments}
-
-\tbc{Make this paragraph a broad description of the phylogenies across the segments... basically the current paragraph with a few tweaks.} The differentiation into Vic and Yam lineages can be seen in all segments \cite{chen2008} \tbc{also reference tree figure}.
+The differentiation into Vic and Yam lineages can be seen in all segments \cite{chen2008} (see Figure \ref{genomeGrid}).
 Following the split of the two lineages, each segment can be assigned to either Vic or Yam lineage and inter-lineage reassortment events have yielded mixed-lineage genome constellations.
 Some segment lineages associated with mixed-lineage genomes have become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment.
+Overall, we see many old bifurcations within the trees of all segments.
+Many of these correspond to reassortment events involving the PB1-PB2-HA segment complexes of Vic and Yam lineages, highlighting the role reassortment plays in the long-term evolution of influenza B viruses.
 
-Looking at patterns of ancestry across contemporaneous viruses for each segment, it is clear that the PA, NP, NA, MP and NS segments have undergone periodic losses of diversity, while the PB1, PB2 and HA segments have maintained diversity up to the present (Figure \ref{tmrcaOT}).
+By quantifying patterns of ancestry across contemporaneous viruses for each segment, it is clear that the PA, NP, NA, MP and NS segments have undergone periodic losses of diversity, while the PB1, PB2 and HA segments have maintained diversity up to the present (Figure \ref{tmrcaOT}).
 The PB1, PB2 and HA segments maintain a common ancestor in $\sim$1983 up to the present and thus accumulate genetic diversity since the split of those segments into Vic and Yam lineages, while other segments often lose diversity with ancestors to present day viruses appearing between $\sim$1991 and $\sim$1999.
 
 \begin{figure}[h]
@@ -242,9 +243,6 @@ Yamagata lineage PA, NP, NA and MP segments and Victoria lineage NS segment even
 PB1, PB2 and HA segments maintain separate Victoria and Yamagata lineages.}
 	\label{lineageRatiosOverTime}
 \end{figure}
-
-%% AR - perhaps this section should go in the discussion as it a summary of the reconstructions?
-%\subsection*{Schematic plot of influenza B reassortment history}
 
 We reconstructed reassortment events that were detected by using lineage labels.
 Figure \ref{railroadPlot} focuses only on reassortments that have occured after 1990.
@@ -299,6 +297,8 @@ In our case we expect SPR distances, which are proportional to the number of rea
 	\centering		
 	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedApproxSPR.png}
 	\caption{\textbf{Normalized approximate SPR distances between pairs of segments.}
+Following the normalization procedure approximate SPR distances are similar across all pairwise comparisons.
+We interpret this as lack of evidence for small-scale topological similarities between trees of all segments, which we expect to arise if any two segments were being co-packaged.
 All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{SPRdistances}
 \end{figure}
@@ -323,6 +323,7 @@ Previously, associations between MP and NA segments have been suspected in influ
 	\centering		
 	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedMuDeltaTMRCA.png}
 	\caption{\textbf{Normalized mean $\Delta$TMRCA statistics between pairs of segments.}
+PB1, PB2 and HA trees exhibit reciprocally highly similar TMRCAs, unlike most other pairwise comparisons.
 All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{deltaTMRCA}
 \end{figure}
@@ -338,7 +339,9 @@ In some cases this value exceeds the estimated LD of amino acid sites within the
 	\centering	
 	\includegraphics[width=0.65\textwidth]{figures/InfB_aaMeanLD.png}
 	\caption{\textbf{LD comparison between influenza B proteins.}
-Pairwise comparisons of linkage disequilibrium between amino acid sites on influenza B proteins.}
+Pairwise comparisons of linkage disequilibrium between amino acid sites on influenza B proteins.
+PB1, PB2 and HA proteins exhibit high mean amino acid LD between themselves.
+This is evidence of a considerable number of co-assorting alleles within these proteins.}
 	\label{segmentLD}
 \end{figure}
 
@@ -436,20 +439,19 @@ Ideally, the co-adaptation would be easier to understand by referring to the str
 We have identified amino acid sites which are linked between PB1, PB2 and HA proteins of Victoria and Yamagata lineages, but we find very few sites on PB1 and PB2 proteins that fall within the regions that form contacts within the influenza B polymerase heterotrimer, suggesting more subtle roles for sites we have identified.
 
 \subsection*{Conclusion}
-%The $\Delta$TMRCA method, which is an extension of patristic (or phylogenetic) distance methods, can be applied to cases where reticulate evolution is suspected and phylogenetic trees can readily be made.
-%Patristic distance methods are far from new, although their use in conjunction with temporally calibrated phylogenies has been limited.
-For example, one study focused on patristic (or phylogenetic) distances to predict viral titer in \textit{Drosophila} species infected by viruses of other \textit{Drosophila} species \cite{longdon2011}.
-Another study has used the equivalent statistic to our $\Delta$TMRCA (called $\Delta$\textit{t}) to assess the temporal incongruence in phylogenies of 171 amphibian species induced by using different calibrations \cite{ruane2011}.
-%By using relatively straightforward measures of diversity, such as TMRCA of all surviving branches over time and mean pairwise TMRCA between labels...
+A version of our lineage turnover metric has previously been used to investigate the tempo and strength of selection in influenza A viruses during seasonal circulation \cite{bedford2011}.
+Similarly our $\Delta$TMRCA statistic, an extension of patristic distance methods, has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \cite{longdon2011} and as \textit{$\Delta$t} to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \cite{ruane2011}.
 
-In this study we have investigated the patterns of reassortment amongst two influenza B virus segment lineages and found preserved diversity and consistent co-reassortment of 3 segments: PB1, PB2 and HA.
-Our findings reveal that Vic and Yam lineages of PB1, PB2 and HA segments co-associate amongst themselves with segments of their own lineage, thus resulting in an entirely Vic-lineage-derived PB1-PB2-HA segment complex and an entirely Yam-lineage-derived PB1-PB2-HA segment complex that co-circulate within the influenza B virus population, occasionally exchanging non-PB1-PB2-HA segments.
-Though we detect strains with mixed-lineage PB1-PB2-HA complexes, we find that they have performed poorly and have circulated for short amounts of evolutionary time when compared to viruses with `pure' lineage PB1-PB2-HA complexes.
+In this paper we have used this statistic to determine the degree of similarity in TMRCA dates between two temporally calibrated phylogenies.
+We believe that patristic distance methods, though far from being new, have considerable power to address a wide variety of problems when combined with temporal phylogenies, including identifying clades or taxa that are products of reticulate evolution.
+To develop further, however, the statistical properties of patristic distance methods have to be evaluated in greater detail.
 
-We argue that this is evidence for a selectively maintained relationship between PB1-PB2-HA complex of Vic and Yam lineages and not due to biased reassortment.
+In this paper we apply a combination of relatively straightforward population genetics and phylogenetic methods to full genome sequences in order to describe and quantify reassortment patterns in influenza B viruses circulating in humans from 1980 to the present day.
+Our main finding is that in influenza B viruses only PB1, PB2 and HA segments maintain both Victoria and Yamagata lineages and that PB1-PB2-HA complexes of both lineages co-associate preferentially. 
+We argue that this is due to selection against viruses with mixed-lineage PB1-PB2-HA complexes.
 Given sufficient time we expect the two PB1-PB2-HA complexes to recruit the rest of the genomic segments into co-adapted and co-reassorting segment complexes eventually resulting in sympatric speciation of influenza B viruses.
 
-\tbc{This conclusion restates results too much.  This is more of a beginning to a discussion than an end to it (you might even consider moving it there).  Normally a conclusion is focused either on future work that this makes possible or public health implications.  `Suggest experiments' kind of takes care of  the further work angle, and I'm not actually sure about public health implications. Or perhaps emphasize novelty of your phylogenetic approach to reassortment and say it could be applied to other systems.}
+\newpage
 
 \section*{Supporting information}
 \setcounter{figure}{0}
@@ -460,11 +462,18 @@ Given sufficient time we expect the two PB1-PB2-HA complexes to recruit the rest
 
 \section*{MCC trees}
 
+We summarised posterior sets of trees using TreeAnnotator (part of the BEAST package \cite{drummond2012}) by discarding the first 1000 trees of each analysis as burn-in and keeping median node heights.
+Figure \ref{genomeGrid} shows the maximum clade credibility (MCC) phylogenies of each segment.
+Each tree in Figure \ref{genomeGrid} corresponds to the summarised output from single analyses comprised of 9000 trees sampled from the posterior distribution of trees.
+
 \begin{figure}
 \centering  
 \includegraphics[width=0.95\textwidth]  {supp_figures/InfB_genomeGrid.pdf}
-\caption{\textbf{MCC trees of 8 segments.}}
-\label{}
+\caption{\textbf{MCC trees of 8 segments.}
+Maximum clade credibility trees of all 8 genome segments of influenza B viruses isolated since 1980.
+Trees are coloured based on inferred PB1-PB2-HA lineage.
+Vertical bars indicate the original Victoria and Yamagata lineages within each segment.}
+\label{genomeGrid}
 \end{figure}
 
 \section*{Linkage disequilibrium data}
@@ -511,7 +520,6 @@ Again, we cannot determine whether this finding is significant or not.
 Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates} are showing approximate SPR distances prior to the normalization procedure (see Methods).
 Figure \ref{SPRdistancesTrees} shows that MP and NS trees show greater approximate SPR distances when compared to any other segment tree, which is consistent with the fact that only M1 and NS1 coding sequences, which are shorter than any other coding sequences, were used to infer the trees.
 Figure \ref{SPRdistancesReplicates} confirms this by showing greater variability in tree topology (as greater approximate SPR distance) when MP and NS trees are compared against their replicates.
-
 For all other segments approximate SPR distances between all pairs of trees prior to normalization suggests that most segment pairs have similar posterior distributions of approximate SPR distances.
 
 \begin{figure}
@@ -568,100 +576,109 @@ Figure \ref{deltaTMRCAreplicates} shows that TMRCAs are quite robust over the co
 \label{}
 \end{figure}
 
+We also tested the accuracy of approximate SPR distances using exact SPR distances calculated from PB1, PB2 and HA comparisons.
+Figures \ref{SPR_PB1-PB2_difference}--\ref{SPR_PB2-HA_ratio} show that after normalization the approximate and exact SPR distance estimates are not significantly different.
+There is also good correlation between the two SPR distances (Figures \ref{SPR_PB1-PB2_correlation}--\ref{SPR_PB2-HA_correlation}). 
+
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB1-PB2_hist.png}
-\caption{\textbf{Difference}}
-\label{}
+\caption{\textbf{Distribution of differences between exact and approximate PB1-PB2 SPR distances after normalization.}}
+\label{SPR_PB1-PB2_difference}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB1-PB2_hist2.png}
-\caption{\textbf{Ratio}}
-\label{}
+\caption{\textbf{Distribution of ratios between exact and approximate PB1-PB2 SPR distances after normalization.}}
+\label{SPR_PB1-PB2_ratio}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB1-HA_hist.png}
-\caption{\textbf{Difference}}
-\label{}
+\caption{\textbf{Distribution of differences between exact and approximate PB1-HA SPR distances after normalization.}}
+\label{SPR_PB1-HA_difference}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB1-HA_hist2.png}
-\caption{\textbf{Ratio}}
-\label{}
+\caption{\textbf{Distribution of ratios between exact and approximate PB1-HA SPR distances after normalization.}}
+\label{SPR_PB1-HA_ratio}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB2-HA_hist.png}
-\caption{\textbf{Difference}}
-\label{}
+\caption{\textbf{Distribution of differences between exact and approximate PB2-HA SPR distances after normalization.}}
+\label{SPR_PB2-HA_difference}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB2-HA_hist2.png}
-\caption{\textbf{Ratio}}
-\label{}
+\caption{\textbf{Distribution of ratios between exact and approximate PB2-HA SPR distances after normalization.}}
+\label{SPR_PB2-HA_ratio}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.5\textwidth]  {supp_figures/InfB_supp_PB1-PB2_corr.png}
-\caption{\textbf{Correlation}}
-\label{}
+\caption{\textbf{Correlation between exact and approximate PB1-PB2 SPR distances after normalization.}}
+\label{SPR_PB1-PB2_correlation}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.5\textwidth]  {supp_figures/InfB_supp_PB1-HA_corr.png}
-\caption{\textbf{Correlation}}
-\label{}
+\caption{\textbf{Correlation between exact and approximate PB1-HA SPR distances after normalization.}}
+\label{SPR_PB1-HA_correlation}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.5\textwidth]  {supp_figures/InfB_supp_PB2-HA_corr.png}
-\caption{\textbf{Correlation}}
-\label{}
+\caption{\textbf{Correlation between exact and approximate PB2-HA SPR distances after normalization.}}
+\label{SPR_PB2-HA_correlation}
 \end{figure}
 
 \clearpage
 
+Figures \ref{MDSaaLD} and \ref{MDSntLD} visualize the relationships between segments based on mean amino acid and nucleotide site linkage disequilibrium estimates, respectively.
+PB1, PB2 and HA segments appear to be by far the most similar segments, as indicated by their proximity in the MDS embedding.
+Figures \ref{MDSaaCorr} and \ref{MDSntCorr} compare the observed mean LD values between segments. 
+Based on mean amino acid site LD (Figure \ref{MDSaaCorr}) only PB1, PB2 and HA segments show considerable clustering, all other segments being equidistant from each other in the MDS embedding.
+MDS distance versus mean nucleotide site LD scatter plot, on the other hand, shows a continuum of relationships between segments, which is probably caused by more variability at the nucleotide level than the amino acid level.
+This difference in variability would build up linkage disequilibrium between nucleotide sites and would reduce it via convergent substitutions over relatively short periods of time.
+
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_8x8_aaLD_MDS.png}
-\caption{\textbf{2-dimensional MDS embedding of segment based on mean amino acid linkage disequilibrium ($\chi\_{df}^{2}$).}}
-\label{}
+\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean amino acid linkage disequilibrium ($\chi\_{df}^{2}$).}}
+\label{MDSaaLD}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_aaLD_MatrixMDScorr.png}
-\caption{\textbf{Correlation between mean amino acid linkage disequilibrium and MDS embedding distance for all pairs of segments.}}
-\label{}
+\caption{\textbf{Correlation between mean amino acid site linkage disequilibrium and MDS embedding distance for all pairs of segments.}}
+\label{MDSaaCorr}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_8x8_ntLD_MDS.png}
-\caption{\textbf{2-dimensional MDS embedding of segment based on mean nucleotide linkage disequilibrium ($\chi\_{df}^{2}$)}}
-\label{}
+\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean nucleotide linkage disequilibrium ($\chi\_{df}^{2}$).}}
+\label{MDSntLD}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_ntLD_MatrixMDScorr.png}
-\caption{\textbf{Correlation between mean nucleotide linkage disequilibrium and MDS embedding distance for all pairs of segments.}}
-\label{}
+\caption{\textbf{Correlation between mean nucleotide site linkage disequilibrium and MDS embedding distance for all pairs of segments.}}
+\label{MDSntCorr}
 \end{figure}
-
-% TB: FILL IN WITH REST OF SUPP FIGURES 
 
 \section*{Acknowledgements}
 GD was supported by a NERC studentship..... 
