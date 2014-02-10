@@ -160,7 +160,7 @@ This gives a measure of how successful, over long periods of time, each particul
 We subsampled our combined posterior distribution of trees to give a total of 2700 trees.
 Pairwise comparisons between each pair of segments were performed by comparing individual pairs of sampled trees.
 
-We express the similarity of two trees by comparing the means of the distribution of TMRCA differences between pairs of tips in the two trees.
+We express the similarity of two trees by comparing the means of the distribution of TMRCA differences (which we refer to as $\Delta$TMRCA) between pairs of tips in the two trees.
 In comparing TMRCAs of trees A and B we calculate
 \begin{equation}
 \Delta(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
@@ -397,7 +397,9 @@ If this is the case in influenza B viruses, we expect balancing selection to act
 It is also possible that Vic and Yam lineages of PB1, PB2 and HA segments have simply drifted away from each other, without any one segment being the driver of diversity preservation in PB1, PB2 and HA segments.
 In this case PB1, PB2 and HA segments of Vic and Yam lineage accumulate substitutions that improve their ability to co-operate with segments of the same lineage and worse at interacting segments of a different lineage.
 This process, termed mutation-driven co-evolution \cite{presgraves2010}, has been suggested to be the cause of hybrid dysfunction in \textit{Saccharomyces} hybrids \cite{lee2008}.
-Similarly to the previous scenario, however, an association of some kind between PB1+2 and HA segments would be required to explain the low observation frequency and poor fitness of PB1+2/HA reassortants.
+It is widely accepted that Victoria lineage HA had been restricted to eastern Asia between 1992 and 2000 \cite{nerome1998,shaw2002}, offering a potential explanation for why the budding Victoria lineage segments were not homogenized via reassortment with Yamagata lineage segment in the early years of the split between the two lineages. 
+The restriction to eastern Asia would presumably also give sufficient time for PB1, PB2 and HA segments to co-evolve together.
+Similarly to the previous scenario, however, mutation-driven co-evolution would require an association of some kind between PB1+2 and HA segments to explain the low observed frequency and poor fitness of PB1+2/HA reassortants.
 
 \subsection*{The future of influenza B viruses}
 We see three potential paths of evolution for influenza B viruses.
@@ -436,7 +438,7 @@ However, our analyses do not indicate any obvious or dramatic differences betwee
 
 However, we also see that epistatic effects might interfere with fitness measurements, if for example non-PB1-PB2-HA segments are also temporally mismatched.
 Ideally, the co-adaptation would be easier to understand by referring to the structures of PB1 and PB2 proteins, as the link between these would be intuitive.
-We have identified amino acid sites which are linked between PB1, PB2 and HA proteins of Victoria and Yamagata lineages, but we find very few sites on PB1 and PB2 proteins that fall within the regions that form contacts within the influenza B polymerase heterotrimer, suggesting more subtle roles for sites we have identified.
+We have identified amino acid sites which are linked between PB1, PB2 and HA proteins of Victoria and Yamagata lineages, but we find very few sites on PB1 and PB2 proteins that fall within the regions that form contacts within the influenza B polymerase heterotrimer \cite{sugiyama2009}, suggesting more subtle roles for sites we have identified.
 
 \subsection*{Conclusion}
 A version of our lineage turnover metric has previously been used to investigate the tempo and strength of selection in influenza A viruses during seasonal circulation \cite{bedford2011}.
@@ -447,7 +449,7 @@ We believe that patristic distance methods, though far from being new, have cons
 To develop further, however, the statistical properties of patristic distance methods have to be evaluated in greater detail.
 
 In this paper we apply a combination of relatively straightforward population genetics and phylogenetic methods to full genome sequences in order to describe and quantify reassortment patterns in influenza B viruses circulating in humans from 1980 to the present day.
-Our main finding is that in influenza B viruses only PB1, PB2 and HA segments maintain both Victoria and Yamagata lineages and that PB1-PB2-HA complexes of both lineages co-associate preferentially. 
+Our main finding is that in influenza B viruses only PB1, PB2 and HA segments maintain both Victoria and Yamagata lineages which associate with segments of their own lineage, yielding two co-circulating PB1-PB2-HA complexes: one entirely derived from Victoria and one from Yamagata lineage segments.
 We argue that this is due to selection against viruses with mixed-lineage PB1-PB2-HA complexes.
 Given sufficient time we expect the two PB1-PB2-HA complexes to recruit the rest of the genomic segments into co-adapted and co-reassorting segment complexes eventually resulting in sympatric speciation of influenza B viruses.
 
@@ -631,6 +633,9 @@ There is also good correlation between the two SPR distances (Figures \ref{SPR_P
 
 \clearpage
 
+Figures \ref{SPR_PB1-PB2_difference}--\ref{SPR_PB2-HA_ratio} focus on differences between exact and approximate SPR distances and show that prior to normalization approximate SPR distances are overestimates of exact SPR distances.
+Figures \ref{SPR_PB1-PB2_correlation}--\ref{SPR_PB2-HA_correlation} show that there is a similar degree of correspondence between approximate and exact SPR distances to when approximate and exact SPR distances are normalized (Figures \ref{NormSPR_PB1-PB2_correlation}--\ref{NormSPR_PB2-HA_correlation}) using the procedure described in Methods.
+
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB1-PB2_hist.png}
@@ -669,21 +674,21 @@ There is also good correlation between the two SPR distances (Figures \ref{SPR_P
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_PB2-HA_hist2.png}
-\caption{\textbf{Distribution of ratios between exact and approximate PB2-HA SPR distances after.}}
+\caption{\textbf{Distribution of ratios between exact and approximate PB2-HA SPR distances.}}
 \label{SPR_PB2-HA_ratio}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.4\textwidth]  {supp_figures/InfB_supp_PB1-PB2_corr.png}
-\caption{\textbf{Correlation between exact and approximate PB1-PB2 SPR distances after.}}
+\caption{\textbf{Correlation between exact and approximate PB1-PB2 SPR distances.}}
 \label{SPR_PB1-PB2_correlation}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.4\textwidth]  {supp_figures/InfB_supp_PB1-HA_corr.png}
-\caption{\textbf{Correlation between exact and approximate PB1-HA SPR distances after.}}
+\caption{\textbf{Correlation between exact and approximate PB1-HA SPR distances.}}
 \label{SPR_PB1-HA_correlation}
 \end{figure}
 
@@ -695,7 +700,7 @@ There is also good correlation between the two SPR distances (Figures \ref{SPR_P
 \end{figure}
 
 \clearpage
-
+\section*{Multidimensional scaling}
 Figures \ref{MDSaaLD} and \ref{MDSntLD} visualize the relationships between segments based on mean amino acid and nucleotide site linkage disequilibrium estimates, respectively.
 PB1, PB2 and HA segments appear to be by far the most similar segments, as indicated by their proximity in the MDS embedding.
 Figures \ref{MDSaaCorr} and \ref{MDSntCorr} compare the observed mean LD values between segments. 
@@ -731,10 +736,15 @@ This difference in variability would build up linkage disequilibrium between nuc
 \label{MDSntCorr}
 \end{figure}
 
+\section*{Differences between Vic and Yam PB1-PB2-HA}
+Through the combination of inferred PB1-PB2-HA background and realized synonymous and non-synonymous substitution counts on branches \cite{obrien2009} it was possible to investigate whether Victoria and Yamagata lineage backgrounds differ in substitution rates.
+Figure \ref{robustCounting} shows the inferred synonymous, non-synonymous (both as substitutions per year) and overall nucleotide substitution rate (as substitutions per site per year) under different lineages of PB1-PB2-HA.
+
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_robustCounting.png}
-\caption{\textbf{Synonymous, non-synonymous and nucleotide substitution rates in segments under different PB1-PB2-HA complexes.}}
+\caption{\textbf{Synonymous, non-synonymous and nucleotide substitution rates in segments under different PB1-PB2-HA complexes.}
+Vertical bars indicating uncertainty are 95\% HPDs, black bars indicate 95\% HPDs that do not overlap.}
 \label{robustCounting}
 \end{figure}
 
