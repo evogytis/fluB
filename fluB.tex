@@ -121,7 +121,7 @@ This has occured through repeated reassortments and subsequent fixation of reass
 \end{figure}
 
 \section*{Methods}
-We compiled a dataset of 452 complete influenza B genomes from GISAID \cite{GISAID} dating from 1984 to 2012 (accession numbers and laboratory acknowledgements can be found in Supplementary information).
+We compiled a dataset of 452 complete influenza B genomes from GISAID \cite{GISAID} dating from 1984 to 2012 (accession numbers and laboratory acknowledgements can be found in supplementary information).
 The longest protein coding region of each segment was extracted and used for all further analyses.
 We thus assume that homologous recombination has not taken place and that the evolutionary history of the whole segment can be inferred from the longest coding sequence in the segment.
 To date there has been little evidence of homologous recombination in influenza viruses \cite{chare2003,boni2008,han2010}.
@@ -175,7 +175,7 @@ Our approach exploits the branch scaling used by BEAST \cite{drummond2012}, sinc
 Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events.
 Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
 We calculated approximate SPR distances \cite{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
-Approximate SPR distances were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from trees A, B and indepent analyses thereof (A' and B').
+Approximate SPR distances were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from trees A, B and independent analyses thereof (A' and B').
 
 \subsection*{Linkage disequilibrium across the influenza B genome}
 We estimated linkage disequilibrium (LD) between amino acid sites across the longest proteins encoded by each segment of the influenza B virus genome.
@@ -301,7 +301,7 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 	\label{SPRdistances}
 \end{figure}
 
-In Figure \ref{SPRdistances} the 95\% highest posterior density (HPD) intervals of normalized approximate SPR distances between pairs of segments encompass most means and occupy a relatively small range, suggesting there is no evidence of differences in the number of reassortments (or reassortment rate given as number of SPR moves per total time in the tree, see Supplementary information) between all segments.
+In Figure \ref{SPRdistances} the 95\% highest posterior density (HPD) intervals of normalized approximate SPR distances between pairs of segments encompass most means and occupy a relatively small range, suggesting there is no evidence of differences in the number of reassortments (or reassortment rate given as number of SPR moves per total time in both trees, see Figure \ref{NormSPR_RErate} in supplementary information) between all segments.
 We note, however, that our SPR distance analysis might simply lack power.
 Analyses between independent analyses of the same segments yield distances that are comparable to distances between different segments (see Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates}), suggesting that phylogenetic uncertainty is making a considerable contribution to our estimates of approximate SPR distances.
 In addition, SPR distances themselves can only approximate (and underestimate) the actual numbers of reassortments.
@@ -344,7 +344,7 @@ This is evidence of a considerable number of co-assorting alleles within these p
 	\label{segmentLD}
 \end{figure}
 
-Of the amino acid sites that exhibit high LD on PB1, PB2 and HA proteins, there are 5 sites on PB1, 8 on PB2 and 13 on HA proteins which form a network of sites exhibiting reciprocally high LD (see Supplementary information).
+Of the amino acid sites that exhibit high LD on PB1, PB2 and HA proteins, there are 5 sites on PB1, 8 on PB2 and 13 on HA proteins which form a network of sites exhibiting reciprocally high LD (see Figures \ref{ChiGenome} and \ref{ChiCore} in supplementary information).
 These sites define the split between Vic and Yam lineages within PB1, PB2 and HA segments.
 In addition, there are sites on PB1, PB2 and HA proteins which also show high, albeit smaller, LD which correspond to sites which have undergone amino acid replacements some time after the Vic/Yam split.
 
@@ -432,7 +432,7 @@ We predict that artificially produced viruses with mixed-lineage PB1-PB2-HA comp
 In addition, we expect the relationship between Vic and Yam lineage PB1, PB2 and HA segments to be dependent on date of segment isolation, as viruses with mixed-lineage PB1-PB2-HA complexes isolated earlier should perform better than viruses with PB1-PB2-HA segments isolated more recently.
 
 Given the existence of B/Waikato/6/2005-like viruses and the rarity of PB1-PB2 reassortants we expect that artificially produced PB1-PB2 reassortants would be much less fit than either PB1-HA or PB2-HA reassortants.
-We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (see Supplementary information).
+We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (see Figures \ref{NormSPR_PB2-HA_difference}, \ref{NormSPR_PB2-HA_ratio}, \ref{SPR_PB2-HA_difference}, \ref{SPR_PB2-HA_ratio} and \ref{SPR_PB2-HA_correlation} in supplementary information).
 The history of reassortments in influenza B viruses (Figure \ref{railroadPlot}) suggests that there are lineage-specific effects too, given the almost universal introgression of Yamagata lineage segments into Victoria PB1-PB2-HA background.
 However, our analyses do not indicate any obvious or dramatic differences between Vic and Yam PB1-PB2-HA segment complexes or segments associated with either of the two (see supplementary Figure \ref{robustCounting}).
 
@@ -482,25 +482,19 @@ Vertical bars indicate the original Victoria and Yamagata lineages within each s
 
 \begin{figure}
 \centering  
-\includegraphics[width=0.65\textwidth]  {supp_figures/Chi_PB1_PB2.png}
-\caption{\textbf{Hierarchical clustering of amino acid sites on PB1 and PB2 segments based on $\chi^{2}_{df}$ values.}}
-\label{ChiPB1PB2}
+\includegraphics[width=0.95\textwidth]  {supp_figures/aaChi_Genome.png}
+\caption{\textbf{Heatmap of genome-wide linkage disequilibrium ($\chi^{2}_{df}$) between polymorphic amino acid sites.}
+Patterns of LD across the genome suggest a network of reciprocally linked amino acid sites on PB1, PB2, HA and to some extent NA proteins.
+Proximity of sites on heatmaps might not correspond to proximity of sites within proteins.}
+\label{ChiGenome}
 \end{figure}
-
 
 \begin{figure}
 \centering  
-\includegraphics[width=0.65\textwidth]  {supp_figures/Chi_PB1_HA.png}
-\caption{\textbf{Hierarchical clustering of amino acid sites on PB1 and HA segments based on $\chi^{2}_{df}$ values.}}
-\label{ChiPB1HA}
-\end{figure}
-
-
-\begin{figure}
-\centering  
-\includegraphics[width=0.65\textwidth]  {supp_figures/Chi_PB2_HA.png}
-\caption{\textbf{Hierarchical clustering of amino acid sites on PB2 and HA segments based on $\chi^{2}_{df}$ values.}}
-\label{ChiPB2HA}
+\includegraphics[width=0.85\textwidth]  {supp_figures/aaChi_PB1_PB2_HA.png}
+\caption{\textbf{Heatmap of linkage disequilibrium ($\chi^{2}_{df}$) between amino acid sites on PB1, PB2 and HA proteins.}
+Numbers next to each row and column correspond to amino acid site number within a given protein starting from methionine.}
+\label{ChiCore}
 \end{figure}
 
 We have identified amino acid sites which exhibit a high degree of linkage disequilibrium between PB1, PB2 and HA segments.
@@ -561,12 +555,13 @@ Figure \ref{deltaTMRCAreplicates} shows that TMRCAs are quite robust over the co
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_normRErate.png}
 \caption{\textbf{Normalized reassortment rate (approximate number of SPR moves per total time in both trees) between all pairs of trees of segments.}}
-\label{}
+\label{NormSPR_RErate}
 \end{figure}
 
 We also tested the accuracy of approximate SPR distances using exact SPR distances calculated from PB1, PB2 and HA comparisons.
 Figures \ref{SPR_PB1-PB2_difference}--\ref{SPR_PB2-HA_ratio} show that after normalization the approximate and exact SPR distance estimates are not significantly different.
 There is also good correlation between the two SPR distances (Figures \ref{SPR_PB1-PB2_correlation}--\ref{SPR_PB2-HA_correlation}). 
+Due to excessively long computation time of exact SPR distances very few PB2--HA comparisons were made.
 
 \begin{figure}
 \centering  
