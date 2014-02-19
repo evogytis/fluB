@@ -114,7 +114,7 @@ This has occurred through repeated reassortments and subsequent fixation of reas
 	\caption{\textbf{Schematic analysis of reassortment patterns.}
 	A) We begin by assigning sequences falling on either side of a specified bifurcation within each segment tree to different lineages, in this case, the Victoria and Yamagata bifurcation that occurred in the early 1980s.
 	B) We then transfer lineage labels from one tree to the same tips in another tree.
-	Label switches thus indicate reassortment events that combine lineages falling on different sides of the Vic/Yam bifurcation.
+	Transitions between labels along this second tree thus indicate reassortment events that combine lineages falling on different sides of the Vic/Yam bifurcation in the first tree.
 	C) A reassortment graph depiction shows that tip number 6 is determined to be a reassortant based on B).
 	}
 	\label{methodFig}
@@ -126,7 +126,7 @@ The longest protein coding region of each segment was extracted and used for all
 We thus assume that homologous recombination has not taken place and that the evolutionary history of the whole segment can be inferred from the longest coding sequence in the segment.
 To date there has been little evidence of homologous recombination in influenza viruses \cite{chare2003,boni2008,han2010}.
 The segments of each strain were assigned to either Vic or Yam lineage by making maximum likelihood trees of each segment using PhyML \cite{guindon2003} and identifying whether the isolate was more closely related to B/Victoria/2/87 or B/Yamagata/16/88 sequences in that segment, with the exception of the NS segment (B/Victoria/2/87 was a reassortant and possessed a Yam lineage NS \cite{lindstrom1999}), where B/Czechoslovakia/69/1990 was considered as being representative of Victoria lineage.
-Each strain was thus assigned 8 lineages depending on the combination of lineages from which their genomes were derived, for example all segments except for NS in strain B/Victoria/2/87 belong to Vic lineage and can thus be represented as V,V,V,V,V,V,V,Y. 
+Each strain was thus assigned 8 lineages depending on the combination of lineages from which their genomes were derived, for example all segments except for NS in strain B/Victoria/2/87 belong to Vic lineage and can thus be represented as (V,V,V,V,V,V,V,Y).
 
 We also downloaded all available sequences of influenza B isolates sampled 1984--2013 from GISAID for which PB1, PB2 and HA segments were sequenced.
 This comprised a dataset of 1433 isolates in total which became available only after the primary analyses were performed using the smaller dataset and had too many sequences to analyze using the methods described later. 
@@ -137,13 +137,11 @@ Temporally-calibrated phylogenies were recovered for each segment using the Mark
 Here, we modeled the substitution process using the HKY model of nucleotide substitution \cite{hky1985}, with separate transition models for each of the 3 codon partitions, and additionally estimate realized synonymous and non-synonymous substitution counts \cite{obrien2009}.
 We used a flexible Bayesian skyride demographic model \cite{minin2008}.
 We accounted for incomplete sampling dates for 94 sequences (of which 93 had only year and 1 had only year and month of isolation) whereby tip date is estimated as a latent variable in the MCMC integration.
-
 We ran 3 independent MCMC chains, each with 200 million states, sampled every 20,000 steps and discarded the first 10\% of the MCMC states as burn-in.
 After assessing convergence of all 3 MCMC chains by visual inspection using Tracer \cite{tracer}, we combined samples across chains to give a total of 27,000 samples from the posterior distribution of trees.
-Maximum clade credibility trees of all 8 influenza B segments is shown in Figure \ref{genomeGrid}.
 
 Every sequence was assigned 7 discrete traits in BEAUti corresponding to the lineages of all other segments with which a strain was isolated \textit{e.g.} PB1 tree had PB2, PA, HA, NP, NA, MP and NS as traits and V or Y as trait values.
-We inferred the ancestral state of lineages in each segment by modelling transitions between these discrete states using an asymmetric transition matrix \cite{lemey2009} with Bayesian stochastic search variable selection (BSSVS) to estimate significant rates. Because the posterior set of trees for a single segment has branches labelled with the inferred lineage in the remaining 7 segments, we can detect inter-lineage reassortments between pairs of segments by observing state transitions, i.e.\ Yam to Vic or Vic to Yam (see Figure \ref{methodFig}). 
+We inferred the ancestral state of lineages in each segment by modelling transitions between these discrete states using an asymmetric transition matrix \cite{lemey2009} with Bayesian stochastic search variable selection (BSSVS) to estimate significant rates. Because the posterior set of trees for a single segment has branches labelled with the inferred lineage in the remaining 7 segments, we can detect inter-lineage reassortments between pairs of segments by observing state transitions, i.e.\ Yam to Vic or Vic to Yam (Figure \ref{methodFig}).
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
 
 \subsection*{Measures of diversity}
@@ -158,30 +156,32 @@ We do this by summing the branch lengths in each tree under 3 (2 in the case of 
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
 \subsection*{Tree to tree similarities}
-We subsampled our combined posterior distribution of trees to give a total of 2700 trees.
-Pairwise comparisons between each pair of segments were performed by comparing individual pairs of sampled trees.
 
-We express the similarity of two trees by comparing the means of the distribution of TMRCA differences (which we refer to as $\Delta$TMRCA) between pairs of tips in the two trees.
-In comparing TMRCAs of trees A and B we calculate
+\newcommand{\dtmrca}{d_\mathrm{TMRCA}} % TB: This could be replaced with \Delta_\mathrm{TMRCA} or \Delta as you prefer
+\newcommand{\dspr}{d_\mathrm{SPR}}
+
+We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ by comparing TMRCA differences between pairs of tips in the two trees.
+In comparing of trees of segments A and B we calculate
 \begin{equation}
-\Delta(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
+\dtmrca(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
 \end{equation}
-where $f(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n |g(A_{ij}, B_{ij})|$ and $|g(A_{ij},B_{ij})|$ is the absolute difference in TMRCA of a pair of tips $j$, where the pair is drawn from the \textit{i}th posterior sample of tree A and the \textit{i}th posterior sample of tree B.
-Additionally, $f(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree A (which we refer to as A'), to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
-We had 3 replicate analyses of each segment and in order to calculate $f(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as A and analyses numbered 2, 3 and 1 as A', in that order.
+where $f(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n g(A_{ij}, B_{ij})$ and $g(A_{ij},B_{ij})$ is the absolute difference in TMRCA of a pair of tips $j$, where the pair is drawn from the \textit{i}th posterior sample of tree $A$ and the \textit{i}th posterior sample of tree $B$.
+Additionally, $f(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree $A$ (which we refer to as $A'$), to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
+We had 3 replicate analyses of each segment and in order to calculate $f(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as $A$ and analyses numbered 2, 3 and 1 as $A'$, in that order.
+We subsampled our combined posterior distribution of trees to give a total of 2700 trees on which to analyze $\dtmrca$.
 
-Calculating $\Delta(A_i, B_i)$ for each MCMC state provides us with a posterior distribution of this parameter allowing  specific hypotheses regarding similarities between the trees of different segments to be tested.
+Calculating $\dtmrca(A_i, B_i)$ for each MCMC state provides us with a posterior distribution of this statistic allowing  specific hypotheses regarding similarities between the trees of different segments to be tested.
 Our approach exploits the branch scaling used by BEAST \cite{drummond2012}, since the trees are scaled in absolute time and insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
-Our $\Delta$TMRCA statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \cite{longdon2011} and as \textit{$\Delta$t} to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \cite{ruane2011}.
+Our $\dtmrca$ statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \cite{longdon2011} and to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \cite{ruane2011}.
 
 Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events.
 Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
 We calculated approximate SPR distances \cite{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
-Approximate SPR distances were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from trees A, B and independent analyses thereof (A' and B').
+Approximate SPR distances $\dspr$ were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from segments $A$, $B$ and independent analyses thereof ($A'$ and $B'$).
 
 \subsection*{Linkage disequilibrium across the influenza B genome}
 We estimated linkage disequilibrium (LD) between amino acid sites across the longest proteins encoded by each segment of the influenza B virus genome.
-To quantify LD we used the $\chi^{2}_{df}$ statistic \cite{zhao2005}, as it is equal to the widely used \textit{r$^{2}$} LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus.
+To quantify LD we used the $\chi^{2}$ statistic, as it is equal to the widely used $r^2$ LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus \cite{zhao2005}.
 LD was estimated only at loci where each nucleotide or amino acid allele was represented by at least two isolates.
 We ignored gaps in the alignment and did not consider them as polymorphisms.
 We also calculated mean LD for all pairs of segments to quantify the overall association between them.
@@ -190,14 +190,24 @@ Linkage disequilibrium was not estimated for the larger PB1, PB2 and HA dataset,
 \section*{Results}
 
 \subsection*{Phylogenetic analyses reveal maintenance of diversity and co-assortment of PB1, PB2 and HA gene segments}
-The differentiation into Vic and Yam lineages can be seen in all segments \cite{chen2008} (see Figure \ref{genomeGrid}).
+The differentiation into Vic and Yam lineages can be seen in all segments (Figure \ref{genomeGrid}).
 Following the split of the two lineages, each segment can be assigned to either Vic or Yam lineage and inter-lineage reassortment events have yielded mixed-lineage genome constellations.
-Some segment lineages associated with mixed-lineage genomes have become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment.
-Overall, we see many old bifurcations within the trees of all segments.
-Many of these correspond to reassortment events involving the PB1, PB2 and HA segments of Vic and Yam lineages, highlighting the role reassortment plays in the long-term evolution of influenza B viruses.
+On some segments, either the Victoria or Yamagata lineage has become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment, seen as modern viruses deriving completely from either Victoria or Yamagata (yellow vs purple bars in Figure \ref{genomeGrid}).
+This pattern is apparent in the PA, NP, NA, MP and NS segments.
+However, the PB1, PB2 and HA segments possess modern viruses deriving from both Victoria and Yamagata.
+Consistent with fixation of Victoria or Yamagata lineages, the PA, NP, NA, MP and NS segments periodically lose diversity, while maintenance of parallel Victoria and Yamagata lineages results in continually increasing diversity in segments PB1, PB2 and HA (Figure \ref{tmrcaOT}).
+The PB1, PB2 and HA segments maintain a common ancestor in $\sim$1983 in present-day viruses and thus accumulate genetic diversity since the split of those segments into Vic and Yam lineages, while other segments often lose diversity with ancestors to present-day viruses appearing between $\sim$1991 and $\sim$1999.
 
-By quantifying patterns of ancestry across contemporaneous viruses for each segment, it is clear that the PA, NP, NA, MP and NS segments have undergone periodic losses of diversity, while the PB1, PB2 and HA segments have maintained diversity up to the present (Figure \ref{tmrcaOT}).
-The PB1, PB2 and HA segments maintain a common ancestor in $\sim$1983 up to the present and thus accumulate genetic diversity since the split of those segments into Vic and Yam lineages, while other segments often lose diversity with ancestors to present day viruses appearing between $\sim$1991 and $\sim$1999.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{supp_figures/InfB_genomeGrid.pdf}
+\caption{\textbf{Maximum clade credibility (MCC) trees of all 8 genome segments of influenza B viruses isolated since 1980.}
+Trees are coloured based on inferred PB1-PB2-HA lineage.
+Vertical bars indicate the original Victoria and Yamagata lineages within each segment.
+Each tree corresponds to the summarised output from single analyses comprised of 9000 trees sampled from the posterior distribution of trees.
+}
+\label{genomeGrid}
+\end{figure}
 
 \begin{figure}[h]
 	\centering		
@@ -305,10 +315,10 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 
 In Figure \ref{SPRdistances} the 95\% highest posterior density (HPD) intervals of normalized approximate SPR distances between pairs of segments encompass most means and occupy a relatively small range, suggesting there is no evidence of differences in the number of reassortments (or reassortment rate given as number of SPR moves per total time in both trees, see Figure \ref{NormSPR_RErate} in supplementary information) between all segments.
 We note, however, that our SPR distance analysis might simply lack power.
-Comparisons between independent analyses of the same segments yield distances that are comparable to distances between different segments (see Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates}), suggesting that phylogenetic uncertainty is making a considerable contribution to our estimates of approximate SPR distances.
+Comparisons between independent analyses of the same segments yield distances that are comparable to distances between different segments (Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates}), suggesting that phylogenetic uncertainty is making a considerable contribution to our estimates of approximate SPR distances.
 In addition, SPR distances themselves can only approximate (and underestimate) the actual numbers of reassortments.
 Thus we caution against over-interpreting Figure \ref{SPRdistances}.
-Although there might be concern about using approximate, rather than exact, SPR distances we do estimate exact SPR distances for a limited number of segment pairs - PB1, PB2 and HA - and find that after normalization exact and approximate SPR distances are not significantly different (see supplementary Figures \ref{NormSPR_PB1-PB2_difference}--\ref{NormSPR_PB2-HA_correlation}). 
+Although there might be concern about using approximate, rather than exact, SPR distances we do estimate exact SPR distances for a limited number of segment pairs - PB1, PB2 and HA - and find that after normalization exact and approximate SPR distances are not significantly different (Figures \ref{NormSPR_PB1-PB2_difference}--\ref{NormSPR_PB2-HA_correlation}).
 
 Although we do not find evidence of differences in numbers of raw reassortments between all pairs of trees, we find support for a reassortment `distance' effect.
 Figure \ref{deltaTMRCA} shows normalized mean $\Delta$TMRCA values for all pairs of trees.
@@ -346,7 +356,7 @@ This is evidence of a considerable number of co-assorting alleles within these p
 	\label{segmentLD}
 \end{figure}
 
-Of the amino acid sites that exhibit high LD on PB1, PB2 and HA proteins, there are 5 sites on PB1, 8 on PB2 and 13 on HA proteins which form a network of sites exhibiting reciprocally high LD (see Figures \ref{ChiGenome} and \ref{ChiCore} in supplementary information).
+Of the amino acid sites that exhibit high LD on PB1, PB2 and HA proteins, there are 5 sites on PB1, 8 on PB2 and 13 on HA proteins which form a network of sites exhibiting reciprocally high LD (Figures \ref{ChiGenome} and \ref{ChiCore}).
 These sites define the split between Vic and Yam lineages within PB1, PB2 and HA segments.
 In addition, there are sites on PB1, PB2 and HA proteins which also show high, albeit smaller, LD which correspond to sites which have undergone amino acid replacements some time after the Vic/Yam split.
 
@@ -442,9 +452,9 @@ We predict that artificially produced viruses with mixed-lineage PB1-PB2-HA comp
 In addition, we expect the relationship between Vic and Yam lineage PB1, PB2 and HA segments to be dependent on date of segment isolation, as viruses with mixed-lineage PB1-PB2-HA complexes isolated earlier should perform better than viruses with PB1-PB2-HA segments isolated more recently.
 
 Given the existence of B/Waikato/6/2005-like viruses and the rarity of PB1-PB2 reassortants we expect that artificially produced PB1-PB2 reassortants would be much less fit than either PB1-HA or PB2-HA reassortants.
-We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (see Figures \ref{NormSPR_PB2-HA_difference}, \ref{NormSPR_PB2-HA_ratio}, \ref{SPR_PB2-HA_difference}, \ref{SPR_PB2-HA_ratio} and \ref{SPR_PB2-HA_correlation} in supplementary information).
+We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (Figures \ref{NormSPR_PB2-HA_difference}, \ref{NormSPR_PB2-HA_ratio}, \ref{SPR_PB2-HA_difference}, \ref{SPR_PB2-HA_ratio} and \ref{SPR_PB2-HA_correlation}).
 The history of reassortments in influenza B viruses (Figure \ref{railroadPlot}) suggests that there are lineage-specific effects too, given the almost universal introgression of Yamagata lineage segments into Victoria PB1-PB2-HA background.
-However, our analyses do not indicate any obvious differences in synonymous, non-synonymous or nucleotide substitution rates between Vic and Yam PB1-PB2-HA segment complexes or segments associated with either of the two (see supplementary Figure \ref{robustCounting}).
+However, our analyses do not indicate any obvious differences in synonymous, non-synonymous or nucleotide substitution rates between Vic and Yam PB1-PB2-HA segment complexes or segments associated with either of the two (Figure \ref{robustCounting}).
 
 However, we also see that epistatic effects might interfere with fitness measurements, if for example non-PB1-PB2-HA segments are also temporally mismatched.
 Ideally, the co-adaptation would be easier to understand by referring to the structures of PB1 and PB2 proteins, as the link between these would be intuitive.
@@ -471,23 +481,6 @@ Given sufficient time we expect the two PB1-PB2-HA complexes to eventually recru
 \setcounter{table}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
-
-
-\section*{MCC trees}
-
-We summarised posterior sets of trees using TreeAnnotator (part of the BEAST package \cite{drummond2012}) by discarding the first 1000 trees of each analysis as burn-in and keeping median node heights.
-Figure \ref{genomeGrid} shows the maximum clade credibility (MCC) phylogenies of each segment.
-Each tree in Figure \ref{genomeGrid} corresponds to the summarised output from single analyses comprised of 9000 trees sampled from the posterior distribution of trees.
-
-\begin{figure}
-\centering  
-\includegraphics[width=0.95\textwidth]  {supp_figures/InfB_genomeGrid.pdf}
-\caption{\textbf{MCC trees of 8 segments.}
-Maximum clade credibility trees of all 8 genome segments of influenza B viruses isolated since 1980.
-Trees are coloured based on inferred PB1-PB2-HA lineage.
-Vertical bars indicate the original Victoria and Yamagata lineages within each segment.}
-\label{genomeGrid}
-\end{figure}
 
 \section*{Linkage disequilibrium data}
 
