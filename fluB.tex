@@ -75,7 +75,7 @@
 
 Influenza B viruses are increasingly being recognized as major contributors to morbidity attributed to seasonal influenza. 
 Currently circulating influenza B isolates are known to belong to two antigenically distinct lineages referred to as B/Victoria and B/Yamagata lineages. 
-Frequent exchange of genomic segments of these two lineages has been noted in the past, but the effects of these reassortments have not been investigated in detail.
+Frequent exchange of genomic segments of these two lineages has been noted in the past, but the observed patterns of reassortment have not been formalized in detail.
 We investigate inter-lineage reassortments by comparing phylogenetic trees across genomic segments.
 Our analyses indicate that of the 8 segments of influenza B viruses only PB1, PB2 and HA segments maintained separate Victoria and Yamagata lineages and that currently circulating strains possess PB1, PB2 and HA segments derived entirely from one or the other lineage; other segments have repeatedly reassorted between lineages thereby reducing genetic diversity.
 We argue that this difference between segments is due to selection against reassortant viruses with mixed lineage PB1, PB2 and HA segments.
@@ -93,7 +93,7 @@ Following the 2009 A/H1N1 pandemic, influenza B has increased in prevalence and 
 Like other members of \textit{Orthomyxoviridae}, influenza B viruses have segmented genomes, which allow viruses co-infecting the same cell to exchange segments, a process known as reassortment. 
 Influenza A viruses are widely considered to be a major threat to human health worldwide due to their ability to cause pandemics in humans via reassortment of circulating human strains with non-human influenza A strains. 
 Although influenza B viruses have been observed to infect seals \cite{osterhaus2000,bodewes2013} through a reverse zoonosis, they are thought to primarily infect humans and are thus are unlikely to exhibit pandemics due to the absence of an animal reservoir from which to acquire antigenic novelty. 
-Both influenza A and B evolve antigenically through time in a process known as antigenic drift, in which mutations to the haemagglutinin (HA) protein allow viruses to escape existing human immunity and persist in the human population, leading to recurrent seasonal epidemics \cite{bedford2014}. %%AR - some earlier references here
+Both influenza A and B evolve antigenically through time in a process known as antigenic drift, in which mutations to the haemagglutinin (HA) protein allow viruses to escape existing human immunity and persist in the human population, leading to recurrent seasonal epidemics \cite{burnet1955,hay2001,bedford2014}.
 
 Currently circulating influenza B viruses comprise two distinct lineages -- Victoria and Yamagata (referred to as Vic and Yam, respectively) -- named after strains B/Victoria/2/87 and B/Yamagata/16/88, that are thought to have genetically diverged in HA around 1983 \cite{rota1990}. 
 These two lineages now possess antigenically distinct HA surface glycoproteins \cite{kanegae1990,rota1990,nerome1998,nakagawa2002,ansaldi2003} allowing them to co-circulate in the human population.
@@ -157,7 +157,7 @@ This gives a measure of how successful, over long periods of time, each particul
 
 \subsection*{Tree to tree similarities}
 
-\newcommand{\dtmrca}{d_\mathrm{TMRCA}} % TB: This could be replaced with \Delta_\mathrm{TMRCA} or \Delta as you prefer
+\newcommand{\dtmrca}{\Delta_\mathrm{TMRCA}} % TB: This could be replaced with \Delta_\mathrm{TMRCA} or \Delta as you prefer
 \newcommand{\dspr}{d_\mathrm{SPR}}
 
 We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ by comparing TMRCA differences between pairs of tips in the two trees.
@@ -179,9 +179,12 @@ Exact SPR distances are difficult to compute, as they depend on the SPR distance
 We calculated approximate SPR distances \cite{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
 Approximate SPR distances $\dspr$ were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from segments $A$, $B$ and independent analyses thereof ($A'$ and $B'$).
 
+
+\newcommand{\chiSq}{\chi^{2}_{df}}
+
 \subsection*{Linkage disequilibrium across the influenza B genome}
 We estimated linkage disequilibrium (LD) between amino acid sites across the longest proteins encoded by each segment of the influenza B virus genome.
-To quantify LD we used the $\chi^{2}$ statistic, as it is equal to the widely used $r^2$ LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus \cite{zhao2005}.
+To quantify LD we used the $\chiSq$ statistic \cite{hedrick1986}, as it is equal to the widely used $r^2$ LD statistic at biallelic loci, but also quantifies LD when there are more than two alleles per locus \cite{zhao2005}.
 LD was estimated only at loci where each nucleotide or amino acid allele was represented by at least two isolates.
 We ignored gaps in the alignment and did not consider them as polymorphisms.
 We also calculated mean LD for all pairs of segments to quantify the overall association between them.
@@ -192,11 +195,11 @@ Linkage disequilibrium was not estimated for the larger PB1, PB2 and HA dataset,
 \subsection*{Phylogenetic analyses reveal maintenance of diversity and co-assortment of PB1, PB2 and HA gene segments}
 The differentiation into Vic and Yam lineages can be seen in all segments (Figure \ref{genomeGrid}).
 Following the split of the two lineages, each segment can be assigned to either Vic or Yam lineage and inter-lineage reassortment events have yielded mixed-lineage genome constellations.
-On some segments, either the Victoria or Yamagata lineage has become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment, seen as modern viruses deriving completely from either Victoria or Yamagata (yellow vs purple bars in Figure \ref{genomeGrid}).
+On some segments, either the Victoria or Yamagata lineage has become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment, seen as modern viruses deriving completely from either Victoria or Yamagata lineage (yellow vs purple bars in Figure \ref{genomeGrid}).
 This pattern is apparent in the PA, NP, NA, MP and NS segments.
-However, the PB1, PB2 and HA segments possess modern viruses deriving from both Victoria and Yamagata.
+However, the PB1, PB2 and HA segments of modern viruses are derived from both Victoria and Yamagata lineages.
 Consistent with fixation of Victoria or Yamagata lineages, the PA, NP, NA, MP and NS segments periodically lose diversity, while maintenance of parallel Victoria and Yamagata lineages results in continually increasing diversity in segments PB1, PB2 and HA (Figure \ref{tmrcaOT}).
-The PB1, PB2 and HA segments maintain a common ancestor in $\sim$1983 in present-day viruses and thus accumulate genetic diversity since the split of those segments into Vic and Yam lineages, while other segments often lose diversity with ancestors to present-day viruses appearing between $\sim$1991 and $\sim$1999.
+The PB1, PB2 and HA segments from present-day viruses maintain a common ancestor in $\sim$1983 and thus accumulate genetic diversity since the split of those segments into Vic and Yam lineages, while other segments often lose diversity with ancestors to present-day viruses appearing between $\sim$1991 and $\sim$1999.
 
 \begin{figure}[h]
 \centering
@@ -258,7 +261,7 @@ PB1, PB2 and HA segments maintain separate Victoria and Yamagata lineages.}
 
 We reconstructed reassortment events that were detected by using lineage labels.
 Figure \ref{railroadPlot} focuses only on inter-lineage reassortments that have occured after 1990.
-We identify 5 major reassortant genome constellations (given in order PB1-PB2-PA-HA-NP-NA-MP-NS) circulating 1992 -- 2011: B/Alaska/12/1996-like (YYYYYYYV), B/Nanchang/2/1997-like (VVYVYVYV), B/Iowa/03/2002-like (VVYVYYYV), B/California/NHRC0001/2006-like (VVYVYYYV) and B/Brisbane/33/2008-like (VVYVYYYV) in Figure \ref{railroadPlot}.
+We identify 5 major reassortant genome constellations (given in order PB1-PB2-PA-HA-NP-NA-MP-NS with prime (') indicating independently acquired segments) circulating 1992 -- 2011: B/Alaska/12/1996-like (Y-Y-Y-Y-Y-Y-Y-V), B/Nanchang/2/1997-like (V-V-Y-V-Y-V-Y-V), B/Iowa/03/2002-like (V-V-Y'-V-Y-Y-Y'-V'), B/California/NHRC0001/2006-like (V-V-Y-V-Y'-Y-Y'-V') and B/Brisbane/33/2008-like (V-V-Y-V-Y'-Y-Y-V) in Figure \ref{railroadPlot}.
 Of these 5 constellations 4 (B/Nanchang/2/1997-like, B/Iowa/03/2002-like, B/California/NHRC0001/2006-like and B/Brisbane/33/2008-like) are derived from introgression of Yamagata lineage segments into Victoria lineage PB1-PB2-HA background, with only 1 (B/Alaska/12/1996-like) resulting from introgression of Victoria lineage NS segment into an entirely Yamagata lineage derived background.
 All 5 inter-lineage reassortment events described here are marked by the preservation of either entirely Victoria or Yamagata lineage derived PB1-PB2-HA segments.
 Figure \ref{railroadPlot} also shows that reassorting segments appear to evolve with a considerable degree of autonomy.
@@ -321,10 +324,10 @@ Thus we caution against over-interpreting Figure \ref{SPRdistances}.
 Although there might be concern about using approximate, rather than exact, SPR distances we do estimate exact SPR distances for a limited number of segment pairs - PB1, PB2 and HA - and find that after normalization exact and approximate SPR distances are not significantly different (Figures \ref{NormSPR_PB1-PB2_difference}--\ref{NormSPR_PB2-HA_correlation}).
 
 Although we do not find evidence of differences in numbers of raw reassortments between all pairs of trees, we find support for a reassortment `distance' effect.
-Figure \ref{deltaTMRCA} shows normalized mean $\Delta$TMRCA values for all pairs of trees.
+Figure \ref{deltaTMRCA} shows normalized mean $\dtmrca$ values for all pairs of trees.
 Most segment pairs show very low values for this statistic, indicating considerable differences between TMRCAs of the trees being compared.
-A large number of these comparisons have TMRCA differences up to 10 times larger ($\Delta$TMRCA$\approx$0.1) than TMRCA differences that occur between replicate BEAST analyses of one alignment over the course of the MCMC chain.
-PB1, PB2 and HA trees, on the other hand, exhibit normalized $\Delta$TMRCA values that are much higher.
+A large number of these comparisons have TMRCA differences up to 10 times larger ($\dtmrca$$\approx$0.1) than TMRCA differences that occur between replicate BEAST analyses of one alignment over the course of the MCMC chain.
+PB1, PB2 and HA trees, on the other hand, exhibit normalized $\dtmrca$ values that are much higher.
 This is an indicator of TMRCA differences between trees of PB1, PB2 and HA segments which, though noisy, are occassionally very similar to uncertainty in tip-to-tip TMRCAs between replicate analyses of these segments.
 Overall, it suggests that PB1, PB2 and HA lineages tend to not reassort amongst themselves unless both reassorting segments have similar TMRCAs, i.e.\ there is isolation by distance.
 In addition, we see evidence of a similar reassortment `distance' effect in MP and NA trees in Figure \ref{deltaTMRCA}.
@@ -333,7 +336,7 @@ Previously, associations between MP and NA segments have been suspected in influ
 \begin{figure}[h]
 	\centering		
 	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedMuDeltaTMRCA.png}
-	\caption{\textbf{Normalized mean $\Delta$TMRCA statistics between pairs of segments.}
+	\caption{\textbf{Normalized mean $\dtmrca$ statistics between pairs of segments.}
 PB1, PB2 and HA trees exhibit reciprocally highly similar TMRCAs, unlike most other pairwise comparisons.
 All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{deltaTMRCA}
@@ -343,7 +346,7 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 Linkage disequilibrium (LD) is a measure of association between alleles at different polymorphic loci within a population.
 To estimate LD no other information, except for alleles at polymorphic amino acid sites in the dataset, is required.
 Although not an independent validation of association between PB1, PB2 and HA segments, linkage disequilibrium analyses show that Victoria and Yamagata lineages of these segments have accumulated lineage-specific amino acid substitutions.
-In Figure \ref{segmentLD} the signature of Vic and Yam lineage-specific substitutions is greater mean $\chi^{2}_{df}$ between PB1, PB2 and HA amino acid sites than any other pair of proteins.
+In Figure \ref{segmentLD} the signature of Vic and Yam lineage-specific substitutions is greater mean $\chiSq$ between PB1, PB2 and HA amino acid sites than any other pair of proteins.
 In some cases this value exceeds the estimated mean LD of amino acid sites within the same protein (\textit{e.g.} PB1 and HA have higher mean LD than mean LD when PB1 is compared against itself).
 
 \begin{figure}[h]
@@ -461,10 +464,10 @@ Ideally, the co-adaptation would be easier to understand by referring to the str
 We have identified amino acid sites which are linked between PB1, PB2 and HA proteins of Victoria and Yamagata lineages, but we find very few sites on PB1 and PB2 proteins that fall within the regions that form contacts within the influenza B polymerase heterotrimer \cite{sugiyama2009}, suggesting more subtle roles for sites we have identified.
 
 \subsection*{Conclusion}
-We have used the $\Delta$TMRCA statistic to determine the degree of similarity in TMRCA dates between two temporally calibrated phylogenies.
+We have used the $\dtmrca$ statistic to determine the degree of similarity in TMRCA dates between two temporally calibrated phylogenies.
 We believe that patristic distance methods, though far from being new, have considerable power to address a wide variety of problems when combined with temporal phylogenies.
-One of many useful applications of the $\Delta$TMRCA method would be identifying clades or taxa that are products of reticulate evolution.
-Within-analysis $\Delta$TMRCA could be used as a cutoff to detect outlier taxa with greater than expected $\Delta$TMRCA values.
+One of many useful applications of the $\dtmrca$ method would be identifying clades or taxa that are products of reticulate evolution.
+Within-analysis $\dtmrca$ could be used as a cutoff to detect outlier taxa with greater than expected $\dtmrca$ values.
 To develop further, however, the statistical properties of patristic distance methods have to be evaluated in greater detail.
 In addition, by treating the relative position of each isolate within a phylogeny of one segment as a label and modelling it on phylogenies of other segments we have also developed a metric similar to `between population' diversity used in calculating $F_{ST}$, which is capable of quantifying reticulate evolution-induced loss of diversity between partitions of taxa in two or more phylogenies.
 
@@ -487,7 +490,7 @@ Given sufficient time we expect the two PB1-PB2-HA complexes to eventually recru
 \begin{figure}
 \centering  
 \includegraphics[width=0.95\textwidth]  {supp_figures/aaChi_Genome.png}
-\caption{\textbf{Heatmap of genome-wide linkage disequilibrium ($\chi^{2}_{df}$) between polymorphic amino acid sites.}
+\caption{\textbf{Heatmap of genome-wide linkage disequilibrium ($\chiSq$) between polymorphic amino acid sites.}
 Patterns of LD across the genome suggest a network of reciprocally linked amino acid sites on PB1, PB2, HA and to some extent NA proteins.
 Proximity of sites on heatmaps might not correspond to proximity of sites within proteins.}
 \label{ChiGenome}
@@ -496,7 +499,7 @@ Proximity of sites on heatmaps might not correspond to proximity of sites within
 \begin{figure}
 \centering  
 \includegraphics[width=0.85\textwidth]  {supp_figures/aaChi_PB1_PB2_HA.png}
-\caption{\textbf{Heatmap of linkage disequilibrium ($\chi^{2}_{df}$) between amino acid sites on PB1, PB2 and HA proteins.}
+\caption{\textbf{Heatmap of linkage disequilibrium ($\chiSq$) between amino acid sites on PB1, PB2 and HA proteins.}
 Numbers next to each row and column correspond to amino acid site number within a given protein starting from methionine.}
 \label{ChiCore}
 \end{figure}
@@ -536,22 +539,22 @@ For all other segments approximate SPR distances between all pairs of trees prio
 \label{SPRdistancesReplicates}
 \end{figure}
 
-Figures \ref{deltaTMRCAtrees} and \ref{deltaTMRCAreplicates} show $\Delta$TMRCA statistics for inter-segment and intra-segment, respectively, comparisons prior to normalization.
-Figure \ref{deltaTMRCAtrees} shows that similarity in TMRCAs (as low $\Delta$TMRCA) between PB1, PB2 and HA segments is due to considerably smaller $\Delta$TMRCA statistic for the comparison between these segments.
+Figures \ref{deltaTMRCAtrees} and \ref{deltaTMRCAreplicates} show $\dtmrca$ statistics for inter-segment and intra-segment, respectively, comparisons prior to normalization.
+Figure \ref{deltaTMRCAtrees} shows that similarity in TMRCAs (as low $\dtmrca$) between PB1, PB2 and HA segments is due to considerably smaller $\dtmrca$ statistic for the comparison between these segments.
 It is also noteworthy that NA and MP comparisons have similarly low values for this statistic.
 Figure \ref{deltaTMRCAreplicates} shows that TMRCAs are quite robust over the course of MCMC and node times do not, even in the most extreme cases, deviate from their replicates by more than 1 year.
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_deltaTMRCA_trees.png}
-\caption{\textbf{Mean $\Delta$TMRCA between all pairs of trees of segments.}}
+\caption{\textbf{Mean $\dtmrca$ between all pairs of trees of segments.}}
 \label{deltaTMRCAtrees}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_deltaTMRCA_replicates.png}
-\caption{\textbf{Mean $\Delta$TMRCA between replicate trees of each segment.}}
+\caption{\textbf{Mean $\dtmrca$ between replicate trees of each segment.}}
 \label{deltaTMRCAreplicates}
 \end{figure}
 
@@ -710,7 +713,7 @@ This difference in variability would build up linkage disequilibrium between nuc
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_8x8_aaLD_MDS.png}
-\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean amino acid linkage disequilibrium ($\chi\_{df}^{2}$).}}
+\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean amino acid linkage disequilibrium ($\chiSq$).}}
 \label{MDSaaLD}
 \end{figure}
 
@@ -724,7 +727,7 @@ This difference in variability would build up linkage disequilibrium between nuc
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_8x8_ntLD_MDS.png}
-\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean nucleotide linkage disequilibrium ($\chi\_{df}^{2}$).}}
+\caption{\textbf{2-dimensional MDS embedding of influenza B virus segments based on mean nucleotide linkage disequilibrium ($\chiSq$).}}
 \label{MDSntLD}
 \end{figure}
 
