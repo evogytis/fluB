@@ -50,3 +50,5 @@ Briefly, it normalizes comparisons between two different trees by comparisons be
 
 ## Figures
 `fluB_eLife.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy** and **scipy** (the latter is optional). After everything has been installed simply put `fluB_eLife.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
+
+The notebook in its intended form can be viewed [here](http://nbviewer.ipython.org/github/evogytis/fluB/blob/master/scripts/fluB_eLife.ipynb?create=1) (give it some time, it's quite big).
