@@ -132,8 +132,8 @@ def overlap(a,b):
 
 ## Makes a list of dates if partitioning of LD is desired
 # Default value makes a single bin for all sequences isolated between 1900 and 2014
-step=114
-timeline=np.arange(1900,2014,step)
+step=3
+timeline=np.arange(1984,2014,step)
 
 ## Segments to analyze                                                                       
 segments=['PB1','PB2','PA','HA','NP','NA','M1','NS1']
@@ -144,9 +144,11 @@ segments=['PB1','PB2','PA','HA','NP','NA','M1','NS1']
 mixedLineage=[]
 
 ## Select mode - nt for nucleotide alignments, aa for amino acid alignments
-mode='nt'
-#mode='aa'
+#mode='nt'
+mode='aa'
 
+
+#segments=['NA','M1','NS1']
 
 ## Iterate over all pairs of segments
 for mem1 in range(len(segments)):
@@ -169,12 +171,12 @@ for mem1 in range(len(segments)):
             ## Define alignment name
             seg1='InfB_%s translation alignment.nex'%(segment1)
             seg2='InfB_%s translation alignment.nex'%(segment2)
-            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Translated/%s_%s_rDChicomparisonNoSelfCommonTEST.csv'%(segment1,segment2),'w')
+            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Translated/%s_%s_rDChicomparisonNoSelfTimed3.csv'%(segment1,segment2),'w')
         elif mode=='nt':
             path='/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/'
             seg1='InfB_%s.nex'%(segment1)
             seg2='InfB_%s.nex'%(segment2)
-            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/%s_%s_rDChiNtcomparisonNoSelf.csv'%(segment1,segment2),'w')
+            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/%s_%s_rDChiNtcomparisonNoSelfRemake.csv'%(segment1,segment2),'w')
         
         handle1 = open(path+seg1, "rU")
         handle2 = open(path+seg2, "rU")
@@ -185,30 +187,34 @@ for mem1 in range(len(segments)):
         for record1,record2 in zip(AlignIO.read(handle1, "nexus"),AlignIO.read(handle2, "nexus")):
             seqCheck.append([record1,record2])
             for i in range(len(timeline)):
-                if (record1.id not in strains[i] and record1.id not in mixedLineage):
-                    strains[i].append(record1.id)
-                if (record2.id not in strains[i] and record2.id not in mixedLineage):
-                    strains[i].append(record2.id)
+                #if (record1.id not in strains[i] and record1.id not in mixedLineage):
+                    
+                #if (record2.id not in strains[i] and record2.id not in mixedLineage):
+                    
                 
                 if timeline[i]<=decimalDate(record1.id)<timeline[i]+step and record1.id not in mixedLineage:
                     dictA[i][record1.id]=record1.seq
                     alignmentA[i].append(record1.seq)
+                    if record1.id not in mixedLineage and record1.id not in strains[i]:
+                        strains[i].append(record1.id)
                 else:
                     pass
                     
                 if timeline[i]<=decimalDate(record2.id)<timeline[i]+step and record2.id not in mixedLineage:
                     dictB[i][record2.id]=record2.seq
                     alignmentB[i].append(record2.seq)
+                    if record2.id not in mixedLineage and record2.id not in strains[i]:
+                        strains[i].append(record2.id)
                 else:
                     pass
 
         print 'Sequence number check:',len(seqCheck)
         for tp in range(len(timeline)):
-            print 'Numbers of sequences left:',timeline[tp],len(alignmentA[tp]),len(alignmentB[tp])
-
+            print 'Numbers of sequences left:',timeline[tp],len(alignmentA[tp]),len(alignmentB[tp]),len(dictA[tp]),len(dictB[tp]),len(strains[tp])
+            
             ## Iterate over all pairs of sites in both alignments
             for i in range(len(alignmentA[tp][0])):
-                print timeline[tp],'site',i+1
+                #print timeline[tp],'site',i+1
                 for j in range(len(alignmentB[tp][0])):
                     if mode=='aa':
                         totalA=len(removeItem(column(alignmentA[tp],i),['-','?']))
@@ -230,7 +236,7 @@ for mem1 in range(len(segments)):
                     chiSq=None
                     chi=0
 
-                    ## Check whether haplotypes have gaps or are seen only once
+                    ## Count polymorphisms
                     polies=[]
                     for p1 in poly1:
                         if mode=='aa':
@@ -242,9 +248,11 @@ for mem1 in range(len(segments)):
                             polies.append(removeItem(column(alignmentB[tp],j),['-','?']).count(p2))
                         elif mode=='nt':
                             polies.append(removeItem2(column(alignmentB[tp],j),['A','C','T','G']).count(p2))
-                    if len(polies)==0:
-                        allHap=True
 
+                    ## check the count of the rarest polymorphism, proceed if minimum number met
+                    if len(polies)==0:
+                        allHap=False
+                    ## this is the cutoff for how many times a polymorphism has to be seen to be included in the analysis
                     elif min(polies)>=1:
                         allHap=True
                     else:
@@ -291,7 +299,9 @@ for mem1 in range(len(segments)):
                                 
                         ## Output stored chiSqdf value if contingency table already seen
                         if seen.has_key(str(contingencyTable))==True:
-                            print>>f,'%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],i+1,j+1,len(poly1),len(poly2),seen[str(contingencyTable)]*(len(poly1)-1)*(len(poly2)-1)*total,seen[str(contingencyTable)])
+                            print>>f,'%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],len(strains[tp]),i+1,j+1,len(poly1),len(poly2),seen[str(contingencyTable)]*(len(poly1)-1)*(len(poly2)-1)*total,seen[str(contingencyTable)])
+                            #print '%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],i+1,j+1,len(poly1),len(poly2),seen[str(contingencyTable)]*(len(poly1)-1)*(len(poly2)-1)*total,seen[str(contingencyTable)])
+                            print '%s\tseqs %s\t%s site %s\t%s site %s\t%s'%(timeline[tp],len(strains[tp]),segments[mem1],i+1,segments[mem2],j+1,seen[str(contingencyTable)])
                         else:
                             total1=0
                             total2=0
@@ -329,51 +339,18 @@ for mem1 in range(len(segments)):
                                     chiSq+=((contingencyTable[w][q]-expectedTable[w][q])**2)/float((expectedTable[w][q]))
 
                             ## Calculate chiSqdf value
+                            #print poly1,poly2
                             chiSqdf=chiSq/(float((len(poly1)-1)*(len(poly2)-1)*total))
 
                             ## Remember chiSqdf value for this particular contingency table - saves time
                             seen[str(contingencyTable)]=chiSqdf
 
                             ## Print time period, segment 1 site, segment 2 site, number of polymorphisms in segment 1 at site, number of polymorphisms in segment 2 at site, chi value (not chiSq) and chiSqdf value
-                            print>>f,'%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],i+1,j+1,len(poly1),len(poly2),chi,chiSqdf)                            
+                            print>>f,'%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],len(strains[tp]),i+1,j+1,len(poly1),len(poly2),chi,chiSqdf)
+                            #print '%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],i+1,j+1,len(poly1),len(poly2),chi,chiSqdf)
+                            print '%s\tseqs %s\t%s site %s\t%s site %s\t%s'%(timeline[tp],len(strains[tp]),segments[mem1],i+1,segments[mem2],j+1,chiSqdf)
         f.close()
 
-
-
-
-        ## Count the number of polymorphic sites on both segments
-        polCounterA=0
-        for tp in range(len(timeline)):
-            print timeline[tp],len(alignmentA[tp])
-            for i in range(len(alignmentA[tp][0])):
-                if mode=='aa':
-                    totalA=removeItem(column(alignmentA[tp],i),['-','?'])
-                    poly1=unique(removeItem(column(alignmentA[tp],i),['-','?']))
-                elif mode=='nt':
-                    totalA=removeItem2(column(alignmentA[tp],i),['A','C','T','G'])
-                    poly1=unique(removeItem2(column(alignmentA[tp],i),['A','C','T','G']))
-                
-                rarest=min([totalA.count(y) for y in poly1])
-                if len(poly1)>1 and rarest>=2:
-                    polCounterA+=1
-
-        polCounterB=0
-        for tp in range(len(timeline)):
-            print timeline[tp],len(alignmentB[tp])
-            for i in range(len(alignmentB[tp][0])):
-                if mode=='aa':
-                    totalB=removeItem(column(alignmentB[tp],i),['-','?'])
-                    poly2=unique(removeItem(column(alignmentB[tp],i),['-','?']))
-                elif mode=='nt':
-                    totalB=removeItem2(column(alignmentB[tp],i),['A','C','T','G'])
-                    poly2=unique(removeItem2(column(alignmentB[tp],i),['A','C','T','G']))
-                
-                rarest=min([totalB.count(y) for y in poly2])
-                if len(poly2)>1 and rarest>=2:
-                    polCounterB+=1
-
-        print 'Number of polymorphic sites on %s : %s'%(segment1,polCounterA)
-        print 'Number of polymorphic sites on %s : %s'%(segment2,polCounterB)
 
         handle1.close()
         handle2.close()
