@@ -4,7 +4,7 @@
 The following python scripts were used in the manuscript to extract information from trees:
 - `Hrothvitnir_eLife.py`
 - `Hydra_eLife.py`
-- `LD_calculator_ChiSqdf_eLife.py`
+- `LD_calculator.py`
 
 Most figures were made using an IPython notebook:
 - `fluB_eLife.ipynb`
@@ -45,8 +45,8 @@ Briefly, it normalizes comparisons between two different trees by comparisons be
 
 
 ## Linkage disequilibrium
-`LD_calculator_ChiSqdf_eLife.py` calculates the [Chi-squared df](http://www.genetics.org/content/112/1/135) statistic of linkage disequilibrium. It requires **python**, **biopython** and **numpy** to run, as well as nucleotide or amino acid alignments. To run edit the script to point to the directory and the file name format and type in:
-`python LD_calculator_ChiSqdf_eLife.py`
+`LD_calculator.py` calculates the [Chi-squared df](http://www.genetics.org/content/112/1/135) and [D'](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1210557/pdf/49.pdf) statistics of linkage disequilibrium. It requires **python**, **biopython** and **numpy** to run, as well as nucleotide or amino acid alignments. To run edit the script to point to the directory and the file name format and type in:
+`python LD_calculator.py`
 
 ## Figures
 `fluB_eLife.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy** and **scipy** (the latter is optional). After everything has been installed simply put `fluB_eLife.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
