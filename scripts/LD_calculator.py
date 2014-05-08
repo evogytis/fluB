@@ -34,7 +34,7 @@
 ##
 #####################################################################################
 
-
+import sys
 import numpy as np
 from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC
@@ -145,46 +145,53 @@ segments=['PB1','PB2','PA','HA','NP','NA','M1','NS1']
 #mixedLineage=['B/Alaska/03/1992_1992-06-13', 'B/Alaska/03/1992_1992-06-13', 'B/Alaska/03/1992_1992-06-13', 'B/Cordoba/2979/1991_1991-06-13', 'B/Cordoba/2979/1991_1991-06-13', 'B/Cordoba/2979/1991_1991-06-13', 'B/Bangkok/163/1990_1990', 'B/Bangkok/163/1990_1990', 'B/Bangkok/163/1990_1990', 'B/Norway/1/84_1984', 'B/Norway/1/84_1984', 'B/Norway/1/84_1984', 'B/Houston/1/91_1991', 'B/Houston/1/91_1991', 'B/Houston/1/91_1991', 'B/Memphis/5/93_1993', 'B/Memphis/5/93_1993', 'B/Memphis/5/93_1993', 'B/Bangkok/153/1990_1990', 'B/Bangkok/153/1990_1990', 'B/Bangkok/153/1990_1990', 'B/Johannesburg/06/1994_1994', 'B/Johannesburg/06/1994_1994', 'B/Johannesburg/06/1994_1994', 'B/Lisbon/02/1994_1994-10-26', 'B/Lisbon/02/1994_1994-10-26', 'B/Lisbon/02/1994_1994-10-26', 'B/Connecticut/02/1995_1995-01-05', 'B/Connecticut/02/1995_1995-01-05', 'B/Connecticut/02/1995_1995-01-05', 'B/Texas/14/1991_1991-01-11', 'B/Texas/14/1991_1991-01-11', 'B/Texas/14/1991_1991-01-11', 'B/Connecticut/07/1993_1993-01-26', 'B/Connecticut/07/1993_1993-01-26', 'B/Connecticut/07/1993_1993-01-26', 'B/Ann_Arbor/1994_1994', 'B/Ann_Arbor/1994_1994', 'B/Ann_Arbor/1994_1994', 'B/Oita/15/92_1992-10-16', 'B/Oita/15/92_1992-10-16', 'B/Oita/15/92_1992-10-16', 'B/New_York/24/1993_1993-12-08', 'B/New_York/24/1993_1993-12-08', 'B/New_York/24/1993_1993-12-08', 'B/New_York/39/1991_1991-03-20', 'B/New_York/39/1991_1991-03-20', 'B/New_York/39/1991_1991-03-20', 'B/Nanchang/6/96_1996', 'B/Nanchang/6/96_1996', 'B/Nanchang/6/96_1996', 'B/Nanchang/630/94_1994', 'B/Nanchang/630/94_1994', 'B/Nanchang/630/94_1994']
 mixedLineage=[]
 
-## Select mode - nt for nucleotide alignments, aa for amino acid alignments
+## Select mode - nt for nucleotide alignments, aa for amino acid alignments, used later to filter out invalid residues in the alignment
 #mode='nt'
 mode='aa'
 
 ## Iterate over all pairs of segments
-for mem1 in range(len(segments)):
-    seen={}
-    for mem2 in range(mem1,len(segments)):
-        print 'Comparing %s and %s'%(segments[mem1],segments[mem2])
+for mem1 in range(0,len(segments)):
+    #for mem2 in range(mem1,len(segments)):
+    for mem2 in range(0,len(segments)):
+        print '\n\nComparing %s and %s'%(segments[mem1],segments[mem2])
 
+        ## dictA/B are dicts that map each strain in each time block to that strain's sequence
         dictA=list({} for u in range(len(timeline)))
         dictB=list({} for u in range(len(timeline)))
+
+        ## alignmentA/B contains whole alignments are used to identify polymorphic loci
         alignmentA=list([] for u in range(len(timeline)))
         alignmentB=list([] for u in range(len(timeline)))
         strains=list([] for u in range(len(timeline)))
 
+        ## pair-up segments
         segment1=segments[mem1]
         segment2=segments[mem2]
 
         if mode=='aa':
             ## Point to folder containing alignments
             path='/Users/admin/Documents/Viral sequences/InfB reassortment/Analyses/huge LD/'
+            outpath='/Users/admin/Dropbox/'
+            #outpath=path
             ## Define alignment name
             seg1='%s translation alignment.nex'%(segment1)
             seg2='%s translation alignment.nex'%(segment2)
-            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Analyses/huge LD/%s_%s_Dprime.comparisonNoSelfHUGE.csv'%(segment1,segment2),'w')
-            header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,D,|D\'|,Chi,ChiSqDf'
+            f = open(outpath+'%s_%s_ChiSqdf-Dprime.HUGE.csv'%(segment1,segment2),'w')
+            header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
             print>>f,header
         elif mode=='nt':
             path='/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/'
             seg1='InfB_%s.nex'%(segment1)
             seg2='InfB_%s.nex'%(segment2)
             f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/%s_%s_rDChiNtcomparisonNoSelfRemake.csv'%(segment1,segment2),'w')
-        
+
+        ## open both alignments
         handle1 = open(path+seg1, "rU")
         handle2 = open(path+seg2, "rU")
 
         seqCheck=[]
 
-        ## Iterate over all sequences, assign to bins, exclude some if necessary
+        ## Iterate over all sequences, assign to time blocks, exclude some sequences if necessary
         for record1,record2 in zip(AlignIO.read(handle1, "nexus"),AlignIO.read(handle2, "nexus")):
             seqCheck.append([record1,record2])
             for i in range(len(timeline)):
@@ -205,20 +212,23 @@ for mem1 in range(len(segments)):
                     pass
 
         print 'Sequence number check:',len(seqCheck)
-        
+
+        ## iterate through time blocks
         for tp in range(len(timeline)):
-            seen={}
+
+            polymorphicLociA=[]
+            polymorphicLociB=[]
+
+            ## polymorphicPairs contains positions of polymorphic loci, reduces loop depth
             polymorphicPairs=[]
 
             ## assert that numbers of parsed things are the same
             assert len(alignmentA[tp])==len(alignmentB[tp])==len(dictA[tp])==len(dictB[tp])==len(strains[tp])
 
-            ## print header
-            print header.replace(',','\t')
-
             ## used for debugging, determines which site LD is calculated from in both alignments, 0 by default
             startFrom=0
-            ## Iterate over all pairs of sites in both alignments
+            
+            ## Iterate over all pairs of sites in both alignments, identify polymorphic sites
             for i in range(startFrom,len(alignmentA[tp][0])):
                 #print timeline[tp],'site',i+1
 
@@ -228,21 +238,48 @@ for mem1 in range(len(segments)):
                 elif mode=='nt' and len(removeItem2(unique(column(alignmentA[tp],i)),['A','C','T','G']))==1:
                     pass
                 else:
-                    ## proceed, locus 1 is polymorphic
-                    for j in range(startFrom,len(alignmentB[tp][0])):
-                        ## ignore invariant sites at locus 2
-                        if mode=='aa' and len(removeItem(unique(column(alignmentB[tp],j)),['-','?']))==1 or (seg1==seg2 and i==j):
-                            pass
-                        elif mode=='nt' and len(removeItem2(unique(column(alignmentB[tp],j)),['A','C','T','G']))==1 or (seg1==seg2 and i==j):
-                            pass
-                        else:
-                            ## proceed, locus 2 is polymorphic, add locus 2 to list of polymorphic site pairs, should save later on time
-                            polymorphicPairs.append((i,j))
+                    ## log polymorphic loci in alignmentA
+                    polymorphicLociA.append(i)
+                    
 
+            for j in range(startFrom,len(alignmentB[tp][0])):
+                ## ignore invariant sites at locus 2
+                if mode=='aa' and len(removeItem(unique(column(alignmentB[tp],j)),['-','?']))==1 or (seg1==seg2 and i==j):
+                    pass
+                elif mode=='nt' and len(removeItem2(unique(column(alignmentB[tp],j)),['A','C','T','G']))==1 or (seg1==seg2 and i==j):
+                    pass
+                else:
+                    ## log polymorphic loci in alignmentB
+                    polymorphicLociB.append(j)
+
+
+            ## construct polymorphic site pairs                                       
+            for loc1 in polymorphicLociA:
+                for loc2 in polymorphicLociB:
+                    polymorphicPairs.append((loc1,loc2))
+
+            print '\nNumber of polymorphic pairs of loci between %s and %s: %s'%(segments[mem1],segments[mem2],len(polymorphicPairs))
+
+            ## print header
+            #print header.replace(',','\t')
+
+            ## seen is a dict that maps haplotype frequencies to their LD statistics, so calculations that were done earlier don't have to be repeated
+            seen={}
+                            
             ## iterate through potentially polymorphic site pairs
-            for i,j in polymorphicPairs:
+            for z in range(len(polymorphicPairs)):
+
+                ## report progress
+                sys.stdout.write('\r')
+                sys.stdout.write("[%-100s] %d%%" % ('='*(100*z/len(polymorphicPairs)),100*z/len(polymorphicPairs)))
+                sys.stdout.flush()
+
+                ## unpack sites from site pairs
+                site1=polymorphicPairs[z][0]
+                site2=polymorphicPairs[z][1]
+                
                 ## reconstruct haplotypes
-                checkHaplotypes={strain:(dictA[tp][strain][i],dictB[tp][strain][j]) for strain in strains[tp]}
+                checkHaplotypes={strain:(dictA[tp][strain][site1],dictB[tp][strain][site2]) for strain in strains[tp]}
 
                 ## filter haplotypes, keep those that do not have invalid residues
                 if mode=='aa':
@@ -291,49 +328,46 @@ for mem1 in range(len(segments)):
                     ## check whether these haplotype frequencies were seen before
                     if seen.has_key(str(hapCount)):
                         
-                        ## give answer computed earlier
-                        print seen[str(hapCount)].replace(',','\t'),'(PRECOMPUTED)'
-                        print>>f,seen[str(hapCount)]
+                        ## give answer computed earlier, but replace site numbers
+                        preComp=seen[str(hapCount)].split(',')
+                        preComp[4]=str(site1+1)
+                        preComp[5]=str(site2+1)
+                        
+                        #print '\t'.join(preComp),'(PRECOMPUTED)'
+                        print>>f,','.join(preComp)
 
                     ## calculate everything
                     else:
+                        ## calculate D' as well if loci biallelic
+                        D='NaN'
+                        Dprime='NaN'
+                        if len(poly1)==2 and len(poly2)==2:
+
+                            ## calculate D
+                            D=hapFreq[0]-(poly1Freq[0]*poly2Freq[0])
+
+                            ## calculate Dmax
+                            if D>=0:
+                                Dmax=min([poly1Freq[0]*(1-poly2Freq[0]),(1-poly1Freq[0])*poly2Freq[0]])
+                            else:
+                                Dmax=min([(1-poly1Freq[0])*(1-poly2Freq[0]),poly1Freq[0]*poly2Freq[0]])
+
+                            ## normalize D by Dmax
+                            Dprime=np.absolute(D/float(Dmax))
                         
-                        ## define minor allele frequency cutoff
-                        freqCutoff=0.01
+                        ## calculate ChiSq
+                        ChiSq=0
+                        for q in range(len(poly1)):
+                            for w in range(len(poly2)):
+                                observed=hapCount[q*len(poly2)+w]
+                                expected=poly1Freq[q]*poly2Freq[w]*total
+                                ChiSq+=((observed-expected)**2)/float(expected)
 
-                        ## proceed if minor allele frequent enough
-                        if min(poly1Freq)>=freqCutoff and min(poly2Freq)>=freqCutoff:
-                            
-                            ## calculate D' as well if loci biallelic
-                            D='NaN'
-                            Dprime='NaN'
-                            if len(poly1)==2 and len(poly2)==2:
-
-                                ## calculate D
-                                D=hapFreq[0]-(poly1Freq[0]*poly2Freq[0])
-
-                                ## calculate Dmax
-                                if D>=0:
-                                    Dmax=min([poly1Freq[0]*(1-poly2Freq[0]),(1-poly1Freq[0])*poly2Freq[0]])
-                                else:
-                                    Dmax=min([(1-poly1Freq[0])*(1-poly2Freq[0]),poly1Freq[0]*poly2Freq[0]])
-
-                                ## normalize D by Dmax
-                                Dprime=np.absolute(D/float(Dmax))
-                            
-                            ## calculate ChiSq
-                            ChiSq=0
-                            for q in range(len(poly1)):
-                                for w in range(len(poly2)):
-                                    observed=hapCount[q*len(poly2)+w]
-                                    expected=poly1Freq[q]*poly2Freq[w]*total
-                                    ChiSq+=((observed-expected)**2)/float(expected)
-
-                            ## calculate ChiSqdf
-                            ChiSqdf=ChiSq/float(total*(len(poly1)-1)*(len(poly2)-1))
-                            seen[str(hapCount)]='%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],step,len(strains[tp]),total,i+1,j+1,len(poly1),len(poly2),D,Dprime,ChiSq,ChiSqdf)
-                            print '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s'%(timeline[tp],step,len(strains[tp]),total,i+1,j+1,len(poly1),len(poly2),D,Dprime,ChiSq,ChiSqdf)
-                            print>>f,'%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],step,len(strains[tp]),total,i+1,j+1,len(poly1),len(poly2),D,Dprime,ChiSq,ChiSqdf)
+                        ## calculate ChiSqdf
+                        ChiSqdf=ChiSq/float(total*(len(poly1)-1)*(len(poly2)-1))
+                        seen[str(hapCount)]='%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],step,len(strains[tp]),total,site1+1,site2+1,len(poly1),len(poly2),min(poly1Freq),min(poly2Freq),D,Dprime,ChiSq,ChiSqdf)
+                        #print '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s'%(timeline[tp],step,len(strains[tp]),total,site1+1,site2+1,len(poly1),len(poly2),min(poly1Freq),min(poly2Freq),D,Dprime,ChiSq,ChiSqdf)
+                        print>>f,'%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s'%(timeline[tp],step,len(strains[tp]),total,site1+1,site2+1,len(poly1),len(poly2),min(poly1Freq),min(poly2Freq),D,Dprime,ChiSq,ChiSqdf)
 
         ## close output file
         f.close()
