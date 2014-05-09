@@ -152,7 +152,7 @@ mode='aa'
 ## Iterate over all pairs of segments
 for mem1 in range(0,len(segments)):
     #for mem2 in range(mem1,len(segments)):
-    for mem2 in range(0,len(segments)):
+    for mem2 in range(mem1,len(segments)):
         print '\n\nComparing %s and %s'%(segments[mem1],segments[mem2])
 
         ## dictA/B are dicts that map each strain in each time block to that strain's sequence
@@ -253,10 +253,16 @@ for mem1 in range(0,len(segments)):
                     polymorphicLociB.append(j)
 
 
-            ## construct polymorphic site pairs                                       
-            for loc1 in polymorphicLociA:
-                for loc2 in polymorphicLociB:
-                    polymorphicPairs.append((loc1,loc2))
+
+            ## construct polymorphic site pairs, optimize self-comparisons
+            if mem1==mem2:
+                for loc1 in range(len(polymorphicLociA)-1):
+                    for loc2 in range(loc1+1,len(polymorphicLociB)):
+                        polymorphicPairs.append((polymorphicLociA[loc1],polymorphicLociB[loc2]))
+            else:                                                     
+                for loc1 in polymorphicLociA:
+                    for loc2 in polymorphicLociB:
+                        polymorphicPairs.append((loc1,loc2))
 
             print '\nNumber of polymorphic pairs of loci between %s and %s: %s'%(segments[mem1],segments[mem2],len(polymorphicPairs))
 
