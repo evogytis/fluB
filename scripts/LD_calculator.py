@@ -235,7 +235,7 @@ for mem1 in range(0,len(segments)):
                 ## ignore invariant sites at locus 1
                 if mode=='aa' and len(removeItem(unique(column(alignmentA[tp],i)),['-','?']))==1:
                     pass
-                elif mode=='nt' and len(removeItem2(unique(column(alignmentA[tp],i)),['A','C','T','G']))==1:
+                elif mode=='nt' and len(removeItem(unique(column(alignmentA[tp],i)),['R','Y','S','W','K','M','B','D','H','H','V','N','-']))==1:
                     pass
                 else:
                     ## log polymorphic loci in alignmentA
@@ -246,7 +246,7 @@ for mem1 in range(0,len(segments)):
                 ## ignore invariant sites at locus 2
                 if mode=='aa' and len(removeItem(unique(column(alignmentB[tp],j)),['-','?']))==1 or (seg1==seg2 and i==j):
                     pass
-                elif mode=='nt' and len(removeItem2(unique(column(alignmentB[tp],j)),['A','C','T','G']))==1 or (seg1==seg2 and i==j):
+                elif mode=='nt' and len(removeItem(unique(column(alignmentB[tp],j)),['R','Y','S','W','K','M','B','D','H','H','V','N','-']))==1 or (seg1==seg2 and i==j):
                     pass
                 else:
                     ## log polymorphic loci in alignmentB
