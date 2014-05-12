@@ -146,8 +146,15 @@ segments=['PB1','PB2','PA','HA','NP','NA','M1','NS1']
 mixedLineage=[]
 
 ## Select mode - nt for nucleotide alignments, aa for amino acid alignments, used later to filter out invalid residues in the alignment
-#mode='nt'
-mode='aa'
+mode='nt'
+#mode='aa'
+
+
+if mode=='nt':
+    print 'Running in nucleotide LD mode'
+elif mode=='aa':
+    print 'Running in amino acid LD mode'
+
 
 ## Iterate over all pairs of segments
 for mem1 in range(0,len(segments)):
@@ -168,22 +175,24 @@ for mem1 in range(0,len(segments)):
         segment1=segments[mem1]
         segment2=segments[mem2]
 
+        ## input and output paths
+        path='/Users/admin/Documents/Viral sequences/InfB reassortment/Analyses/huge LD/'
+        outpath='/Users/admin/Dropbox/'
+
         if mode=='aa':
-            ## Point to folder containing alignments
-            path='/Users/admin/Documents/Viral sequences/InfB reassortment/Analyses/huge LD/'
-            outpath='/Users/admin/Dropbox/'
-            #outpath=path
             ## Define alignment name
             seg1='%s translation alignment.nex'%(segment1)
             seg2='%s translation alignment.nex'%(segment2)
-            f = open(outpath+'%s_%s_ChiSqdf-Dprime.HUGE.csv'%(segment1,segment2),'w')
+            f = open(outpath+'%s_%s_ChiSqdf-Dprime.aa.HUGE.csv'%(segment1,segment2),'w')
             header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
             print>>f,header
         elif mode=='nt':
-            path='/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/'
-            seg1='InfB_%s.nex'%(segment1)
-            seg2='InfB_%s.nex'%(segment2)
-            f = open('/Users/admin/Documents/Viral sequences/InfB reassortment/Alignments/Without ancient seqs and pruned/%s_%s_rDChiNtcomparisonNoSelfRemake.csv'%(segment1,segment2),'w')
+            ## Define alignment name
+            seg1='%s alignment.nex'%(segment1)
+            seg2='%s alignment.nex'%(segment2)
+            f = open(outpath+'%s_%s_ChiSqdf-Dprime.nt.HUGE.csv'%(segment1,segment2),'w')
+            header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
+            print>>f,header
 
         ## open both alignments
         handle1 = open(path+seg1, "rU")
@@ -237,6 +246,9 @@ for mem1 in range(0,len(segments)):
                     pass
                 elif mode=='nt' and len(removeItem(unique(column(alignmentA[tp],i)),['R','Y','S','W','K','M','B','D','H','H','V','N','-']))==1:
                     pass
+                ## ignore loci with at least one gap
+                elif '-' in unique(column(alignmentA[tp],i)):
+                    pass
                 else:
                     ## log polymorphic loci in alignmentA
                     polymorphicLociA.append(i)
@@ -247,6 +259,9 @@ for mem1 in range(0,len(segments)):
                 if mode=='aa' and len(removeItem(unique(column(alignmentB[tp],j)),['-','?']))==1 or (seg1==seg2 and i==j):
                     pass
                 elif mode=='nt' and len(removeItem(unique(column(alignmentB[tp],j)),['R','Y','S','W','K','M','B','D','H','H','V','N','-']))==1 or (seg1==seg2 and i==j):
+                    pass
+                ## ignore loci with at least one gap
+                elif '-' in unique(column(alignmentB[tp],j)):
                     pass
                 else:
                     ## log polymorphic loci in alignmentB
@@ -289,9 +304,11 @@ for mem1 in range(0,len(segments)):
 
                 ## filter haplotypes, keep those that do not have invalid residues
                 if mode=='aa':
+                    ## keep haplotypes that don't have gaps or ? as residues
                     haplotypes={strain:checkHaplotypes[strain] for strain in checkHaplotypes.keys() if '-' not in checkHaplotypes[strain] and '?' not in checkHaplotypes[strain]}
                 elif mode=='nt':
-                    haplotypes={strain:checkHaplotypes[strain] for strain in checkHaplotypes.keys() if checkHaplotypes[strain] in ['A','C','T','G']}
+                    ## haplotypes are 2 residues long, keep only those that are composed of valid nucleotides
+                    haplotypes={strain:checkHaplotypes[strain] for strain in checkHaplotypes.keys() if tuple(True for u in checkHaplotypes[strain] if u in ('A','C','T','G')).count(True)==2}
 
                 ## some polymorphic loci still have invalid residues
                 haps=unique(haplotypes.values())
