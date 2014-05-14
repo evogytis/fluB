@@ -528,7 +528,11 @@ where $p(A_i)$ is the frequency of allele $A_i$ at locus A, $p(B_j)$ is the freq
 D' is inflated when some haplotypes are not observed \textit{e.g.} when the minor allele frequency is low.
 We find that D' is almost uniformly high across the influenza B virus genome and close to 1.0 for almost any pair of polymorphic loci.
 This is because most amino acid alleles in the dataset exist transiently, meaning that they don't get a chance to reassort and we only observe them within the backgrounds of more persistent alleles, which D' quantifies as complete LD.
-We think that metrics related to $r^2$, like $\chiSq$, perform much better on temporal data such as ours in finding associations between alleles and are easier to interpret.
+We think that metrics related to $r^2$, like $\chiSq$, perform much better on temporal data such as ours in finding persistent associations between alleles and are easier to interpret.
+
+\subsection*{Data availability}
+Python scripts used to process trees and sequences, as well as their output are publicly available at:
+\\https://github.com/evogytis/fluB/tree/master/data.
 
 \section*{Acknowledgements}
 GD was supported by a Natural Environment Research Council studentship D76739X.
