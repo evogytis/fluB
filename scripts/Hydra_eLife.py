@@ -1062,11 +1062,17 @@ def parseTreeFile(treefile1,treefile2,repfile1,repfile2,modes,additionalInfo):
                     oot=subprocess.check_output([mainCommand],shell=True)
                     ootCerberus=re.search('approx drSPR\=([0-9]+)',oot.split('\n')[-3])
 
+                    AB_clusters2=[x for x in oot.split('\n')[-4].split(' ')[2:] if x.count(',')>0]
+
                     normOot1=subprocess.check_output([normalize1],shell=True)
                     norm1Cerberus=re.search('approx drSPR\=([0-9]+)',normOot1.split('\n')[-3])
 
+                    AA_clusters2=[x for x in normOot1.split('\n')[-4].split(' ')[2:] if x.count(',')>0]
+
                     normOot2=subprocess.check_output([normalize2],shell=True)
                     norm2Cerberus=re.search('approx drSPR\=([0-9]+)',normOot2.split('\n')[-3])
+
+                    BB_clusters2=[x for x in normOot2.split('\n')[-4].split(' ')[2:] if x.count(',')>0]
 
                 elif approximation==0:
                     mainCommand='echo \"%s\n%s\" | %srspr'%(string1,string2,rsprPath)
@@ -1094,12 +1100,18 @@ def parseTreeFile(treefile1,treefile2,repfile1,repfile2,modes,additionalInfo):
                     if ootCerberus is None:
                         print 'Output not caught by regex:'
                         print oot.split('\n')
-                    mm=float(ootCerberus.group(1))
-                    n1=float(norm1Cerberus.group(1))
-                    n2=float(norm2Cerberus.group(1))
+##                    mm=float(ootCerberus.group(1))
+##                    n1=float(norm1Cerberus.group(1))
+##                    n2=float(norm2Cerberus.group(1))
+##                    normA=float(n1+n2)/float(mm*2)
+##                    normB=float((n1*n2)**0.5)/float(mm)
+
+                    mm=float(len(AB_clusters2))
+                    n1=float(len(AA_clusters2))
+                    n2=float(len(BB_clusters2))
                     normA=float(n1+n2)/float(mm*2)
                     normB=float((n1*n2)**0.5)/float(mm)
-                    
+
                 ################################################################################
                 ## Output to file
                 set1='\t%s\t%s\t%s\t%s\t%s'%(int(mm),int(n1),int(n2),normA,normB)
@@ -1148,13 +1160,13 @@ batchProcessing=True
 path='/Users/admin/Documents/Viral sequences/InfB reassortment/Analyses/1000 trees/'
 
 ## Provide file names to iterate over
-filenames=['InfB_PB1t_ALLs1.trees.subsample_1.txt','InfB_PB2t_ALLs1.trees.subsample_1.txt','InfB_HAt_ALLs1.trees.subsample_1.txt']
+filenames=['InfB_PB1t_ALLs1.trees.subsample_1.txt','InfB_PB2t_ALLs1.trees.subsample_1.txt','InfB_PAt_ALLs1.trees.subsample_1.txt','InfB_HAt_ALLs1.trees.subsample_1.txt','InfB_NPt_ALLs1.trees.subsample_1.txt','InfB_NAt_ALLs1.trees.subsample_1.txt','InfB_M1t_ALLs1.trees.subsample_1.txt','InfB_NS1t_ALLs1.trees.subsample_1.txt']
 #filenames=['InfB_PB1t_ALLs2.trees.subsample_1.txt','InfB_PB2t_ALLs2.trees.subsample_1.txt','InfB_HAt_ALLs2.trees.subsample_1.txt']
 #filenames=['InfB_PB1t_ALLs3.trees.subsample_1.txt','InfB_PB2t_ALLs3.trees.subsample_1.txt','InfB_HAt_ALLs3.trees.subsample_1.txt']
 
 
 ## Define output file suffix
-additionalInfo='Exact1NormBy2TEST'
+additionalInfo='Approx1NormBy2.SPRcutoff2'
 modes=['']
 
 global burnin
