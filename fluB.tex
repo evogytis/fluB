@@ -210,7 +210,8 @@ We identify 5 major (in terms of persistence) reassortant genome constellations 
   \item B/California/NHRC0001/2006-like (V-V-Y-V-Y'-Y-Y'-V')
   \item B/Brisbane/33/2008-like (V-V-Y-V-Y'-Y-Y-V)
 \end{itemize}
-B/Alaska/12/1996-like, B/Nanchang/2/1997-like and B/Iowa/03/2002-like constellations were observed by Chen \& Holmes \citep{chen2008}, but sequences from \\B/California/NHRC0001/2006-like and B/Brisbane/33/2008-like constellations were not available at the time.
+B/Alaska/12/1996-like, B/Nanchang/2/1997-like and B/Iowa/03/2002-like constellations were observed by \citet{chen2008}, but sequences from \\B/California/NHRC0001/2006-like and B/Brisbane/33/2008-like constellations were not available at the time.
+In their study \citet{chen2008} also recovered the co-assortment pattern of PB1, PB2 and HA lineages, but did not remark upon it.
 Of these 5 constellations 4 (B/Nanchang/2/1997-like, B/Iowa/03/2002-like, B/California/NHRC0001/2006-like and B/Brisbane/33/2008-like) are derived from introgression of Yamagata lineage segments into Victoria lineage PB1-PB2-HA background, with only 1 (B/Alaska/12/1996-like) resulting from introgression of Victoria lineage NS segment into an entirely Yamagata derived background.
 All 5 inter-lineage reassortment events described here are marked by the preservation of either entirely Victoria or Yamagata derived PB1-PB2-HA segments.
 Figure \ref{railroadPlot} also shows that reassorting segments appear to evolve with a considerable degree of autonomy.
@@ -250,35 +251,12 @@ All horizontal lines indicating uncertainty are 95\% highest posterior densities
 	\label{stateTime}
 \end{figure}
 
-\subsection*{Analysis of within-lineage reassortment patterns}
-SPR (subtree prune and regraft) provides a measure of tree-to-tree distance, in which distances between perfectly resolved pairs of trees would be equal to the number of reassortments that have taken place between them \citep{svinti2013}, as long as each branch experiences, at most, one reassortment.
-Figure \ref{SPRdistances} shows approximate SPR distances between all pairs of segment trees after normalization (see Methods).
-If there are biases in the way segments reassort, so that some segments tend to co-assort more often, we expect to observe a lower reassortment rate between them, which would manifest as small-scale similarities between phylogenetic trees of those segments.
-In our case we expect SPR distances, which are proportional to the number of reassortment events that have taken place between trees, to reflect the overall (\textit{i.e} both within and between lineages) reassortment rate.
-
-\begin{figure}[h]
-	\centering		
-	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedApproxSPR.png}
-	\caption{\textbf{Normalized approximate SPR distances between pairs of segments.}
-Following the normalization procedure approximate SPR distances are similar across all pairwise comparisons.
-We interpret this as lack of evidence for small-scale topological similarities between trees of all segments, which we expect to arise if any two segments were being co-packaged and co-reassorted.
-All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
-	\label{SPRdistances}
-\end{figure}
-
-We normalized our SPR distance comparisons to account for differences in tree topology stability over the course of the MCMC chain and also use an approximation of SPR distance \citep{whidden2009,whidden2010,whidden2013} (see Methods).
-The 95\% highest posterior density (HPD) intervals of normalized approximate SPR distances between pairs of segments encompass most means and occupy a relatively small range, suggesting there is no evidence of differences in the number of reassortments between segments (Figure \ref{SPRdistances}).
-Reassortment rate given as number of SPR moves per total time in both trees shows similar results (Figure \ref{NormSPR_RErate}).
-We note, however, that because of phylogenetic uncertainty our estimate of SPR distance might simply lack power.
-Comparisons between independent analyses of the same segments yield distances that are comparable to distances between different segments (Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates}), suggesting that phylogenetic uncertainty is making a considerable contribution to our estimates of approximate SPR distances.
-Still, we find that independent replicates from the same segment (Figure \ref{SPRdistancesReplicates}) show lower SPR distances that comparisons between segments (Figure \ref{SPRdistancesTrees}), suggesting that phylogenetic noise is not completely overwhelming reassortment signal.
-In addition, SPR distances themselves can only approximate (and underestimate) the actual numbers of reassortments.
-Thus we caution against over-interpreting Figure \ref{SPRdistances}.
-Although there might be concern about using approximate, rather than exact, SPR distances we do estimate exact SPR distances for a limited number of segment pairs - PB1, PB2 and HA - and find that after normalization exact and approximate SPR distances are not significantly different (Figures \ref{NormSPR_PB1-PB2_difference}--\ref{NormSPR_PB2-HA_difference}).
-
-Although we do not find evidence of differences in numbers of overall reassortments between segments, we find support for a reassortment `distance' effect, in which a pair of tips on one segment has a different TMRCA from the same pair of tips on a different segment.
-Unlike SPR distances, which are counts of the numbers of reassortment events, $\dtmrca$ takes time into account, and is most sensitive when only one of the two trees being compared loses diversity via reassortment.
-Similarly to SPR distances, we normalized our $\dtmrca$ comparisons to account for node date stability over the course of the MCMC chain (see Methods).
+\subsection*{Analysis of reassortment properties}
+We attempted to quantify the temporal discordance between lineages reassorting into new genomic constellations.
+If one were able to recover an influenza `species tree', including admixture/reassortment events, it would be possible to estimate the reassortment or recombination `distance', which is the time between a split in the species tree in the past and a reassortment event (see Figure \ref{speciesTree}).
+Although we do not find evidence of differences in numbers of overall reassortments between segments (see Supplementary information), we find support for a reassortment `distance' effect, in which a pair of tips on one segment has a different TMRCA from the same pair of tips on a different segment.
+$\dtmrca$ is most sensitive when only one of the two trees being compared loses diversity via reassortment.
+We normalize our $\dtmrca$ comparisons to account for alignment length induced uncertainty in tree topology stability over the course of the MCMC chain (see Methods).
 Figure \ref{deltaTMRCA} shows normalized mean $\dtmrca$ values for all pairs of trees.
 Most segment pairs show very low values for this statistic with $\dtmrca\approx$0.1, indicating that $\dtmrca$ measurements between independent analyses of the same segment are up to 10 times smaller than $\dtmrca$ values between analyses of different segments.
 PB1, PB2 and HA trees, on the other hand, exhibit normalized $\dtmrca$ values that are much higher.
@@ -323,9 +301,6 @@ In this paper we show that the PB1, PB2 and HA segments of influenza B viruses a
 Evidence suggests that this is a result of prolonged lack of reassortment between Vic and Yam lineages in PB1, PB2 and HA (Figure \ref{betweenDiversity}) which possess co-assorting sequences detectable as high linkage disequilibrium (Figure \ref{segmentLD}).
 The vast majority of the sampled evolutionary history of each segment of influenza B viruses since the split of Vic and Yam lineages has been spent in association with either completely Victoria or completely Yamagata lineage derived PB1-PB2-HA complexes (Figure \ref{stateTime}), suggesting that having `pure' lineage PB1-PB2-HA complexes is important for whole-genome fitness.
 We propose that this pattern of coassortment is due to the action of selection and not simply biased reassortment.
-One could image that due to some artefact of segment packaging PB1, PB2 and HA segments preferentially co-assort together and thus have a reduced reassortment rate when compared to the rest of the genomic segments.
-We find no evidence of this -- PB1, PB2 and HA segments reassort to the same extent as other segments (Figure \ref{SPRdistances}) and instead only reassortments combining lineages across greater temporal distances are disfavoured (Figure \ref{deltaTMRCA}), which does not seem to drive the overall reassortment rate down.
-If PB1, PB2 and HA trees were embedded within a `species tree' we would see many reassortments within both major branches of this tree -- the Vic and Yam lineages -- but not between them.
 
 When comparing the mean tip-tip TMRCA deviations we find evidence of isolation by temporal distance - when reassortments occur between PB1, PB2 and HA segments those events tend to involve branches that have similar TMRCAs.
 Other segment pairs, with the exception of MP-NA, seem to show little signal of this and are able to reassort with branches that have been evolving under temporally distant genomic backgrounds.
@@ -338,10 +313,6 @@ We should clarify that when we say that Vic and Yam PB1-PB2-HA complexes of the 
 \subsection*{Causes of co-dependence between PB1-PB2-HA}
 Previous studies have investigated possible co-dependence patterns between segments of influenza B viruses, by focusing on segments which would be expected to be co-adapted, \textit{e.g.} PB1-PB2-PA and HA-NA \citep{mccullers2004}.
 Though it would be easy to explain co-adaptation between these segments by referring to their functional roles \textit{e.g.} PB1-PB2-PA form the polymerase heterotrimer and HA-NA have antagonistic activities, our findings suggest a counter-intuitive relationship between PB1, PB2 and HA segments.
-
-It is clear that PB1-PB2-HA segments of Vic and Yam lineages do not preferentially reassort together: there have been at least 4 sampled mixed-lineage PB1-PB2-HA complex constellations which did not become fixed in the population and our estimates of the number of reassortments do not differ significantly between all segments (Figure \ref{SPRdistances}).
-The latter is in line with recent experiments in influenza A that have shown that reassortment between segments differing by a single synonymous difference is highly efficient \citep{marshall2013}.
-In the absence of clear functional explanations for why PB1, PB2 and HA should be co-adapted we offer several alternatives.
 
 It is perhaps easiest to explain co-dependence between PB1 and PB2 segments based on their functions as part of the influenza RNA-dependent RNA polymerase (RdRp) heterotrimer.
 Indeed, trees of PB1 and PB2 segments exhibit high similarity in tip--tip TMRCAs (Figure \ref{deltaTMRCA}), suggesting highly similar TMRCAs.
@@ -381,7 +352,7 @@ We predict that artificially produced viruses with mixed-lineage PB1-PB2-HA comp
 In addition, we expect the relationship between Vic and Yam lineage PB1, PB2 and HA segments to be dependent on date of segment isolation, as viruses with mixed-lineage PB1-PB2-HA complexes isolated earlier should perform better than viruses with PB1-PB2-HA segments isolated more recently.
 
 Given the existence of B/Waikato/6/2005-like viruses and the rarity of PB1-PB2 reassortants we expect that artificially produced PB1-PB2 reassortants would be much less fit than either PB1-HA or PB2-HA reassortants.
-We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (Figures \ref{NormSPR_PB2-HA_difference}).
+We thus expect the following hierarchy of reassortant fitnesses (in order of decreasing fitness): PB1-PB2-HA, PB1-PB2/HA and PB1-HA/PB2 or PB2-HA/PB1, though there is some evidence to suggest that PB1-HA/PB2 might be more fit than PB2-HA/PB1 (Figures \ref{NormSPR_PB1-PB2_difference} -- \ref{NormSPR_PB2-HA_difference}).
 The history of reassortments in influenza B viruses (Figure \ref{railroadPlot}) suggests that there are lineage-specific effects too, given the almost universal introgression of Yamagata lineage segments into Victoria PB1-PB2-HA background.
 However, our analyses do not indicate any obvious differences in synonymous, non-synonymous or nucleotide substitution rates between Vic and Yam PB1-PB2-HA segment complexes or segments associated with either of the two (Figure \ref{robustCounting}).
 
@@ -468,7 +439,6 @@ We do this by summing the branch lengths in each tree under 3 (2 in the case of 
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
 \subsection*{Tree to tree similarities}
-
 We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ by comparing TMRCA differences between pairs of tips in the two trees.
 In comparing of trees of segments A and B we calculate
 \begin{equation}
@@ -479,17 +449,24 @@ Additionally, $f(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample
 We had 3 replicate analyses of each segment and in order to calculate $f(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as $A$ and analyses numbered 2, 3 and 1 as $A'$, in that order.
 We subsampled our combined posterior distribution of trees to give a total of 2700 trees on which to analyze $\dtmrca$.
 
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.85\textwidth]{supp_figures/InfB_methodSpeciesTree.pdf}
+	\caption{\textbf{Calculating $\dtmrca$ from a species tree perspective.}
+Consider an organism that has diverged into 3 taxa (A, B, C) with a genome comprised of 3 segments (blue, green and red).
+Due to reassortments taxa A and B share a slightly more recent TMRCA in the red segment, likewise for taxa B and C in the green segment.
+By comparing differences in TMRCAs between taxa A-B, A-C and B-C in blue, red and green segments we would find that the red segment has a lower `reassortment distance' (X) than the green segment (Y).
+}
+	\label{speciesTree}
+\end{figure}
+
 Calculating $\dtmrca(A_i, B_i)$ for each MCMC state provides us with a posterior distribution of this statistic allowing  specific hypotheses regarding similarities between the trees of different segments to be tested.
 Our approach exploits the branch scaling used by BEAST \citep{drummond2012}, since the trees are scaled in absolute time and insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
 This method operates under the assumption that the segment trees capture the overall `species tree' (or `virus tree') of influenza B viruses quite well.
-It is not an unreasonable assumption, given the seasonal bottlenecks of these viruses.
-The $\dtmrca$ statistic essentially captures a facet of this influenza B `species tree' by quantifying the temporal distance between an admixture event and the original lineage that was replaced by the incoming lineage.
+It is not an unreasonable assumption, given the seasonal bottlenecks influenza viruses experience.
+This makes it almost certain that influenza viruses circulating at any given time point are derived from a single genome that existed in the recent past.
+The $\dtmrca$ statistic essentially captures a facet of this influenza B `species tree' by quantifying the temporal distance between an admixture event and the original lineage that was replaced by the incoming lineage (see Figure \ref{speciesTree}).
 Our $\dtmrca$ statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \citep{longdon2011} and to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \citep{ruane2011}.
-
-Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events.
-Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
-We calculated approximate SPR distances \citep{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
-Approximate SPR distances $\dspr$ were normalized using the procedure described above, where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from segments $A$, $B$ and independent analyses thereof ($A'$ and $B'$).
 
 \subsection*{Linkage disequilibrium across the influenza B genome}
 We used the expanded Genbank dataset with (probably about 1600 sequences) sequences to estimate linkage disequilibrium (LD) between amino acid loci across the longest proteins encoded by each segment of the influenza B virus genome.
@@ -548,10 +525,62 @@ AR and SL acknowledge the support of the Wellcome Trust (grant no. 092807).
 
 \clearpage
 
+%%% TITLE %%%
+\title{\vspace{1.0cm} \huge \bf Supplemental information:\\ \LARGE Reassortment between influenza B lineages and the emergence of a co-adapted PB1-PB2-HA gene complex}
+
+\author[1]{Gytis Dudas}
+\author[2]{Trevor Bedford}
+\author[1,3]{Samantha Lycett}
+\author[1,4,5]{Andrew Rambaut}
+
+\affil[1]{Institute of Evolutionary Biology, University of Edinburgh, Edinburgh, UK}
+\affil[2]{Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA}
+\affil[3]{Institute of Biodiversity Animal Health and Comparative Medicine, University of Glasgow, Glasgow, UK}
+\affil[4]{Fogarty International Center, National Institutes of Health, Bethesda, MD, USA}
+\affil[5]{Centre for Immunology, Infection and Evolution at the University of Edinburgh, Edinburgh, UK}
+
+\date{\today}
+
+\maketitle
+
 \setcounter{figure}{0}
 \setcounter{table}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
+
+\subsection*{Analysis of within-lineage reassortment patterns}
+Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events \citep{svinti2013}.
+Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
+We calculated approximate SPR distances \citep{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
+Approximate SPR distances were normalized using the procedure used to normalize $\dspr$ described in Methods:
+\begin{equation}
+\dspr(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
+\end{equation}
+where $f(A_i, A_i')$, $f(B_i, B_i')$ and $f(A_i, B_i)$ are approximate SPR distances between \textit{i}th posterior samples from segments $A$, $B$ and independent analyses thereof ($A'$ and $B'$).
+Figure \ref{SPRdistances} shows approximate SPR distances between all pairs of segment trees after normalization.
+If there are biases in the way segments reassort, so that some segments tend to co-assort more often, we expect to observe a lower reassortment rate between them, which would manifest as small-scale similarities between phylogenetic trees of those segments.
+In our case we expect SPR distances, which are proportional to the number of reassortment events that have taken place between trees, to reflect the overall (\textit{i.e} both within and between lineages) reassortment rate.
+
+\begin{figure}[h]
+	\centering		
+	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedApproxSPR.png}
+	\caption{\textbf{Normalized approximate SPR distances between pairs of segments.}
+Following the normalization procedure approximate SPR distances are similar across all pairwise comparisons.
+We interpret this as lack of evidence for small-scale topological similarities between trees of all segments, which we expect to arise if any two segments were being co-packaged and co-reassorted.
+All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
+	\label{SPRdistances}
+\end{figure}
+
+The 95\% highest posterior density (HPD) intervals of normalized approximate SPR distances between pairs of segments encompass most means and occupy a relatively small range, suggesting there is no evidence of differences in the number of reassortments between segments (Figure \ref{SPRdistances}).
+Reassortment rate given as number of SPR moves per total time in both trees shows similar results (Figure \ref{NormSPR_RErate}).
+This is in line with recent experiments in influenza A that have shown that reassortment between segments differing by a single synonymous difference is highly efficient \citep{marshall2013}.
+We note, however, that because of phylogenetic uncertainty our estimate of SPR distance might simply lack power.
+Comparisons between independent analyses of the same segments yield distances that are comparable to distances between different segments (Figures \ref{SPRdistancesTrees} and \ref{SPRdistancesReplicates}), suggesting that phylogenetic uncertainty is making a considerable contribution to our estimates of approximate SPR distances.
+Still, we find that independent replicates from the same segment (Figure \ref{SPRdistancesReplicates}) show lower SPR distances that comparisons between segments (Figure \ref{SPRdistancesTrees}), suggesting that phylogenetic noise is not completely overwhelming reassortment signal.
+In addition, SPR distances themselves can only approximate (and underestimate) the actual numbers of reassortments.
+Thus we caution against over-interpreting Figure \ref{SPRdistances}.
+Although there might be concern about using approximate, rather than exact, SPR distances we do estimate exact SPR distances for a limited number of segment pairs - PB1, PB2 and HA - and find that after normalization exact and approximate SPR distances are not significantly different (Figures \ref{NormSPR_PB1-PB2_difference}--\ref{NormSPR_PB2-HA_difference}).
+
 
 \begin{figure}
 \centering  
