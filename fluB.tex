@@ -480,27 +480,14 @@ This statistic is equal to the widely used $r^2$ LD statistic at biallelic loci,
 LD was estimated only at loci where each nucleotide or amino acid allele was present in at least two isolates.
 We ignored gaps in the alignment and did not consider them as polymorphisms.
 In all cases we used a minor allele frequency cutoff of 1\%.
-We also calculated another LD statistic, $D'$ \citep{lewontin1964}:
-
-\begin{equation}
-D'_{ij}=\frac{D_{ij}}{D_{ij}^{max}},
-\end{equation}
-
-where
-
-\begin{equation}
-D_{ij}=p(A_i B_j) - p(A_i) p(B_j)
-\end{equation}
-
-and
-
+We also calculated another LD statistic, $D'$ \citep{lewontin1964} as $D'_{ij}=D_{ij}/D_{ij}^{max}$,
+where $D_{ij}=p(A_i B_j) - p(A_i) p(B_j)$ and
 \begin{equation}
 \begin{split}
 D_{ij}^{max}=min[ p(A_i) p(B_j) , (1-p(A_i))(1-p(B_j)) ] \mbox{ when } D_{ij} < 0\\
 D_{ij}^{max}=min[ (1-p(A_i)) p(B_j) , p(A_i)(1-p(B_j)) ] \mbox{ when } D_{ij} \geq 0,
 \end{split}
 \end{equation}
-
 where $p(A_i)$ is the frequency of allele $A_i$ at locus A, $p(B_j)$ is the frequency of allele $B_j$ at locus B and $p(A_i B_j)$ is the frequency of haplotype $A_i B_j$.
 $D'$ is inflated when some haplotypes are not observed \textit{e.g.} when the minor allele frequency is low.
 We find that $D'$ is almost uniformly high across the influenza B virus genome and close to 1.0 for almost any pair of polymorphic loci.
