@@ -135,7 +135,7 @@ This has occurred through repeated reassortments and subsequent fixation of reas
 \subsection*{Analysis of reassortment patterns across Victoria and Yamagata lineages}
 The differentiation into Vic and Yam lineages can be seen in all segments (Figure \ref{genomeGrid}).
 Following the split of the two lineages, each segment can be assigned to either Vic or Yam lineage and inter-lineage reassortment events have yielded mixed-lineage genome constellations.
-On some segments, either the Victoria or Yamagata lineage has become fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment, seen as modern viruses deriving completely from either Victoria or Yamagata lineage (yellow vs purple bars in Figure \ref{genomeGrid}).
+On some segments, either the Victoria or Yamagata lineage fixed in the influenza B virus population, i.e.\ became the `trunk' of the phylogenetic tree of a segment, seen as modern viruses deriving completely from either the Victoria or Yamagata lineage (yellow vs purple bars in Figure \ref{genomeGrid}).
 This pattern is apparent in the PA, NP, NA, MP and NS segments.
 However, the PB1, PB2 and HA segments of modern viruses are derived from both Victoria and Yamagata lineages.
 Consistent with fixation of Victoria or Yamagata lineages, the PA, NP, NA, MP and NS segments periodically lose diversity, while maintenance of parallel Victoria and Yamagata lineages results in continually increasing diversity in segments PB1, PB2 and HA (Figure \ref{tmrcaOT}).
@@ -257,10 +257,9 @@ Although we do not find evidence of differences in numbers of overall reassortme
 This difference in TMRCAs, or $\dtmrca$, is most sensitive when only one of the two trees being compared loses diversity via reassortment and the other acts like a proxy for the `species tree'.
 We normalize our $\dtmrca$ comparisons to account for alignment length induced uncertainty in tree topology stability over the course of the MCMC chain (see Methods).
 Figure \ref{deltaTMRCA} shows normalized mean $\dtmrca$ values for all pairs of trees.
-Most segment pairs show very low values for this statistic with $\dtmrca\approx$0.1, indicating that $\dtmrca$ measurements between independent analyses of the same segment are up to 10 times smaller than $\dtmrca$ values between analyses of different segments.
+Most segment pairs show very low values for this statistic with $\dtmrca \approx 0.1$, indicating that $\dtmrca$ measurements between replicate posterior samples from the same segment are up to 10 times smaller than $\dtmrca$ values between posterior samples from different segments.
 PB1, PB2 and HA trees, on the other hand, exhibit normalized $\dtmrca$ values that are much higher.
 This shows that TMRCA differences between trees of PB1, PB2 and HA segments are, though noisy, occasionally very similar to uncertainty in tip-to-tip TMRCAs between replicate analyses of these segments.
-For example, the distribution of comparison between PB1 and PB2 trees has a mean $\dtmrca$$\approx0.4$, indicating that the sum of $\dtmrca$ values from PB1-PB1' and PB2-PB2' comparisons (prime (') indicates an independent MCMC chain) are 40\% of twice the $\dtmrca$ value from the PB1-PB2 comparison, but this value can range anywhere between $\approx$0.15 and $\approx$0.75.
 
 \begin{figure}[h]
 	\centering		
@@ -435,13 +434,17 @@ We do this by summing the branch lengths in each tree under 3 different lineage 
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
 \subsection*{Tree to tree similarities}
-We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ by comparing TMRCA differences between pairs of tips in the two trees.
-In comparing of trees of segments A and B we calculate
+We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ by averaging distances over posterior samples $(1, \dots, L)$, so that
 \begin{equation}
-\dtmrca(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
+	\dtmrca(A, B) = \frac{1}{L}\sum_{i=1}^L \delta(A_i, B_i).
 \end{equation}
-where $f(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n g(A_{ij}, B_{ij})$ and $g(A_{ij},B_{ij})$ is the absolute difference in TMRCA of a pair of tips $j$, where the pair is drawn from the \textit{i}th posterior sample of tree $A$ and the \textit{i}th posterior sample of tree $B$.
-Additionally, $f(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree $A$ (which we refer to as $A'$), to control for variability in tree topology stability over the course of the MCMC chain caused by differences in alignment lengths used to produce the trees.
+We calculate $\delta$ for an individual posterior sample following
+\begin{equation}
+\delta(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
+\end{equation}
+where $f(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n g(A_{ij}, B_{ij})$ and $n$ is the total number of pairwise comparisons available between sets of tips.
+Thus, $g(A_{ij},B_{ij})$ is the absolute difference in TMRCA of a pair of tips $j$, where the pair is drawn from the \textit{i}th posterior sample of tree $A$ and the \textit{i}th posterior sample of tree $B$.
+Additionally, $f(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree $A$ (which we refer to as $A'$), to control for variability in tree topology stability over the course of the MCMC chain.
 We had 3 replicate analyses of each segment and in order to calculate $f(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as $A$ and analyses numbered 2, 3 and 1 as $A'$, in that order.
 We subsampled our combined posterior distribution of trees to give a total of 2700 trees on which to analyze $\dtmrca$.
 
@@ -477,7 +480,7 @@ This statistic is equal to the widely used $r^2$ LD statistic at biallelic loci,
 LD was estimated only at loci where each nucleotide or amino acid allele was present in at least two isolates.
 We ignored gaps in the alignment and did not consider them as polymorphisms.
 In all cases we used a minor allele frequency cutoff of 1\%.
-We also calculated another LD statistic, D' \citep{lewontin1964}:
+We also calculated another LD statistic, $D'$ \citep{lewontin1964}:
 
 \begin{equation}
 D'_{ij}=\frac{D_{ij}}{D_{ij}^{max}},
@@ -499,9 +502,9 @@ D_{ij}^{max}=min[ (1-p(A_i)) p(B_j) , p(A_i)(1-p(B_j)) ] \mbox{ when } D_{ij} \g
 \end{equation}
 
 where $p(A_i)$ is the frequency of allele $A_i$ at locus A, $p(B_j)$ is the frequency of allele $B_j$ at locus B and $p(A_i B_j)$ is the frequency of haplotype $A_i B_j$.
-D' is inflated when some haplotypes are not observed \textit{e.g.} when the minor allele frequency is low.
-We find that D' is almost uniformly high across the influenza B virus genome and close to 1.0 for almost any pair of polymorphic loci.
-This is because most amino acid alleles in the dataset exist transiently, meaning that they don't get a chance to reassort and we only observe them within the backgrounds of more persistent alleles, which D' quantifies as complete LD.
+$D'$ is inflated when some haplotypes are not observed \textit{e.g.} when the minor allele frequency is low.
+We find that $D'$ is almost uniformly high across the influenza B virus genome and close to 1.0 for almost any pair of polymorphic loci.
+This is because most amino acid alleles in the dataset exist transiently, meaning that they don't get a chance to reassort and we only observe them within the backgrounds of more persistent alleles, which $D'$ quantifies as complete LD.
 We think that metrics related to $r^2$, like $\chiSq$, perform much better on temporal data such as ours in finding persistent associations between alleles and are easier to interpret.
 
 \subsection*{Data availability}
