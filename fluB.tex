@@ -396,20 +396,22 @@ Given sufficient time it should become clear whether PB1-PB2-HA complexes of hum
 \newpage
 
 \section*{Methods}
-We compiled a dataset of 452 complete influenza B genomes from GISAID \citep{GISAID} dating from 1984 to 2012 (accession numbers and laboratory acknowledgements can be found in Supplementary information).
+We compiled a primary dataset of 452 complete influenza B genomes from GISAID \citep{GISAID} dating from 1984 to 2012 (accession numbers and laboratory acknowledgements can be found in Supplementary information).
 The longest protein coding region of each segment was extracted and used for all further analyses.
 We thus assume that homologous recombination has not taken place and that the evolutionary history of the whole segment can be inferred from the longest coding sequence in the segment.
 To date there has been little evidence of homologous recombination in influenza viruses \citep{chare2003,boni2008,han2010}.
 The segments of each strain were assigned to either Vic or Yam lineage by making maximum likelihood trees of each segment using PhyML \citep{guindon2003} and identifying whether the isolate was more closely related to B/Victoria/2/87 or B/Yamagata/16/88 sequences in that segment, with the exception of the NS segment (B/Victoria/2/87 was a reassortant and possessed a Yam lineage NS \citep{lindstrom1999}), where B/Czechoslovakia/69/1990 was considered as being representative of Victoria lineage.
 Each strain was thus assigned 8 lineages depending on the combination of lineages from which their genomes were derived, for example all segments except for NS in strain B/Victoria/2/87 belong to Vic lineage and can thus be represented as (V,V,V,V,V,V,V,Y).
 
-We also collated all complete influenza B virus genomes available on Genbank as of May 5, 2014.
+We also collated a secondary dataset from all complete influenza B virus genomes available on Genbank as of May 5, 2014.
 After removing isolates that had considerable portions of any sequence missing, were isolated prior to 1980 or were suspected of having a contaminant sequence in any segment, we were left with 1603 sequences.
 This dataset only became available after all primary analyses were performed, are mainly from Australia, New Zealand and the United States and are too numerous to analyze in BEAST \citep{drummond2012}.
 PhyML \citep{guindon2003} was used to produce phylogenies of each segment and the lineage of each isolate was determined based on grouping with either B/Victoria/2/87 or B/Yamagata/16/88 sequences, as described above.
-By associating strains with lineage identity of each of their segments, we reconstructed the most parsimonious inter-lineage reassortment history.
+By associating strains with lineage identity of each of their segments, we reconstructed the most parsimonious inter-lineage reassortment history for the secondary dataset.
+The secondary dataset was used to check how representative the primary dataset was, to estimate LD and to broadly confirm our results.
+All analyses pertain to the primary dataset unless stated otherwise.
 
-Temporally-calibrated phylogenies were recovered for each segment using Markov chain Monte Carlo (MCMC) methods in the BEAST software package \citep{drummond2012}.
+Temporally-calibrated phylogenies were recovered for each segment in the primary dataset using Markov chain Monte Carlo (MCMC) methods in the BEAST software package \citep{drummond2012}.
 Here, we modeled the substitution process using the HKY model of nucleotide substitution \citep{hky1985}, with separate transition models for each of the 3 codon partitions, and additionally estimate realized synonymous and non-synonymous substitution counts \citep{obrien2009}.
 We used a flexible Bayesian skyride demographic model \citep{minin2008}.
 We accounted for incomplete sampling dates for 94 sequences (of which 93 had only year and 1 had only year and month of isolation) whereby tip date is estimated as a latent variable in the MCMC integration.
@@ -423,13 +425,13 @@ Because the posterior set of trees for a single segment has branches labelled wi
 In addition, by reconstructing the ancestral state of all other genomic segments jointly we can infer co-reassortment events when more than one trait transition occurs on the same node in a tree.
 
 \subsection*{Measures of diversity}
-We inferred the diversity of each segment at a single point in time by estimating the date of the most recent common ancestor of all branches at yearly intervals, which places an upper bound on the maximum amount of diversity existing at each time point.
+We inferred the diversity of each segment from their phylogenetic tree by estimating the date of the most recent common ancestor of all branches at yearly time points, which places an upper bound on the maximum amount of diversity existing at each time point.
 A version of this lineage turnover metric has previously been used to investigate the tempo and strength of selection in influenza A viruses during seasonal circulation \citep{bedford2011}.
 In addition, we calculated mean pairwise time of most recent common ancestor (TMRCA) between branches labelled as Vic and Yam for PB1, PB2 and HA traits.
 This gave us a measure of how much a particular segment reassorts with respect to Vic and Yam lineages of PB1, PB2 and HA segments.
 If Vic and Yam lineages of PB1, PB2 and HA segments were to be considered as being separate populations this measure would be equivalent to `between population' diversity.
 
-We also calculated the total amount of evolutionary time spent by each segment with entirely Vic, entirely Yam or mixed lineage PB1, PB2 and HA segments.
+We also calculated the total amount of sampled evolutionary time spent by each segment with entirely Vic, entirely Yam or mixed lineage PB1, PB2 and HA segments.
 We do this by summing the branch lengths in each tree under 3 different lineage combinations of the PB1, PB2 and HA segments: PB1-PB2-HA derived entirely from Yamagata lineage, PB1-PB2-HA entirely derived from Victoria lineage and PB1-PB2-HA derived from a mixture of the two lineages.
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
@@ -468,7 +470,7 @@ The $\dtmrca$ statistic essentially captures a facet of this influenza B `specie
 Our $\dtmrca$ statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \citep{longdon2011} and to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \citep{ruane2011}.
 
 \subsection*{Linkage disequilibrium across the influenza B genome}
-We used the expanded Genbank dataset with approximately 1600 complete genome sequences to estimate linkage disequilibrium (LD) between amino acid loci across the longest proteins encoded by each segment of the influenza B virus genome.
+We used the secondary Genbank dataset with approximately 1600 complete genome sequences to estimate linkage disequilibrium (LD) between amino acid loci across the longest proteins encoded by each segment of the influenza B virus genome.
 To quantify LD we adapt the $\chiSq$ statistic from \citep{hedrick1986}:
 
 \begin{equation}
