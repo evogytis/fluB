@@ -134,9 +134,9 @@ def overlap(a,b):
 
 ## Makes a list of dates if partitioning of LD is desired
 # Default value makes a single bin for all sequences isolated between 1900 and 2014
-step=0.25
-windowSize=3
-timeline=np.arange(1984,2014-windowSize,step)
+step=40
+windowSize=0
+timeline=np.arange(1980,2020-windowSize,step)
 
 ## Segments to analyze                                                                       
 segments=['PB1','PB2','PA','HA','NP','NA','M1','NS1']
@@ -184,16 +184,14 @@ for mem1 in range(0,len(segments)):
             ## Define alignment name
             seg1='%s translation alignment.nex'%(segment1)
             seg2='%s translation alignment.nex'%(segment2)
-            f = open(outpath+'%s_%s_ChiSqdf-Dprime.aa.HUGE_ts3.csv'%(segment1,segment2),'w')
-            header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
-            print>>f,header
         elif mode=='nt':
             ## Define alignment name
             seg1='%s alignment.nex'%(segment1)
             seg2='%s alignment.nex'%(segment2)
-            f = open(outpath+'%s_%s_ChiSqdf-Dprime.nt.HUGE_ts3.csv'%(segment1,segment2),'w')
-            header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
-            print>>f,header
+
+        f = open(outpath+'%s_%s_ChiSqdf-Dprime.%s.HUGE.csv'%(segment1,segment2,mode),'w')
+        header='time point,time step size,N strains,N haplotypes usable,site 1,site 2,number of polymoprhisms at site 1,number of polymoprhisms at site 2,minor allele freq site 1,minor allele freq site 2,D,|D\'|,Chi,ChiSqDf'
+        print>>f,header
 
         ## open both alignments
         handle1 = open(path+seg1, "rU")

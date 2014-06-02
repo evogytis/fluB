@@ -7,12 +7,12 @@
 ##
 ##  Usage:
 ##  open command line, go to folder where the script is located and type in:
-##  "python Hrothvitnir_eLife.py -i <<path to .trees.txt file>> -m <<mode - X, diversityOt, FstOt or stateTime>> 1> <<path to output file>>" (ignore <<, >> and ")
+##  "python Hrothvitnir.py -i <<path to .trees.txt file>> -m <<mode - X, diversityOt, FstOt or stateTime>> 1> <<path to output file>>" (ignore <<, >> and ")
 ##  
 ##  The following figures in the manuscript were made using these modes:
 ##  Figure 3 - diversityOT
 ##  Figure 4 - FstOt
-##  Figures 7 and S9 - stateTime
+##  Figures 7 and S10 - stateTime
 ##
 ##
 ##  Gytis Dudas

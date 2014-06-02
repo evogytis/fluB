@@ -15,10 +15,10 @@
 ##  otherwise the script should prompt you to select the files manually
 ##
 ##  open command line, go to folder where the script is located and type in:
-##  "python Hydra_eLife.py" (ignore ")
+##  "python Hydra.py" (ignore ")
 ##  
 ##  The following figures in the manuscript were made using this script:
-##  Figures 8, 9, S1-S6, S10-S11
+##  Figures 8, S1-S7, S11-S12
 ##
 ##
 ##  Gytis Dudas
