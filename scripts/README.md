@@ -2,12 +2,12 @@
 ### Scripts
 
 The following python scripts were used in the manuscript to extract information from trees:
-- `Hrothvitnir_eLife.py`
-- `Hydra_eLife.py`
+- `Hrothvitnir.py`
+- `Hydra.py`
 - `LD_calculator.py`
 
 Most figures were made using an IPython notebook:
-- `fluB_eLife.ipynb`
+- `fluB.ipynb`
 
 ## Data
 To replicate findings you will need two things:
@@ -21,7 +21,7 @@ Both `Hrothvitnir_eLife.py` (Hróðvitnir means "fame-wolf" in Old Norse) and `H
 `Hrothvitnir_eLife.py` is used to extract information about diversity of phylogenies [sampled from a posterior distribution of trees](https://code.google.com/p/beast-mcmc/). You will require **python** and **numpy** to run this script.
 
 To run type:
-``python Hrothvitnir_eLife.py -i [path to input] -m [mode] 1> [path to output]``
+``python Hrothvitnir.py -i [path to input] -m [mode] 1> [path to output]``
 ignoring the square brackets.
 
 Input should be posterior distribution of trees made by BEAST.
@@ -33,11 +33,11 @@ Mode takes one of 4 arguments:
 * __X__ - returns the number of objects parsed by the script. Completely unnecessary, since the script has inbuilt checks to see whether the tree has been parsed correctly.
 
 ### Hydra
-`Hydra_eLife.py` is more complicated and takes in 4 trees at a time (hence the name) and focuses on quantifying tree-to-tree distances. It requires **python**, **numpy** and, for SPR distances, [**RSPR**](http://kiwi.cs.dal.ca/Software/RSPR).
+`Hydra.py` is more complicated and takes in 4 trees at a time (hence the name) and focuses on quantifying tree-to-tree distances. It requires **python**, **numpy** and, for SPR distances, [**RSPR**](http://kiwi.cs.dal.ca/Software/RSPR).
 
 To run you will have to edit the script itself under the bit where it says "OPTIONS". There you can choose whether to give it a directory and files to work on automatically or whether you would like to pick the files for analysis manually. There are additional options and explanations within the script itself.
 After editing simply type in:
-``python Hydra_eLife.py``
+``python Hydra.py``
 
 Input is 4 trees - a set of trees sampled from the posterior distribution of alignment A, another set for alignment B and independent analyses of alignment A and B, which we refer to as trees A' and B'.
 
@@ -49,6 +49,6 @@ Briefly, it normalizes comparisons between two different trees by comparisons be
 `python LD_calculator.py`
 
 ## Figures
-`fluB_eLife.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy** and **scipy** (the latter is optional). After everything has been installed simply put `fluB_eLife.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
+`fluB.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy** and **scipy** (the latter is optional). After everything has been installed simply put `fluB.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
 
 The notebook in its intended form can be viewed [here](http://nbviewer.ipython.org/github/evogytis/fluB/blob/master/scripts/fluB_eLife.ipynb?create=1) (give it some time, it's quite big).
