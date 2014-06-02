@@ -15,10 +15,10 @@ To replicate findings you will need two things:
 * [BEAUti and BEAST](https://code.google.com/p/beast-mcmc/). The XML files we used are [available here](https://github.com/evogytis/fluB/tree/master/data/BEAST%20XML%20files) and only require the BEAUti-parsed sequences.
 
 ## Tree processing
-Both `Hrothvitnir_eLife.py` (Hróðvitnir means "fame-wolf" in Old Norse) and `Hydra_eLife.py` are distant descedants of a [short linked list script](http://stackoverflow.com/questions/280243/python-linked-list/280286#280286) from StackOverflow. Both were made to analyze and summarize the properties of trees drawn from a posterior distribution of trees and have been written to be as general as possible. It should take minimal effort to change the code to suit almost any BEAST-related need.
+Both `Hrothvitnir.py` (Hróðvitnir means "fame-wolf" in Old Norse) and `Hydra.py` are distant descedants of a [short linked list script](http://stackoverflow.com/questions/280243/python-linked-list/280286#280286) from StackOverflow. Both were made to analyze and summarize the properties of trees drawn from a posterior distribution of trees and have been written to be as general as possible. It should take minimal effort to change the code to suit almost any BEAST-related need.
 
 ### Hrothvitnir
-`Hrothvitnir_eLife.py` is used to extract information about diversity of phylogenies [sampled from a posterior distribution of trees](https://code.google.com/p/beast-mcmc/). You will require **python** and **numpy** to run this script.
+`Hrothvitnir.py` is used to extract information about diversity of phylogenies [sampled from a posterior distribution of trees](https://code.google.com/p/beast-mcmc/). You will require **python** and **numpy** to run this script.
 
 To run type:
 ``python Hrothvitnir.py -i [path to input] -m [mode] 1> [path to output]``
