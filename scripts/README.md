@@ -11,7 +11,7 @@ Most figures were made using an IPython notebook:
 
 ## Data
 To replicate findings you will need two things:
-* Sequences used in the manuscript. The [sequences we used](https://github.com/evogytis/fluB/blob/master/acknowledgement%20tables/fluB_gisaid_acknowledge_table.tsv) can be downloaded from [GISAID](http://platform.gisaid.org). Sequences should be codon-aligned and contain just the coding sequences.
+* Sequences used in the manuscript. The [sequences we used](https://github.com/evogytis/fluB/blob/master/data/acknowledgement%20tables/fluB_gisaid_acknowledge_table.tsv) can be downloaded from [GISAID](http://platform.gisaid.org). Sequences should be codon-aligned and contain just the coding sequences.
 * [BEAUti and BEAST](https://code.google.com/p/beast-mcmc/). The XML files we used are [available here](https://github.com/evogytis/fluB/tree/master/data/BEAST%20XML%20files) and only require the BEAUti-parsed sequences.
 
 ## Tree processing
