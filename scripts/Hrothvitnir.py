@@ -7,7 +7,7 @@
 ##
 ##  Usage:
 ##  open command line, go to folder where the script is located and type in:
-##  "python Hrothvitnir.py -i <<path to .trees.txt file>> -m <<mode - X, diversityOt, FstOt or stateTime>> 1> <<path to output file>>" (ignore <<, >> and ")
+##  "python Hrothvitnir.py -i <<path to .trees.txt file>> -m <<mode - X, diversityOt, FstOt, N_transitions or stateTime>> 1> <<path to output file>>" (ignore <<, >> and ")
 ##  
 ##  The following figures in the manuscript were made using these modes:
 ##  Figure 3 - diversityOT
@@ -546,6 +546,13 @@ def parseTreeFile(argv):
                     for time in slice_list:
                         sys.stdout.write('\t%s_diversity'%(time[0]))
                 #######################################################
+                if mode=='N_transitions':
+                    headerTraits=[]
+                    for o in trait_list:
+                        headerTraits.append(o[0])
+                    sys.stdout.write('states\t%s'%('\t'.join(headerTraits)))
+                    
+ 
 
             ## After burnin start processing
             if int(cerberus.group(1)) >= burnin:
@@ -698,6 +705,13 @@ def parseTreeFile(argv):
                             ## Only output the oldest TMRCA from the list of TMRCAs
                             sys.stdout.write('\t%s'%(min(temp)))
                 ################################################################################
+                if mode=='N_transitions':
+                    sys.stdout.write('\n%s'%(cerberus.group(1)))
+                    for x in trait_list:
+                        reassortants=[1 for k in object_list[1:] if k.traits[x[0]]!=k.parent.traits[x[0]]]
+                        #sys.stdout.write('\t%s\t%s'%(x[0],sum(reassortants)-1))
+                        sys.stdout.write('\t%s'%(len(reassortants)-1))
+                        
             if 'End;' in line:
                 print '\nEnd of file!'
 
@@ -713,8 +727,8 @@ global burnin
 # stateTime - outputs the non-synonymous (*N), synonymous (*S) and nucleotide (*_nt) substitution rates as well as total amount of time spent under different PB1-PB2-HA constellations.
 # FstOT - outputs mean pairwise diversity between V and Y labeled branches at each time point.
 # diversityOT - outputs time of most recent common ancestor of all lineages existing at each time point.
-
-allModes=['X','stateTime','FstOT','diversityOT']
+# N_transitions - outputs the number of trait transitions that have occured accounting for the initial split of the trait (N transitions - 1)
+allModes=['X','stateTime','FstOT','diversityOT','N_transitions']
 
 ## Define burnin as the number of the state from which to begin analysis.
 burnin=20000000
