@@ -91,6 +91,43 @@
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 
+\subsection*{Confirmation of primary findings}
+We sought to confirm our findings through measurement of linkage disequilibrium (LD), a measure of non-random association between polymorphic loci within a population.
+We estimated LD directly from haplotype frequencies at polymorphic amino acid sites (see Methods) in the secondary dataset, thereby avoiding phylogenetic reconstruction or Vic/Yam lineage assignment.
+We observe greater amino acid LD values between PB1, PB2 and HA than between other pairs of segments (Figure \ref{segmentLD}) in a large secondary dataset.
+This suggests that PB1, PB2 and HA segments possess a considerable number of co-assorting non-synonymous alleles, which upon closer inspection are associated with either Vic or Yam lineage segments.
+We conclude that Victoria and Yamagata lineages of PB1, PB2 and HA have accumulated lineage-specific amino acid substitutions.
+Of the amino acid sites that exhibit high LD on PB1, PB2 and HA proteins, there are 4 sites on PB1, 4 on PB2 and 4 on HA proteins which form a network of sites exhibiting high LD (Figures \ref{ChiGenome} and \ref{ChiCore}).
+These sites define the split between Vic and Yam lineages within PB1, PB2 and HA segments.
+In addition, there are sites on PB1, PB2, HA and NA proteins which also show high, albeit smaller, LD which correspond to sites which have undergone amino acid replacements some time after the Vic/Yam split.
+
+\begin{figure}[h]
+	\centering	
+	\includegraphics[width=0.85\textwidth]{supp_figures/InfB_LDcircle.1600.aa.ChiSqdf.minorCutoff1percent.png}
+	\caption{\textbf{LD comparison between influenza B proteins.}
+Pairwise comparisons of linkage disequilibrium between amino acid sites on influenza B proteins in the secondary dataset.
+Many polymorphic amino acid sites on PB1, PB2 and HA proteins exhibit high LD between themselves, followed by the NA protein.
+This is evidence of a considerable number of co-assorting alleles within these proteins.}
+	\label{segmentLD}
+\end{figure}
+
+\begin{figure}
+\centering  
+\includegraphics[width=0.85\textwidth]  {supp_figures/InfB_LDheatmap.PB1_PB2_HA.1600.aa.ChiSqdf.minorCutoff1percent.png}
+\caption{\textbf{Heatmap of linkage disequilibrium ($\chiSq$) between amino acid sites on PB1, PB2 and HA proteins.}
+Numbers next to each row and column correspond to amino acid site number within a given protein starting from methionine.
+Amino acid sites exhibiting reciprocally high LD between PB1, PB2 and HA proteins are: 176, 211, 213, 508 (PB1), 115, 399, 470, 642 (PB2) and 96, 163, 520 and 570 (HA).
+Sites 211 and 213 on the PB1 protein are very close to each other and the stretch of sequence around these residues contains many positively charged amino acids (lysine and arginine).
+Multiple nuclear localization signals (NLSs) are predicted to occur around this region and sites 211 and 213 are either predicted to be near the end of a mono-partite NLS or the beginning of a bi-partite NLS.
+Previous research \citep{nath1990} suggests that in the influenza A PB1 protein residue 211 (homologous to influenza B PB1 residue 211) is the last residue of a bi-partite NLS.
+Almost all Yamagata lineage isolates possess arginine (R) residue at PB1 position 211 and a serine (S) residue at position 213, whereas Victoria lineage isolates have lysine (K) at position 211 and threonine (T) at position 213.
+It remains to be seen whether these sites significantly affect the nuclear import efficiency of the PB1 protein of either lineage.
+Though the PB1 protein is known to accumulate in the nucleus on its own, efficient import into the nucleus requires the presence of the PA protein \citep{fodor2004}.
+Similarly, site 399 on the PB2 protein are close to residues 377, 406 and 408 which are homologous to sites in influenza A that are responsible for mRNA cap-binding \citep{guilligay2008}.}
+\label{ChiCore}
+\end{figure}
+
+
 \subsection*{Analysis of within-lineage reassortment patterns}
 Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events \citep{svinti2013}.
 Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
@@ -236,22 +273,6 @@ Due to excessively long computation time of exact SPR distances between PB2 and 
 Patterns of LD across the genome suggest a network of reciprocally linked amino acid sites on PB1, PB2, HA and, to some extent NA, proteins.
 Proximity of sites on heatmaps might not correspond to proximity of sites within proteins.}
 \label{ChiGenome}
-\end{figure}
-
-\begin{figure}
-\centering  
-\includegraphics[width=0.85\textwidth]  {supp_figures/InfB_LDheatmap.PB1_PB2_HA.1600.aa.ChiSqdf.minorCutoff1percent.png}
-\caption{\textbf{Heatmap of linkage disequilibrium ($\chiSq$) between amino acid sites on PB1, PB2 and HA proteins.}
-Numbers next to each row and column correspond to amino acid site number within a given protein starting from methionine.
-Amino acid sites exhibiting reciprocally high LD between PB1, PB2 and HA proteins are: 176, 211, 213, 508 (PB1), 115, 399, 470, 642 (PB2) and 96, 163, 520 and 570 (HA).
-Sites 211 and 213 on the PB1 protein are very close to each other and the stretch of sequence around these residues contains many positively charged amino acids (lysine and arginine).
-Multiple nuclear localization signals (NLSs) are predicted to occur around this region and sites 211 and 213 are either predicted to be near the end of a mono-partite NLS or the beginning of a bi-partite NLS.
-Previous research \citep{nath1990} suggests that in the influenza A PB1 protein residue 211 (homologous to influenza B PB1 residue 211) is the last residue of a bi-partite NLS.
-Almost all Yamagata lineage isolates possess arginine (R) residue at PB1 position 211 and a serine (S) residue at position 213, whereas Victoria lineage isolates have lysine (K) at position 211 and threonine (T) at position 213.
-It remains to be seen whether these sites significantly affect the nuclear import efficiency of the PB1 protein of either lineage.
-Though the PB1 protein is known to accumulate in the nucleus on its own, efficient import into the nucleus requires the presence of the PA protein \citep{fodor2004}.
-Similarly, site 399 on the PB2 protein are close to residues 377, 406 and 408 which are homologous to sites in influenza A that are responsible for mRNA cap-binding \citep{guilligay2008}.}
-\label{ChiCore}
 \end{figure}
 
 \begin{figure}
