@@ -65,6 +65,7 @@
 % symbols
 \newcommand{\chiSq}{\chi^{2}_{df}}
 \newcommand{\dtmrca}{\Delta_\mathrm{TMRCA}}
+\newcommand{\undtmrca}{\delta_\mathrm{TMRCA}}
 \newcommand{\dspr}{d_\mathrm{SPR}}
 
 %%% TITLE %%%
@@ -252,17 +253,17 @@ All vertical lines indicating uncertainty are 95\% highest posterior densities (
 We attempted to quantify the temporal discordance between lineages reassorting into new genomic constellations.
 If one were able to recover an influenza `species tree', including admixture/reassortment events, it would be possible to estimate the reassortment or recombination `distance', which is the time between a split in the species tree in the past and a reassortment event (see Figure \ref{speciesTree}).
 Although we do not find evidence of differences in total number of reassortments between segments (see Supplementary information), we find support for a reassortment `distance' effect, in which a pair of tips on one segment has a different TMRCA from the same pair of tips on a different segment.
-The summary statistic we use that reflects this difference in TMRCAs, $\dtmrca$, is most sensitive when only one of the two trees being compared loses diversity via reassortment and the other acts like a proxy for the `species tree'.
-We normalize our $\dtmrca$ comparisons to account for uncertainty in tree topology (see Methods).
-Figure \ref{deltaTMRCA} shows normalized $\dtmrca$ values for all pairs of trees.
+The summary statistic we use that reflects this difference in TMRCAs, $\undtmrca$, is most sensitive when only one of the two trees being compared loses diversity via reassortment and the other acts like a proxy for the `species tree'.
+We normalize our $\undtmrca$ comparisons to arrive at $\dtmrca$, which accounts for uncertainty in tree topology (see Methods).
+Figure \ref{deltaTMRCA} shows $\dtmrca$ values for all pairs of trees.
 Most segment pairs show very low values for this statistic with $\dtmrca \approx 0.1$, indicating that $\dtmrca$ measurements between replicate posterior samples from the same segment are up to 10 times smaller than $\dtmrca$ values between posterior samples from different segments.
-PB1, PB2 and HA trees, on the other hand, exhibit normalized $\dtmrca$ values that are much higher.
+PB1, PB2 and HA trees, on the other hand, exhibit $\dtmrca$ values that are much higher.
 This shows that TMRCA differences between trees of PB1, PB2 and HA segments are, though noisy, occasionally very similar to uncertainty in tip-to-tip TMRCAs between replicate analyses of these segments.
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.65\textwidth]{figures/InfB_normalizedMuDeltaTMRCA.png}
-	\caption{\textbf{Normalized mean $\dtmrca$ statistics for different segment pairs.}
+	\caption{\textbf{$\dtmrca$ statistics for different segment pairs.}
 PB1, PB2 and HA trees exhibit reciprocally highly similar TMRCAs, unlike most other pairwise comparisons.
 All vertical lines indicating uncertainty are 95\% highest posterior densities (HPDs).}
 	\label{deltaTMRCA}
@@ -368,24 +369,25 @@ We do this by summing the branch lengths in each tree under 3 different lineage 
 This gives a measure of how successful, over long periods of time, each particular PB1-PB2-HA constellation has been.
 
 \subsection*{Tree to tree similarities}
-We express the distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ for a particular posterior sample $i$, following
+We express the normalized distance $\dtmrca$ between trees belonging to two segments $A$ and $B$ for a particular posterior sample $i$, following
 \begin{equation}
-normalized \dtmrca(A_i, B_i) = \frac{\dtmrca(A_i, A_i') + \dtmrca(B_i, B_i')}{2 \, \dtmrca(A_i, B_i)},
+\dtmrca(A_i, B_i) = \frac{\undtmrca(A_i, A_i') + \undtmrca(B_i, B_i')}{2 \, \undtmrca(A_i, B_i)},
 \end{equation}
-where $\dtmrca(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n g(A_{ij}, B_{ij})$ and $n$ is the total number of pairwise comparisons available between sets of tips.
+where $\undtmrca(A_i, B_i) = \frac{1}{n}\sum_{j=1}^n g(A_{ij}, B_{ij})$ and $n$ is the total number of pairwise comparisons available between sets of tips.
 Thus, $g(A_{ij},B_{ij})$ is the absolute difference in TMRCA of a pair of tips $j$, where the pair is drawn from the \textit{i}th posterior sample of tree $A$ and the \textit{i}th posterior sample of tree $B$.
-Additionally, $\dtmrca(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree $A$ (which we refer to as $A'$), which is used in the normalization procedure to control for variability in tree topology stability over the course of the MCMC chain (see Figures \ref{deltaTMRCAtrees} and \ref{deltaTMRCAreplicates}).
-We had 3 replicate analyses of each segment and in order to calculate $\dtmrca(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as $A$ and analyses numbered 2, 3 and 1 as $A'$, in that order.
-We subsampled our combined posterior distribution of trees to give a total of 2,700 trees on which to analyze normalized $\dtmrca$.
+Additionally, $\undtmrca(A_i,A'_i)$ is calculated from the \textit{i}th posterior sample of tree A and \textit{i}th posterior sample of an independent analysis of tree $A$ (which we refer to as $A'$), which is used in the normalization procedure to control for variability in tree topology stability over the course of the MCMC chain (see Figures \ref{deltaTMRCAtrees} and \ref{deltaTMRCAreplicates}).
+We had 3 replicate analyses of each segment and in order to calculate $\undtmrca(A_i,A'_i)$ we used analyses numbered 1, 2 and 3 as $A$ and analyses numbered 2, 3 and 1 as $A'$, in that order.
+We subsampled our combined posterior distribution of trees to give a total of 2,700 trees on which to analyze $\dtmrca$.
 
-Calculating normalized $\dtmrca(A_i, B_i)$ for each MCMC state provides us with a posterior distribution of this statistic allowing  specific hypotheses regarding similarities between the trees of different segments to be tested.
+Calculating the normalized $\dtmrca(A_i, B_i)$ for each MCMC state provides us with a posterior distribution of this statistic allowing  specific hypotheses regarding similarities between the trees of different segments to be tested.
 Our approach exploits the branch scaling used by BEAST \citep{drummond2012}, since the trees are scaled in absolute time and insensitive to variation in nucleotide substitution rates between segments, allowing for direct comparisons between TMRCAs in different trees.
 In the absence of reassortment we expect the tree of every segment to recapitulate the `virus tree', a concept analogous to `species trees' in population genetics.
 Our method operates under the assumption that the segment trees capture this `virus tree' of influenza B viruses quite well.
 It is not an unreasonable assumption, given the seasonal bottlenecks influenza viruses experience.
 This makes it almost certain that influenza viruses circulating at any given time point are derived from a single genome that existed in the recent past.
-The $\dtmrca$ statistic essentially quantifies the temporal distance between admixture events and nodes in the `virus tree' (see Figure \ref{speciesTree}).
-Our $\dtmrca$ statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \citep{longdon2011} and to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \citep{ruane2011}.
+The $\undtmrca$ statistic essentially quantifies the temporal distance between admixture events and nodes in the `virus tree' (see Figure \ref{speciesTree}).
+We normalize $\undtmrca$ values to get $\dtmrca$, a measure which quantifies the extent to which the similarity of two independent trees resembles phylogenetic noise.
+The $\undtmrca$ statistic is an extension of patristic distance methods and has previously been used to tackle a wide variety of problems, as phylogenetic distance in predicting viral titer in \textit{Drosophila} infected with viruses from closely related species \citep{longdon2011} and to assess temporal incongruence in a phylogenetic tree of amphibian species induced by using different calibrations \citep{ruane2011}.
 
 \subsection*{Linkage disequilibrium across the influenza B genome}
 We used the secondary GenBank dataset with 1603 complete genome sequences to estimate linkage disequilibrium (LD) between amino acid loci across the longest proteins encoded by each segment of the influenza B virus genome.

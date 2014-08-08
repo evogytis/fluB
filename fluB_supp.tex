@@ -64,6 +64,7 @@
 % symbols
 \newcommand{\chiSq}{\chi^{2}_{df}}
 \newcommand{\dtmrca}{\Delta_\mathrm{TMRCA}}
+\newcommand{\undtmrca}{\delta_\mathrm{TMRCA}}
 \newcommand{\dspr}{d_\mathrm{SPR}}
 
 \begin{document}
@@ -127,12 +128,20 @@ Similarly, site 399 on the PB2 protein are close to residues 377, 406 and 408 wh
 \label{ChiCore}
 \end{figure}
 
+\begin{figure}
+\centering  
+\includegraphics[width=0.95\textwidth]  {supp_figures/InfB_LDheatmap.1600.aa.ChiSqdf.minorCutoff1percent.png}
+\caption{\textbf{Heatmap of genome-wide linkage disequilibrium ($\chiSq$) between polymorphic amino acid sites.}
+Patterns of LD across the genome suggest a network of reciprocally linked amino acid sites on PB1, PB2, HA and, to some extent NA, proteins.
+Proximity of sites on heatmaps might not correspond to proximity of sites within proteins.}
+\label{ChiGenome}
+\end{figure}
 
 \subsection*{Analysis of within-lineage reassortment patterns}
 Subtree prune and regraft (SPR) distances between phylogenetic trees are an approximate measure of the numbers of reassortment or recombination events \citep{svinti2013}.
 Exact SPR distances are difficult to compute, as they depend on the SPR distance itself and are impractical to compute for posterior distributions of trees except for the most similar trees.
 We calculated approximate SPR distances \citep{whidden2009,whidden2010,whidden2013} to quantify the numbers of reassortments that have taken place between all pairs of segments.
-Approximate SPR distances were normalized using the procedure used to normalize $\dspr$ (see Methods):
+Normalized approximate SPR distances,$\dspr$, were recovered using (see Methods):
 \begin{equation}
 \dspr(A_i, B_i) = \frac{f(A_i, A_i') + f(B_i, B_i')}{2 \, f(A_i, B_i)},
 \end{equation}
@@ -268,15 +277,6 @@ Due to excessively long computation time of exact SPR distances between PB2 and 
 
 \begin{figure}
 \centering  
-\includegraphics[width=0.95\textwidth]  {supp_figures/InfB_LDheatmap.1600.aa.ChiSqdf.minorCutoff1percent.png}
-\caption{\textbf{Heatmap of genome-wide linkage disequilibrium ($\chiSq$) between polymorphic amino acid sites.}
-Patterns of LD across the genome suggest a network of reciprocally linked amino acid sites on PB1, PB2, HA and, to some extent NA, proteins.
-Proximity of sites on heatmaps might not correspond to proximity of sites within proteins.}
-\label{ChiGenome}
-\end{figure}
-
-\begin{figure}
-\centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_robustCounting.png}
 \caption{\textbf{Synonymous, non-synonymous and nucleotide substitution rates in segments under different PB1-PB2-HA complexes.}
 Evolutionary rate dissimilarities under Vic and Yam PB1-PB2-HA complexes are not systematic and appear negligible.
@@ -299,24 +299,24 @@ Vertical bars indicating uncertainty are 95\% HPDs, black bars indicate 95\% HPD
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_deltaTMRCA_trees.png}
-\caption{\textbf{Mean $\dtmrca$ between all pairs of trees of segments.}
-Mean $\dtmrca$ between trees of segments reveal that tip pairs in PB1, PB2 and HA trees have very similar TMRCAs.
-The upper tail of the 95\% HPD (HPDs are represented as vertical lines) interval of mean $\dtmrca$ values for PB1-PB2-HA and MP-NA trees do not exceed 3 years.}
+\caption{\textbf{$\undtmrca$ between all pairs of trees of segments.}
+$\undtmrca$ between trees of segments reveal that tip pairs in PB1, PB2 and HA trees have very similar TMRCAs.
+The upper tail of the 95\% HPD (HPDs are represented as vertical lines) interval of $\undtmrca$ values for PB1-PB2-HA and MP-NA trees do not exceed 3 years.}
 \label{deltaTMRCAtrees}
 \end{figure}
 
 \begin{figure}
 \centering  
 \includegraphics[width=0.65\textwidth]  {supp_figures/InfB_supp_deltaTMRCA_replicates.png}
-\caption{\textbf{Mean $\dtmrca$ between replicate trees of each segment.}
-Mean $\dtmrca$ values between independent analyses of each segment show that mean $\dtmrca$ values rarely exceed 1 year.}
+\caption{\textbf{$\undtmrca$ between replicate trees of each segment.}
+$\undtmrca$ values between independent analyses of each segment show that mean $\undtmrca$ values rarely exceed 1 year.}
 \label{deltaTMRCAreplicates}
 \end{figure}
 
 \begin{figure}[h]
 	\centering	
 	\includegraphics[width=0.85\textwidth]{figures/InfB_methodSpeciesTree.pdf}
-	\caption{\textbf{Calculating $\dtmrca$ from a species tree perspective.}
+	\caption{\textbf{Calculating $\undtmrca$ from a species tree perspective.}
 Consider an organism that has diverged into 3 taxa (A, B, C) with a genome comprised of 3 segments (blue, green and red).
 Due to reassortments taxa A and B share a slightly more recent TMRCA in the red segment, likewise for taxa B and C in the green segment.
 By comparing differences in TMRCAs between taxa A-B, A-C and B-C in blue, red and green segments we would find that the red segment has a lower `reassortment distance' (X) than the green segment (Y).
