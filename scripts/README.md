@@ -30,6 +30,7 @@ Mode takes one of 4 arguments:
 * __diversityOT__ - returns the date of most recent common ancestor of all lineages existing at different time points.
 * __FstOT__ - returns mean pairwise date of most recent common ancestor between branches under different trait values at time slices. Only works if trait values are "V" and "Y".
 * __stateTime__ - returns the nucleotide, synonymous and non-synonymous rates of evolution and the total amount of time spent under "VVV", "YYY" or other combinations of trait values of PB1, PB2 and HA traits.
+* __N_transitions__ - returns the number of transitions each trait has undergone minus one.
 * __X__ - returns the number of objects parsed by the script. Completely unnecessary, since the script has inbuilt checks to see whether the tree has been parsed correctly.
 
 ### Hydra
@@ -49,6 +50,6 @@ Briefly, it normalizes comparisons between two different trees by comparisons be
 `python LD_calculator.py`
 
 ## Figures
-`fluB.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy** and **scipy** (the latter is optional). After everything has been installed simply put `fluB.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
+`fluB.ipynb` makes most of the data figures from the manuscript. In order to make the figures you will require **IPython**, **matplotlib**, **numpy**, **scipy** and **husl** (the latter two are optional). After everything has been installed simply put `fluB.ipynb` where the IPython notebook can find it. You will need to point it to the output files which are [available here](https://github.com/evogytis/fluB/tree/master/data/) if you can't be bothered running all other scripts.
 
 The notebook in its intended form can be viewed [here](http://nbviewer.ipython.org/github/evogytis/fluB/blob/master/scripts/fluB.ipynb) (give it some time, it's quite big).
