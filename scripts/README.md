@@ -26,7 +26,7 @@ ignoring the square brackets.
 
 Input should be posterior distribution of trees made by BEAST.
 
-Mode takes one of 4 arguments:
+Mode takes one of 5 arguments:
 * __diversityOT__ - returns the date of most recent common ancestor of all lineages existing at different time points.
 * __FstOT__ - returns mean pairwise date of most recent common ancestor between branches under different trait values at time slices. Only works if trait values are "V" and "Y".
 * __stateTime__ - returns the nucleotide, synonymous and non-synonymous rates of evolution and the total amount of time spent under "VVV", "YYY" or other combinations of trait values of PB1, PB2 and HA traits.
