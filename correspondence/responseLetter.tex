@@ -81,13 +81,13 @@ Influenza B does not need to be hyped to be interesting, and this type of ``jour
 
 We would like to thank the reviewers' and the editor's thorough and insightful comments.
 We appreciate the time they have taken to review the manuscript and the acknowledgment of its value.
-We agree that the discussion, as it was, contained mostly irrelevant information and speculation.
-The discussion has been considerably slimmed down to the most essential information and reworded in places.
+We agree that the discussion, as it was, contained superfluous and speculative text.
+The discussion has been considerably slimmed down to the core information and reworded in places.
 We have additionally altered the terminology that caused confusion, e.g. the word ``fixation'' is now explicitly refered to as a population genetics term and used only where applicable.
 We have also toned down the wording with respect to the importance of influenza B viruses.
 
 
-Point-by-point review responses are attached, as well as a diffed PDF detailing all the changes that have been made since the initial submission.
+Point-by-point review responses are attached, as well as a 'diffed' PDF detailing all the changes that have been made since the initial submission.
 
 Sincerely,\\
 Gytis Dudas
@@ -105,11 +105,11 @@ Original reviewer criticisms are in plain text.  Our responses follow in \textbf
 1. ``Could the authors provide an estimate of how many reassortment events have occurred in these trees in total, based on the no. of transitions?''
 
 \textbf{We have added a new supplementary figure (Figure S10), which shows the mean number of transitions for each trait/label as well as their 95\% HPDs in each tree.
-We advise to interpret the new figure with caution - many successful reassortment events we have observed involve more than one segment (see Figure 6) and thus these counts are not independent.}
+We advise interpreting the new figure with caution - many successful reassortment events we have observed involve more than one segment (see Figure 6) and thus these counts are not independent.}
 
 2. ``It would be useful, as comparison, to include a Supplementary figure similar to Fig 2, but with branches colored to show reassortment events involving the other segments (PA, NP, NA, MP, NS -- obviously this is a lot of combinations and a lot of trees, so maybe just show a representative subset).''
 
-\textbf{We believe that although this is an interesting point, it is outside the scope of the current manuscript.
+\textbf{We believe that, although this is an interesting point, it is beyond the scope of the current manuscript.
 Additionally, the complete reassortment history of all segments is available in Figure 6, which can be combined with Figure 2 to reveal the phylogenetic position of all reassorting lineages.
 To avoid making excessive amounts of figures with all possible combinations of trees and traits we have made the MCC trees (including trait mapping) publicly available at: \url{https://github.com/evogytis/fluB/tree/master/data/mcc\%20trees}.}
 
@@ -117,7 +117,7 @@ To avoid making excessive amounts of figures with all possible combinations of t
 It would be useful to know how geographically representative the data set is.  
 It certainly is possible that in a spatially biased data set certain variants (as in those with mixed PB1-PB2-HA complexes) could be under-represented.''
 
-\textbf{Apologies for this. We have a separate file listing all sequence accession numbers from primary (GISAID) and secondary (GenBank) datasets but forgot to include it in the initial submission.
+\textbf{Apologies for this. We have a separate file listing all sequence accession numbers from GISAID and GenBank datasets but forgot to include it in the initial submission.
 These files are available at \url{https://github.com/evogytis/fluB/tree/master/data/acknowledgement\%20tables}.
 To make it easier to judge how representative the sequence sampling was we have included two new supplementary figures (Figures S8 and S9) which show the geographic distribution of sequences in the primary and secondary datasets.}
 
@@ -135,7 +135,7 @@ Or is this only occurring at the larger scale?''
 \textbf{This is a very insightful observation. The unusual pattern of PB1-PB2-HA co-reassortment could potentially be caused via physical means (e.g. packaging signals) and thus should be observable at the sub-clade level.
 The alternative is linkage caused by selection, where sub-clade reassortants occur, but are not selected against as long as ``pure'' PB1-PB2-HA complexes are maintained.
 We attempted to address this in supplementary information by using SPR distances (Figure S4), but because sub-clades are necessarily more closely related to each other we find that there is too much phylogenetic noise to investigate this in a satisfactory way using the current data.
-It is our opinion that addressing sub-clade reassortment would require the development of new methods and a more suitable dataset.}
+It is our opinion that addressing sub-clade reassortment would require the development of new methods and a more fine-scaled dataset.}
 
 6. ``p3, line 3: one of these should be PB2''
 
@@ -160,6 +160,7 @@ It has been addressed by toning down the language in the abstract and the introd
 \textbf{Figure 5 shows the ratio at which Victoria and Yamagata sequences were isolated over time and is based on simply counting how many sequences within any given temporal bin and segment are derived from Victoria and Yamagata lineages.
 It has caused confusion with reviewer 2 before, which we believe is due to our inter-changeable use of the word ``lineage'' when we actually mean ``sequence''.
 This has been corrected in the text.}
+%% AR - what do you mean with 'caused confusion with reviewer 2 before'?
 
 2.2 ``I understand what the `recent past' part of this chart means.
 It means, for example, that the PA, NP, NA, and MP segments circulating today are all derived from the Yamagata lineage.
@@ -173,10 +174,11 @@ If yes, does this mean that when Vic and Yam split the initial diversification w
 If yes, should we really call these Victoria-type in 1984, or are they simply the ancestral type before the split occurred?''
 
 \textbf{We believe these questions were made in ensuing misinterpretation of Figure 5.}
+%% AR - is this referring to 2.1, above? 
 
 2.4. ``Does sampling bias affect the results of Figure 5?''
 
-\textbf{The apparent fixation of one lineage or the other will be completely robust to sampling.
+\textbf{The apparent fixation of one lineage or the other will be robust to sampling. %% AR - want to expand on this?
 In order to alleviate concerns about geographic sampling bias we have now included two additional supplementary Figures (Figures S8 and S9) which show the geographic distribution of the sequences in both primary and secondary datasets.}
 
 2.5. ``I believe we have enough influenza B sequences to reconstruct the post-2005 part of this chart. How much confidence do we have in 1995? 1985?''
@@ -197,11 +199,15 @@ Different segments may evolve at different rates, but we should capture this thr
 Due to yearly population bottlenecks, we expect strains isolated at any given time to have descended from a single recent (within ~5-8 years) virus genome.
 This descent from a single genome should therefore be reflected in the TMRCAs of all segments, the only exception being reassortment, which will dramatically alter the TMRCAs of the reassorted segment tree with respect to the background onto which it is reassorting.
 The paper ``The genomic and epidemiological dynamics of human influenza A virus'' (Rambaut et al. 2008) uses a similar metric in the analysis of segment similarity in influenza H3N2.
-We understand that this is a rather complicated and non-intuitive concept to grasp and we are willing to elaborate further on the underlying principle of the method in the text if necessary.}
+%We understand that this is a rather complicated and non-intuitive concept and we are willing to elaborate further on the underlying principle of the method in the text if necessary.
+%% AR Don't offer to do something conditional on being responded to by the referee - work on the basis that this will be accepted without revision, i.e., persuade the editor that 
+%% you have completely handled the referees' concerns.
+}
 
 3.2. ``Are these TMRCAs of partial virus genomes?''
 
 \textbf{We are not sure what the reviewer meant with this question.
+%% AR Should we just say are TMRCAs of individual segments? Don't say we don't know what the reviewer means.
 We hope, however, that our description above and Figure S17 help to clarify this issue.}
 
 3.3. ``Should the caption read `Normalized mean TMRCA statistics for different segment pairs'?''
